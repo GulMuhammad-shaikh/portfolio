@@ -16,7 +16,7 @@ export const portfolioData = {
     phone: "0304-2681062",
     location: "Karachi, Pakistan",
     availability: "Available for Full-time Roles & Projects",
-    resumeUrl: "/resume.pdf",
+    resumeUrl: "/Gul%20Muhammad%20Web%20Developer%20(1).pdf",
     github: "https://github.com/GulMuhammad-shaikh",
     linkedin: "https://www.linkedin.com/in/gul-muhammad-53a602356/",
     repoUrl: "https://github.com/GulMuhammad-shaikh/portfolio",

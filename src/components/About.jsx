@@ -205,7 +205,7 @@ export const About = ({ theme, isDark }) => {
             <div className="about-buttons-wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
               <a
                 href={portfolioData.personal.resumeUrl}
-                download="Gul_Muhammad_Resume.pdf"
+                download="Gul Muhammad Web Developer (1).pdf"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',

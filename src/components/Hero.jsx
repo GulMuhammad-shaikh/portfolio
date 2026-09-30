@@ -256,7 +256,7 @@ export const Hero = ({ theme, isDark }) => {
 
               <a
                 href={portfolioData.personal.resumeUrl}
-                download="Gul_Muhammad_Resume.pdf"
+                download="Gul Muhammad Web Developer (1).pdf"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',

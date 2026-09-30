@@ -262,7 +262,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
           {/* Desktop Resume Download Pill */}
           <a
             href={portfolioData.personal.resumeUrl}
-            download="Gul_Muhammad_Resume.pdf"
+            download="Gul Muhammad Web Developer (1).pdf"
             style={{
               background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
               color: '#ffffff',
@@ -524,7 +524,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
           <div style={{ display: 'flex', gap: 10, marginTop: 14, paddingTop: 12, borderTop: `1px solid ${theme.borderSubtle}` }}>
             <a
               href={portfolioData.personal.resumeUrl}
-              download="Gul_Muhammad_Resume.pdf"
+              download="Gul Muhammad Web Developer (1).pdf"
               style={{
                 flex: 1,
                 display: 'flex',
