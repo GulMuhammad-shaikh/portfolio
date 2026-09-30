@@ -4,8 +4,8 @@ import { portfolioData } from '../data/portfolioData';
 
 export const Education = ({ theme, isDark }) => {
   return (
-    <section id="education" style={{ padding: '100px 0', position: 'relative', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="education" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+      <div className="responsive-container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div
@@ -31,7 +31,7 @@ export const Education = ({ theme, isDark }) => {
 
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
               fontWeight: '800',
               color: theme.textPrimary,
               letterSpacing: '-0.02em',
@@ -43,7 +43,7 @@ export const Education = ({ theme, isDark }) => {
 
           <p
             style={{
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               color: theme.textSecondary,
               maxWidth: '620px',
               margin: '0 auto',
@@ -61,8 +61,9 @@ export const Education = ({ theme, isDark }) => {
             justifyContent: 'center',
             alignItems: 'center',
             flexWrap: 'wrap',
-            gap: '16px',
-            marginBottom: '48px'
+            gap: '12px',
+            marginBottom: '40px',
+            width: '100%'
           }}
         >
           {portfolioData.languages.map((lang, idx) => (
@@ -72,8 +73,8 @@ export const Education = ({ theme, isDark }) => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '10px',
-                padding: '10px 20px',
+                gap: '8px',
+                padding: '8px 16px',
                 borderRadius: '9999px',
                 background: theme.bgCard,
                 backdropFilter: 'blur(16px)',
@@ -82,12 +83,12 @@ export const Education = ({ theme, isDark }) => {
                 boxShadow: theme.shadowSmall
               }}
             >
-              <span style={{ fontSize: '1.2rem' }}>{lang.flag}</span>
+              <span style={{ fontSize: '1.1rem' }}>{lang.flag}</span>
               <div>
-                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: theme.textPrimary, marginRight: '6px' }}>
+                <span style={{ fontSize: '0.86rem', fontWeight: '700', color: theme.textPrimary, marginRight: '4px' }}>
                   {lang.name}
                 </span>
-                <span style={{ fontSize: '0.78rem', color: theme.textMuted }}>
+                <span style={{ fontSize: '0.74rem', color: theme.textMuted }}>
                   ({lang.level})
                 </span>
               </div>
@@ -99,25 +100,26 @@ export const Education = ({ theme, isDark }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '30px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+            gap: '24px',
             maxWidth: '1000px',
-            margin: '0 auto'
+            margin: '0 auto',
+            width: '100%'
           }}
         >
           {portfolioData.education.map((edu, idx) => (
             <div
               key={idx}
-              className="interactive-card"
+              className="interactive-card card-padding"
               style={{
                 background: theme.bgCard,
                 backdropFilter: 'blur(16px)',
                 WebkitBackdropFilter: 'blur(16px)',
                 border: `1px solid ${theme.borderSubtle}`,
                 borderRadius: '20px',
-                padding: '36px',
                 boxShadow: theme.shadowMedium,
-                position: 'relative'
+                position: 'relative',
+                boxSizing: 'border-box'
               }}
             >
               <div

@@ -59,7 +59,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
   };
 
   const logoStyle = {
-    fontSize: '1.5rem',
+    fontSize: 'clamp(1.2rem, 3.5vw, 1.5rem)',
     fontWeight: '800',
     color: theme.textPrimary,
     textDecoration: 'none',
@@ -73,7 +73,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
   const desktopNavStyle = {
     display: 'flex',
     alignItems: 'center',
-    gap: '6px',
+    gap: '4px',
     background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
     padding: '4px 6px',
     borderRadius: '9999px',
@@ -84,15 +84,16 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
     const isActive = location.pathname === path;
     return {
       textDecoration: 'none',
-      fontSize: '0.88rem',
+      fontSize: '0.86rem',
       fontWeight: isActive ? '600' : '500',
       color: isActive ? '#ffffff' : theme.textSecondary,
       background: isActive ? 'linear-gradient(135deg, #2563eb, #7c3aed)' : 'transparent',
-      padding: '7px 16px',
+      padding: '7px 14px',
       borderRadius: '9999px',
       transition: 'all 0.25s ease',
       boxShadow: isActive ? '0 2px 10px rgba(37, 99, 235, 0.35)' : 'none',
-      display: 'inline-block'
+      display: 'inline-block',
+      whiteSpace: 'nowrap'
     };
   };
 

@@ -15,8 +15,8 @@ export const Projects = ({ theme, isDark }) => {
   const project = portfolioData.projects[0]; // CampusCoin
 
   return (
-    <section id="projects" style={{ padding: '100px 0', position: 'relative', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="projects" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+      <div className="responsive-container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div
@@ -42,7 +42,7 @@ export const Projects = ({ theme, isDark }) => {
 
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
               fontWeight: '800',
               color: theme.textPrimary,
               letterSpacing: '-0.02em',
@@ -54,7 +54,7 @@ export const Projects = ({ theme, isDark }) => {
 
           <p
             style={{
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               color: theme.textSecondary,
               maxWidth: '620px',
               margin: '0 auto',
@@ -77,15 +77,17 @@ export const Projects = ({ theme, isDark }) => {
             border: `1px solid ${theme.borderSubtle}`,
             borderRadius: '24px',
             overflow: 'hidden',
-            boxShadow: theme.shadowLarge
+            boxShadow: theme.shadowLarge,
+            boxSizing: 'border-box',
+            width: '100%'
           }}
         >
           {/* Top Banner */}
           <div
+            className="card-padding"
             style={{
               background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)',
               borderBottom: `1px solid ${theme.borderSubtle}`,
-              padding: '30px 36px',
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'center',
@@ -202,10 +204,10 @@ export const Projects = ({ theme, isDark }) => {
           </div>
 
           {/* Card Body */}
-          <div style={{ padding: '36px' }}>
+          <div className="card-padding">
             <p
               style={{
-                fontSize: '1.05rem',
+                fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
                 lineHeight: '1.8',
                 color: theme.textSecondary,
                 marginBottom: '28px'
@@ -218,7 +220,7 @@ export const Projects = ({ theme, isDark }) => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr)))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
                 gap: '16px',
                 marginBottom: '32px'
               }}

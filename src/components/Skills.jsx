@@ -75,8 +75,8 @@ export const Skills = ({ theme, isDark }) => {
   };
 
   return (
-    <section id="skills" style={{ padding: '100px 0', position: 'relative', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="skills" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+      <div className="responsive-container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div
@@ -102,7 +102,7 @@ export const Skills = ({ theme, isDark }) => {
 
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
               fontWeight: '800',
               color: theme.textPrimary,
               letterSpacing: '-0.02em',
@@ -114,7 +114,7 @@ export const Skills = ({ theme, isDark }) => {
 
           <p
             style={{
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               color: theme.textSecondary,
               maxWidth: '620px',
               margin: '0 auto',
@@ -133,7 +133,7 @@ export const Skills = ({ theme, isDark }) => {
             alignItems: 'center',
             flexWrap: 'wrap',
             gap: '10px',
-            marginBottom: '40px'
+            marginBottom: '36px'
           }}
         >
           {portfolioData.skillCategories.map((cat) => {
@@ -143,9 +143,9 @@ export const Skills = ({ theme, isDark }) => {
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 style={{
-                  padding: '9px 22px',
+                  padding: '8px 20px',
                   borderRadius: '9999px',
-                  fontSize: '0.9rem',
+                  fontSize: '0.88rem',
                   fontWeight: '600',
                   cursor: 'pointer',
                   border: isActive ? '1px solid transparent' : `1px solid ${theme.borderSubtle}`,
@@ -170,8 +170,9 @@ export const Skills = ({ theme, isDark }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '24px'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))',
+            gap: '20px',
+            width: '100%'
           }}
         >
           {filteredSkills.map((skill, idx) => (

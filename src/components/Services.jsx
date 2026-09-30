@@ -33,10 +33,10 @@ export const Services = ({ theme, isDark }) => {
   };
 
   return (
-    <section id="services" style={{ padding: '100px 0', position: 'relative', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="services" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+      <div className="responsive-container">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -60,7 +60,7 @@ export const Services = ({ theme, isDark }) => {
 
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
               fontWeight: '800',
               color: theme.textPrimary,
               letterSpacing: '-0.02em',
@@ -72,7 +72,7 @@ export const Services = ({ theme, isDark }) => {
 
           <p
             style={{
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               color: theme.textSecondary,
               maxWidth: '620px',
               margin: '0 auto',
@@ -87,24 +87,25 @@ export const Services = ({ theme, isDark }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '28px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+            gap: '24px',
+            width: '100%'
           }}
         >
           {portfolioData.services.map((service, idx) => (
             <div
               key={idx}
-              className="interactive-card"
+              className="interactive-card card-padding"
               style={{
                 background: theme.bgCard,
                 backdropFilter: 'blur(16px)',
                 WebkitBackdropFilter: 'blur(16px)',
                 border: `1px solid ${theme.borderSubtle}`,
                 borderRadius: '20px',
-                padding: '36px',
                 boxShadow: theme.shadowSmall,
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                boxSizing: 'border-box'
               }}
             >
               <div

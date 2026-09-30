@@ -67,10 +67,10 @@ export const Contact = ({ theme, isDark }) => {
   };
 
   return (
-    <section id="contact" style={{ padding: '100px 0', position: 'relative', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="contact" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+      <div className="responsive-container">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -94,7 +94,7 @@ export const Contact = ({ theme, isDark }) => {
 
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
               fontWeight: '800',
               color: theme.textPrimary,
               letterSpacing: '-0.02em',
@@ -106,7 +106,7 @@ export const Contact = ({ theme, isDark }) => {
 
           <p
             style={{
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               color: theme.textSecondary,
               maxWidth: '620px',
               margin: '0 auto',
@@ -118,25 +118,18 @@ export const Contact = ({ theme, isDark }) => {
         </div>
 
         {/* Contact Container Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '40px',
-            alignItems: 'start'
-          }}
-        >
+        <div className="responsive-2col">
           {/* Left Column: Direct Contact Details */}
           <div
-            className="interactive-card"
+            className="interactive-card card-padding"
             style={{
               background: theme.bgCard,
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
               border: `1px solid ${theme.borderSubtle}`,
               borderRadius: '20px',
-              padding: '36px',
-              boxShadow: theme.shadowMedium
+              boxShadow: theme.shadowMedium,
+              boxSizing: 'border-box'
             }}
           >
             <h3
@@ -357,19 +350,19 @@ export const Contact = ({ theme, isDark }) => {
 
           {/* Right Column: Interactive Contact Form */}
           <div
-            className="interactive-card"
+            className="interactive-card card-padding"
             style={{
               background: theme.bgCard,
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
               border: `1px solid ${theme.borderSubtle}`,
               borderRadius: '20px',
-              padding: '36px',
-              boxShadow: theme.shadowMedium
+              boxShadow: theme.shadowMedium,
+              boxSizing: 'border-box'
             }}
           >
             {submitted ? (
-              <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+              <div style={{ textAlign: 'center', padding: '30px 10px' }}>
                 <div
                   style={{
                     width: '70px',
@@ -429,10 +422,10 @@ export const Contact = ({ theme, isDark }) => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 <h3
                   style={{
-                    fontSize: '1.4rem',
+                    fontSize: 'clamp(1.2rem, 2.5vw, 1.4rem)',
                     fontWeight: '700',
                     color: theme.textPrimary,
                     margin: 0
@@ -444,7 +437,7 @@ export const Contact = ({ theme, isDark }) => {
                 <div
                   style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
                     gap: '16px'
                   }}
                 >

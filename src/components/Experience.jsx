@@ -4,10 +4,10 @@ import { portfolioData } from '../data/portfolioData';
 
 export const Experience = ({ theme, isDark }) => {
   return (
-    <section id="experience" style={{ padding: '100px 0', position: 'relative', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="experience" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+      <div className="responsive-container">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -31,7 +31,7 @@ export const Experience = ({ theme, isDark }) => {
 
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
               fontWeight: '800',
               color: theme.textPrimary,
               letterSpacing: '-0.02em',
@@ -43,7 +43,7 @@ export const Experience = ({ theme, isDark }) => {
 
           <p
             style={{
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               color: theme.textSecondary,
               maxWidth: '620px',
               margin: '0 auto',
@@ -60,8 +60,10 @@ export const Experience = ({ theme, isDark }) => {
             maxWidth: '860px',
             margin: '0 auto',
             position: 'relative',
-            paddingLeft: '32px',
-            borderLeft: `2px solid ${isDark ? 'rgba(59, 130, 246, 0.3)' : 'rgba(37, 99, 235, 0.25)'}`
+            paddingLeft: '24px',
+            borderLeft: `2px solid ${isDark ? 'rgba(59, 130, 246, 0.35)' : 'rgba(37, 99, 235, 0.3)'}`,
+            boxSizing: 'border-box',
+            width: '100%'
           }}
         >
           {portfolioData.experience.map((exp, idx) => (
@@ -69,35 +71,35 @@ export const Experience = ({ theme, isDark }) => {
               key={idx}
               style={{
                 position: 'relative',
-                marginBottom: idx === portfolioData.experience.length - 1 ? '0' : '48px'
+                marginBottom: idx === portfolioData.experience.length - 1 ? '0' : '40px'
               }}
             >
               {/* Timeline Indicator Dot */}
               <div
                 style={{
                   position: 'absolute',
-                  left: '-44px',
-                  top: '0',
-                  width: '22px',
-                  height: '22px',
+                  left: '-35px',
+                  top: '4px',
+                  width: '20px',
+                  height: '20px',
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-                  border: `4px solid ${isDark ? '#0b0f19' : '#f8fafc'}`,
-                  boxShadow: '0 0 12px rgba(59, 130, 246, 0.6)'
+                  border: `3px solid ${isDark ? '#0b0f19' : '#f8fafc'}`,
+                  boxShadow: '0 0 10px rgba(59, 130, 246, 0.6)'
                 }}
               />
 
               {/* Experience Card */}
               <div
-                className="interactive-card"
+                className="interactive-card card-padding"
                 style={{
                   background: theme.bgCard,
                   backdropFilter: 'blur(16px)',
                   WebkitBackdropFilter: 'blur(16px)',
                   border: `1px solid ${theme.borderSubtle}`,
                   borderRadius: '20px',
-                  padding: '30px',
-                  boxShadow: theme.shadowMedium
+                  boxShadow: theme.shadowMedium,
+                  boxSizing: 'border-box'
                 }}
               >
                 {/* Header Info */}
@@ -105,7 +107,7 @@ export const Experience = ({ theme, isDark }) => {
                   style={{
                     display: 'flex',
                     flexWrap: 'wrap',
-                    alignItems: 'center',
+                    alignItems: 'flex-start',
                     justifyContent: 'space-between',
                     gap: '12px',
                     marginBottom: '16px'

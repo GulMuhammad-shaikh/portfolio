@@ -28,10 +28,10 @@ export const About = ({ theme, isDark }) => {
   ];
 
   return (
-    <section id="about" style={{ padding: '100px 0', position: 'relative', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="about" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+      <div className="responsive-container">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -54,7 +54,7 @@ export const About = ({ theme, isDark }) => {
           </div>
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
               fontWeight: '800',
               color: theme.textPrimary,
               letterSpacing: '-0.02em',
@@ -65,7 +65,7 @@ export const About = ({ theme, isDark }) => {
           </h2>
           <p
             style={{
-              fontSize: '1.05rem',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
               color: theme.textSecondary,
               maxWidth: '620px',
               margin: '0 auto',
@@ -80,9 +80,10 @@ export const About = ({ theme, isDark }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '20px',
-            marginBottom: '50px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: '16px',
+            marginBottom: '40px',
+            width: '100%'
           }}
         >
           {portfolioData.stats.map((stat, idx) => (
@@ -95,24 +96,24 @@ export const About = ({ theme, isDark }) => {
                 WebkitBackdropFilter: 'blur(16px)',
                 border: `1px solid ${theme.borderSubtle}`,
                 borderRadius: '16px',
-                padding: '24px 20px',
+                padding: '20px 14px',
                 textAlign: 'center',
                 boxShadow: theme.shadowSmall
               }}
             >
               <div
                 style={{
-                  fontSize: '2.2rem',
+                  fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)',
                   fontWeight: '800',
                   background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  marginBottom: '6px'
+                  marginBottom: '4px'
                 }}
               >
                 {stat.value}
               </div>
-              <div style={{ fontSize: '0.88rem', color: theme.textSecondary, fontWeight: '500' }}>
+              <div style={{ fontSize: '0.82rem', color: theme.textSecondary, fontWeight: '500' }}>
                 {stat.label}
               </div>
             </div>
@@ -120,25 +121,18 @@ export const About = ({ theme, isDark }) => {
         </div>
 
         {/* Main Content Layout */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '40px',
-            alignItems: 'start'
-          }}
-        >
+        <div className="responsive-2col">
           {/* Bio Story Card */}
           <div
-            className="interactive-card"
+            className="interactive-card card-padding"
             style={{
               background: theme.bgCard,
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
               border: `1px solid ${theme.borderSubtle}`,
               borderRadius: '20px',
-              padding: '36px',
-              boxShadow: theme.shadowMedium
+              boxShadow: theme.shadowMedium,
+              boxSizing: 'border-box'
             }}
           >
             <div
@@ -253,20 +247,20 @@ export const About = ({ theme, isDark }) => {
 
           {/* Quick Info Grid Card */}
           <div
-            className="interactive-card"
+            className="interactive-card card-padding"
             style={{
               background: theme.bgCard,
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
               border: `1px solid ${theme.borderSubtle}`,
               borderRadius: '20px',
-              padding: '36px',
-              boxShadow: theme.shadowMedium
+              boxShadow: theme.shadowMedium,
+              boxSizing: 'border-box'
             }}
           >
             <h3
               style={{
-                fontSize: '1.35rem',
+                fontSize: 'clamp(1.2rem, 2.5vw, 1.35rem)',
                 fontWeight: '700',
                 color: theme.textPrimary,
                 marginBottom: '24px'
@@ -275,7 +269,7 @@ export const About = ({ theme, isDark }) => {
               Personal Details & Coordinates
             </h3>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {infoItems.map((item, idx) => (
                 <div
                   key={idx}
@@ -283,15 +277,17 @@ export const About = ({ theme, isDark }) => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '12px 16px',
+                    padding: '12px 14px',
                     borderRadius: '12px',
                     background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
                     border: `1px solid ${theme.borderSubtle}`,
                     flexWrap: 'wrap',
-                    gap: '8px'
+                    gap: '8px',
+                    width: '100%',
+                    boxSizing: 'border-box'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <div
                       style={{
                         width: '32px',
@@ -300,12 +296,13 @@ export const About = ({ theme, isDark }) => {
                         background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        flexShrink: 0
                       }}
                     >
                       {item.icon}
                     </div>
-                    <span style={{ fontSize: '0.88rem', fontWeight: '600', color: theme.textMuted }}>
+                    <span style={{ fontSize: '0.86rem', fontWeight: '600', color: theme.textMuted }}>
                       {item.label}
                     </span>
                   </div>
@@ -314,10 +311,12 @@ export const About = ({ theme, isDark }) => {
                     <a
                       href={item.href}
                       style={{
-                        fontSize: '0.92rem',
+                        fontSize: '0.9rem',
                         fontWeight: '600',
                         color: '#3b82f6',
-                        textDecoration: 'none'
+                        textDecoration: 'none',
+                        wordBreak: 'break-all',
+                        overflowWrap: 'anywhere'
                       }}
                     >
                       {item.value}
@@ -325,10 +324,11 @@ export const About = ({ theme, isDark }) => {
                   ) : (
                     <span
                       style={{
-                        fontSize: '0.92rem',
+                        fontSize: '0.9rem',
                         fontWeight: '600',
                         color: theme.textPrimary,
-                        textAlign: 'right'
+                        textAlign: 'right',
+                        wordBreak: 'break-word'
                       }}
                     >
                       {item.value}

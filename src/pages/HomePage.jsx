@@ -41,9 +41,9 @@ export const HomePage = ({ theme, isDark }) => {
       <Hero theme={theme} isDark={isDark} />
 
       {/* Quick Navigation Cards on Home */}
-      <section style={{ padding: '0 0 100px 0', position: 'relative' }}>
-        <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+      <section style={{ padding: '0 0 80px 0', position: 'relative', width: '100%', overflow: 'hidden' }}>
+        <div className="responsive-container">
+          <div style={{ textAlign: 'center', marginBottom: '36px' }}>
             <span
               style={{
                 fontSize: '0.82rem',
@@ -57,7 +57,7 @@ export const HomePage = ({ theme, isDark }) => {
             </span>
             <h2
               style={{
-                fontSize: 'clamp(1.8rem, 3.5vw, 2.4rem)',
+                fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
                 fontWeight: '800',
                 color: theme.textPrimary,
                 marginTop: '6px'
@@ -70,27 +70,28 @@ export const HomePage = ({ theme, isDark }) => {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '24px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+              gap: '20px',
+              width: '100%'
             }}
           >
             {quickCards.map((card, idx) => (
               <Link
                 key={idx}
                 to={card.path}
-                className="interactive-card"
+                className="interactive-card card-padding"
                 style={{
                   background: theme.bgCard,
                   backdropFilter: 'blur(16px)',
                   WebkitBackdropFilter: 'blur(16px)',
                   border: `1px solid ${theme.borderSubtle}`,
                   borderRadius: '20px',
-                  padding: '28px',
                   boxShadow: theme.shadowSmall,
                   textDecoration: 'none',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between'
+                  justifyContent: 'space-between',
+                  boxSizing: 'border-box'
                 }}
               >
                 <div>

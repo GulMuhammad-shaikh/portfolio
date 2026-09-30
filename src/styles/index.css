@@ -5,7 +5,7 @@
   --font-mono: 'Fira Code', monospace;
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,18 +17,23 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
+  max-width: 100vw;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -37,7 +42,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #2563eb;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -49,13 +54,108 @@ body {
   color: #ffffff;
 }
 
+/* Base Responsive Container */
+.responsive-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .responsive-container {
+    padding: 0 16px;
+  }
+}
+
+/* Two Column Responsive Grid */
+.responsive-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .responsive-2col {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+/* Hero Responsive Grid */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-content-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-buttons-wrap {
+    justify-content: center !important;
+  }
+
+  .hero-socials-wrap {
+    justify-content: center !important;
+  }
+}
+
+/* Tech Badges Responsive Container */
+.tech-badges-mobile {
+  display: none;
+}
+
+.tech-badges-desktop {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .tech-badges-desktop {
+    display: none !important;
+  }
+  .tech-badges-mobile {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 380px;
+    margin: 24px auto 0 auto;
+  }
+}
+
+/* Card Padding Helper */
+.card-padding {
+  padding: 36px;
+}
+
+@media (max-width: 640px) {
+  .card-padding {
+    padding: 22px 16px !important;
+  }
+}
+
 /* Animations */
 @keyframes floatSlow {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-12px) rotate(2deg);
+    transform: translateY(-10px) rotate(1.5deg);
   }
 }
 
@@ -64,38 +164,29 @@ body {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(12px) rotate(-2deg);
+    transform: translateY(10px) rotate(-1.5deg);
   }
 }
 
 @keyframes pulseGlow {
   0%, 100% {
-    opacity: 0.4;
+    opacity: 0.35;
     transform: scale(1);
   }
   50% {
-    opacity: 0.8;
-    transform: scale(1.08);
+    opacity: 0.75;
+    transform: scale(1.05);
   }
 }
 
 @keyframes rotateGradient {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @keyframes blinkCursor {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
 }
 
 .animate-float-slow {
@@ -130,7 +221,7 @@ body {
 }
 
 .interactive-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.25);
   border-color: rgba(59, 130, 246, 0.5) !important;
 }
@@ -140,27 +231,23 @@ body {
 }
 
 .hover-lift:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-.hover-glow:hover {
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.6) !important;
-}
-
-/* Glassmorphism Classes */
+/* Glassmorphism */
 .glass-effect {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Responsive Helpers */
-@media (max-width: 768px) {
+/* Responsive Navigation Breakpoints (at 992px to accommodate all 8 navigation items) */
+@media (max-width: 992px) {
   .hide-mobile {
     display: none !important;
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 993px) {
   .hide-desktop {
     display: none !important;
   }
