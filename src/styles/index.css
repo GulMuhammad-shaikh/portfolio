@@ -79,8 +79,8 @@ body {
 
 /* Page Wrapper for Routing */
 .page-wrapper {
-  padding-top: 74px;
-  min-height: calc(100vh - 74px);
+  padding-top: 68px;
+  min-height: calc(100vh - 68px);
   width: 100%;
   box-sizing: border-box;
 }
@@ -460,4 +460,20 @@ body {
   input, textarea, select {
     font-size: 16px !important;
   }
+}
+
+/* Mobile Dropdown Animation (Campus Coin Style) */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, Github } from 'lucide-react';
+import {
+  Home,
+  User,
+  Code2,
+  Briefcase,
+  FolderGit2,
+  Layers,
+  GraduationCap,
+  Mail,
+  Sun,
+  Moon,
+  Menu,
+  X,
+  Github,
+  Download
+} from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const Navbar = ({ theme, isDark, toggleTheme }) => {
@@ -9,177 +24,305 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
   const location = useLocation();
 
   const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Skills', path: '/skills' },
-    { label: 'Experience', path: '/experience' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Services', path: '/services' },
-    { label: 'Education', path: '/education' },
-    { label: 'Contact', path: '/contact' }
+    { label: 'Home', path: '/', icon: <Home size={15} /> },
+    { label: 'About', path: '/about', icon: <User size={15} /> },
+    { label: 'Skills', path: '/skills', icon: <Code2 size={15} /> },
+    { label: 'Experience', path: '/experience', icon: <Briefcase size={15} /> },
+    { label: 'Projects', path: '/projects', icon: <FolderGit2 size={15} /> },
+    { label: 'Services', path: '/services', icon: <Layers size={15} /> },
+    { label: 'Education', path: '/education', icon: <GraduationCap size={15} /> },
+    { label: 'Contact', path: '/contact', icon: <Mail size={15} /> }
   ];
 
+  // Auto-close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Track scroll position for subtle elevation
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile drawer when screen expands to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Header background & elevation (matching Campus Coin)
   const headerStyle = {
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     zIndex: 1000,
-    height: '74px',
+    height: '68px',
     display: 'flex',
     alignItems: 'center',
-    transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: 'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
     background: isScrolled
-      ? (isDark ? 'rgba(11, 15, 25, 0.88)' : 'rgba(255, 255, 255, 0.9)')
-      : (isDark ? 'rgba(11, 15, 25, 0.75)' : 'rgba(255, 255, 255, 0.8)'),
-    backdropFilter: 'blur(16px)',
-    WebkitBackdropFilter: 'blur(16px)',
-    borderBottom: `1px solid ${theme.borderSubtle}`,
-    boxShadow: isScrolled ? theme.shadowSmall : 'none'
+      ? (isDark ? 'rgba(11, 19, 43, 0.95)' : 'rgba(255, 255, 255, 0.95)')
+      : (isDark ? 'rgba(11, 19, 43, 0.88)' : 'rgba(255, 255, 255, 0.88)'),
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+    boxShadow: isScrolled
+      ? (isDark ? '0 10px 30px rgba(0, 0, 0, 0.25)' : '0 8px 25px rgba(15, 23, 42, 0.05)')
+      : 'none'
   };
 
   const navContainerStyle = {
-    maxWidth: '1240px',
+    maxWidth: '1220px',
     margin: '0 auto',
-    padding: '0 24px',
+    padding: '0 clamp(16px, 3.5vw, 32px)',
     width: '100%',
+    height: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    gap: '16px',
     boxSizing: 'border-box'
   };
 
-  const logoStyle = {
-    fontSize: 'clamp(1.2rem, 3.5vw, 1.5rem)',
-    fontWeight: '800',
-    color: theme.textPrimary,
+  // Brand Logo (Campus Coin style emblem + title + tagline)
+  const brandStyle = {
     textDecoration: 'none',
-    display: 'flex',
+    display: 'inline-flex',
     alignItems: 'center',
-    gap: '6px',
-    letterSpacing: '-0.02em',
+    gap: '10px',
+    userSelect: 'none',
     cursor: 'pointer'
   };
 
-  const desktopNavStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '4px',
-    background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-    padding: '4px 6px',
-    borderRadius: '9999px',
-    border: `1px solid ${theme.borderSubtle}`
-  };
-
-  const getLinkStyle = (path) => {
+  // Desktop link styling (Campus Coin style)
+  const getDesktopLinkStyle = (path) => {
     const isActive = location.pathname === path;
     return {
       textDecoration: 'none',
-      fontSize: '0.86rem',
-      fontWeight: isActive ? '600' : '500',
-      color: isActive ? '#ffffff' : theme.textSecondary,
-      background: isActive ? 'linear-gradient(135deg, #2563eb, #7c3aed)' : 'transparent',
-      padding: '7px 14px',
-      borderRadius: '9999px',
-      transition: 'all 0.25s ease',
-      boxShadow: isActive ? '0 2px 10px rgba(37, 99, 235, 0.35)' : 'none',
-      display: 'inline-block',
+      fontSize: '13px',
+      fontWeight: isActive ? 700 : 500,
+      color: isActive ? '#2563eb' : (isDark ? '#94a3b8' : '#475569'),
+      background: isActive
+        ? (isDark ? 'rgba(59, 130, 246, 0.14)' : 'rgba(37, 99, 235, 0.1)')
+        : 'transparent',
+      border: isActive
+        ? (isDark ? '1px solid rgba(59, 130, 246, 0.3)' : '1px solid rgba(37, 99, 235, 0.25)')
+        : '1px solid transparent',
+      padding: '7px 11px',
+      borderRadius: '10px',
+      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '6px',
+      letterSpacing: '0.2px',
       whiteSpace: 'nowrap'
     };
-  };
-
-  const iconBtnStyle = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '40px',
-    height: '40px',
-    borderRadius: '10px',
-    background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-    border: `1px solid ${theme.borderSubtle}`,
-    color: theme.textPrimary,
-    cursor: 'pointer',
-    transition: 'all 0.2s ease'
   };
 
   return (
     <header style={headerStyle}>
       <div style={navContainerStyle}>
-        {/* Brand Logo - links to Home page */}
-        <Link to="/" style={logoStyle} onClick={() => setMobileMenuOpen(false)}>
-          <span>{portfolioData.personal.firstName}</span>
-          <span style={{ color: '#3b82f6', fontSize: '1.8rem', lineHeight: '1' }}>.</span>
-          <span
+        {/* Brand Logo - Campus Coin layout */}
+        <Link to="/" style={brandStyle} onClick={() => setMobileMenuOpen(false)}>
+          <div
             style={{
-              fontSize: '0.7rem',
-              fontWeight: '700',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              padding: '2px 8px',
-              borderRadius: '6px',
-              border: `1px solid ${theme.borderSubtle}`,
-              marginLeft: '4px'
+              width: '38px',
+              height: '38px',
+              borderRadius: '11px',
+              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#ffffff',
+              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
+              flexShrink: 0
             }}
           >
-            AI MERN
-          </span>
+            <Code2 size={22} />
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', lineHeight: 1.15 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '1.2rem', fontWeight: 800, letterSpacing: '-0.02em', color: theme.textPrimary }}>
+                {portfolioData.personal.firstName}<span style={{ color: '#2563eb' }}>.</span>
+              </span>
+              <span
+                style={{
+                  fontSize: '9px',
+                  fontWeight: 800,
+                  padding: '2px 7px',
+                  borderRadius: '6px',
+                  background: 'rgba(37, 99, 235, 0.12)',
+                  color: '#2563eb',
+                  border: '1px solid rgba(37, 99, 235, 0.25)',
+                  letterSpacing: '0.8px'
+                }}
+              >
+                AI MERN
+              </span>
+            </div>
+            <span
+              style={{
+                fontSize: '8px',
+                fontWeight: 700,
+                letterSpacing: '1.4px',
+                color: theme.textMuted,
+                textTransform: 'uppercase',
+                marginTop: '2px',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              MERN STACK • AI POWERED
+            </span>
+          </div>
         </Link>
 
-        {/* Desktop Navigation - links to dedicated pages */}
-        <nav className="hide-mobile" style={desktopNavStyle}>
+        {/* Desktop Navigation Links */}
+        <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
-              style={getLinkStyle(link.path)}
+              style={getDesktopLinkStyle(link.path)}
+              className="hover-lift"
             >
-              {link.label}
+              <span style={{ opacity: 0.85, display: 'flex', alignItems: 'center' }}>
+                {link.icon}
+              </span>
+              <span>{link.label}</span>
             </Link>
           ))}
         </nav>
 
         {/* Action Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* Theme Switcher */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Desktop Theme Switcher (Campus Coin Style) */}
           <button
+            type="button"
             onClick={toggleTheme}
-            style={iconBtnStyle}
+            className="hide-mobile hover-lift"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              background: isDark ? 'rgba(255, 255, 255, 0.07)' : 'rgba(0, 0, 0, 0.04)',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.14)' : '1px solid rgba(0, 0, 0, 0.08)',
+              borderRadius: '10px',
+              padding: '6px 12px',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
             title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            aria-label="Toggle theme"
-            className="hover-lift"
+            aria-label="Toggle dark or light mode"
           >
-            {isDark ? <Sun size={19} color="#f59e0b" /> : <Moon size={19} color="#3b82f6" />}
+            <span style={{ display: 'grid', placeItems: 'center', width: 20, height: 20 }}>
+              {isDark ? <Moon size={15} color="#38bdf8" /> : <Sun size={15} color="#f59e0b" />}
+            </span>
+            <span style={{ fontSize: '12px', fontWeight: 700, color: theme.textPrimary }}>
+              {isDark ? 'Dark' : 'Light'}
+            </span>
           </button>
 
-          {/* GitHub Quick Link */}
+          {/* Desktop GitHub Link */}
           <a
             href={portfolioData.personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            style={iconBtnStyle}
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '10px',
+              background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
+              border: `1px solid ${theme.borderSubtle}`,
+              color: theme.textPrimary,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textDecoration: 'none',
+              transition: 'all 0.2s ease'
+            }}
             title="GitHub Profile"
             className="hide-mobile hover-lift"
           >
-            <Github size={19} />
+            <Github size={17} />
           </a>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Desktop Resume Download Pill */}
+          <a
+            href={portfolioData.personal.resumeUrl}
+            download="Gul_Muhammad_Resume.pdf"
+            style={{
+              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+              color: '#ffffff',
+              textDecoration: 'none',
+              padding: '7px 14px',
+              borderRadius: '10px',
+              fontWeight: 700,
+              fontSize: '12px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
+              transition: 'all 0.2s ease'
+            }}
+            className="hide-mobile hover-lift"
+          >
+            <Download size={14} /> CV
+          </a>
+
+          {/* Mobile Theme Toggle Button (Campus Coin Style) */}
           <button
+            type="button"
+            className="hide-desktop hover-lift"
+            onClick={toggleTheme}
+            style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
+              background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.1)',
+              color: theme.textPrimary,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+            aria-label="Toggle theme"
+            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {isDark ? <Moon size={18} color="#38bdf8" /> : <Sun size={18} color="#f59e0b" />}
+          </button>
+
+          {/* Mobile Menu Hamburger / X Button (Campus Coin Style) */}
+          <button
+            type="button"
             className="hide-desktop"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={iconBtnStyle}
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.1)',
+              color: theme.textPrimary,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -187,93 +330,239 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Backdrop (Campus Coin Style) */}
       {mobileMenuOpen && (
         <div
+          onClick={() => setMobileMenuOpen(false)}
           style={{
             position: 'fixed',
-            top: '74px',
+            top: '68px',
             left: 0,
             right: 0,
             bottom: 0,
-            background: isDark ? 'rgba(11, 15, 25, 0.98)' : 'rgba(255, 255, 255, 0.98)',
+            background: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)',
+            zIndex: 998
+          }}
+        />
+      )}
+
+      {/* Mobile Attached Dropdown Drawer (Campus Coin Style) */}
+      {mobileMenuOpen && (
+        <div
+          className="animate-slide-down"
+          style={{
+            position: 'fixed',
+            top: '68px',
+            left: 0,
+            right: 0,
+            maxHeight: 'calc(100vh - 68px)',
+            overflowY: 'auto',
+            background: isDark ? 'rgba(11, 19, 43, 0.98)' : 'rgba(255, 255, 255, 0.98)',
             backdropFilter: 'blur(20px)',
-            padding: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid rgba(0, 0, 0, 0.1)',
+            boxShadow: isDark ? '0 20px 40px rgba(0, 0, 0, 0.5)' : '0 20px 40px rgba(15, 23, 42, 0.12)',
+            padding: '16px 20px 24px',
             zIndex: 999,
-            overflowY: 'auto'
+            boxSizing: 'border-box'
           }}
         >
-          {navLinks.map((link) => {
-            const isActive = location.pathname === link.path;
-            return (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
+          {/* Developer Header Card (Like CampusCoin mobileUserHeader) */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              padding: '12px 14px',
+              background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
+              borderRadius: 14,
+              marginBottom: 10,
+              border: `1px solid ${theme.borderSubtle}`
+            }}
+          >
+            <div
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 800,
+                fontSize: 14,
+                boxShadow: '0 4px 12px rgba(37, 99, 235, 0.35)',
+                flexShrink: 0
+              }}
+            >
+              GM
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: theme.textPrimary, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {portfolioData.personal.name}
+              </div>
+              <div style={{ fontSize: '0.78rem', color: '#2563eb', fontWeight: 600 }}>
+                {portfolioData.personal.role}
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Theme Switcher Row (Like CampusCoin mobileThemeToggleRow) */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '10px 14px',
+              borderRadius: 12,
+              background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
+              border: `1px solid ${theme.borderSubtle}`,
+              cursor: 'pointer',
+              marginBottom: 12,
+              transition: 'all 0.2s ease',
+              fontFamily: 'inherit'
+            }}
+            aria-label="Toggle dark or light mode"
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div
                 style={{
-                  textDecoration: 'none',
-                  fontSize: '1.15rem',
-                  fontWeight: '600',
-                  color: isActive ? '#3b82f6' : theme.textPrimary,
-                  padding: '14px 20px',
-                  borderRadius: '12px',
-                  background: isActive
-                    ? (isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)')
-                    : (isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)'),
-                  border: `1px solid ${isActive ? 'rgba(59, 130, 246, 0.4)' : theme.borderSubtle}`,
+                  width: 30,
+                  height: 30,
+                  borderRadius: 8,
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'space-between'
+                  justifyContent: 'center',
+                  background: isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+                  color: isDark ? '#38bdf8' : '#f59e0b'
                 }}
               >
-                <span>{link.label}</span>
-                <span style={{ color: '#3b82f6' }}>→</span>
-              </Link>
-            );
-          })}
+                {isDark ? <Moon size={16} /> : <Sun size={16} />}
+              </div>
+              <span style={{ fontSize: 13, fontWeight: 700, color: theme.textPrimary }}>
+                {isDark ? 'Dark Mode' : 'Light Mode'}
+              </span>
+            </div>
 
-          <div style={{ marginTop: '20px', display: 'flex', gap: '12px' }}>
+            {/* Switch pill & thumb */}
+            <div
+              style={{
+                width: 38,
+                height: 22,
+                borderRadius: 12,
+                padding: 2,
+                background: isDark ? '#2563eb' : '#cbd5e1',
+                display: 'flex',
+                alignItems: 'center',
+                boxSizing: 'border-box',
+                transition: 'background 0.3s ease'
+              }}
+            >
+              <div
+                style={{
+                  width: 18,
+                  height: 18,
+                  borderRadius: '50%',
+                  background: '#ffffff',
+                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                  transform: isDark ? 'translateX(16px)' : 'translateX(0px)',
+                  transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+              />
+            </div>
+          </button>
+
+          {/* Navigation Links (CampusCoin style) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    textDecoration: 'none',
+                    fontSize: '0.94rem',
+                    fontWeight: isActive ? 700 : 500,
+                    color: isActive ? '#2563eb' : theme.textPrimary,
+                    padding: '11px 14px',
+                    borderRadius: 10,
+                    background: isActive
+                      ? (isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)')
+                      : 'transparent',
+                    border: isActive
+                      ? '1px solid rgba(37, 99, 235, 0.3)'
+                      : '1px solid transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ color: isActive ? '#2563eb' : theme.textMuted, display: 'flex', alignItems: 'center' }}>
+                      {link.icon}
+                    </span>
+                    <span>{link.label}</span>
+                  </div>
+                  <span style={{ color: isActive ? '#2563eb' : theme.textMuted, fontSize: '0.85rem' }}>
+                    →
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Bottom Action Buttons */}
+          <div style={{ display: 'flex', gap: 10, marginTop: 14, paddingTop: 12, borderTop: `1px solid ${theme.borderSubtle}` }}>
+            <a
+              href={portfolioData.personal.resumeUrl}
+              download="Gul_Muhammad_Resume.pdf"
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                padding: '11px 14px',
+                borderRadius: 10,
+                background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+                color: '#ffffff',
+                fontWeight: 700,
+                fontSize: 13,
+                textDecoration: 'none',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.3)'
+              }}
+            >
+              <Download size={16} /> Resume PDF
+            </a>
             <a
               href={portfolioData.personal.github}
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                flex: 1,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '8px',
-                padding: '14px',
-                borderRadius: '12px',
-                background: theme.isDark ? '#1f2937' : '#e2e8f0',
+                gap: 8,
+                padding: '11px 14px',
+                borderRadius: 10,
+                background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+                border: `1px solid ${theme.borderSubtle}`,
                 color: theme.textPrimary,
-                textDecoration: 'none',
-                fontWeight: '600'
+                fontWeight: 600,
+                fontSize: 13,
+                textDecoration: 'none'
               }}
             >
-              <Github size={18} /> GitHub
-            </a>
-            <a
-              href={portfolioData.personal.resumeUrl}
-              download
-              style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                padding: '14px',
-                borderRadius: '12px',
-                background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
-                color: '#ffffff',
-                textDecoration: 'none',
-                fontWeight: '600'
-              }}
-            >
-              Resume PDF
+              <Github size={16} /> GitHub
             </a>
           </div>
         </div>

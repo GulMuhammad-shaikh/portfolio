@@ -17,9 +17,12 @@ import { ContactPage } from './pages/ContactPage';
 
 export function App() {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('portfolio_theme');
-    if (saved) return saved === 'dark';
-    return true; // default dark
+    // Default to Light Mode whenever user opens this website
+    try {
+      const sessionTheme = sessionStorage.getItem('portfolio_theme');
+      if (sessionTheme) return sessionTheme === 'dark';
+    } catch {}
+    return false; // Default: Light Mode
   });
 
   const theme = getTheme(isDark);
@@ -27,15 +30,25 @@ export function App() {
   const toggleTheme = () => {
     setIsDark((prev) => {
       const next = !prev;
-      localStorage.setItem('portfolio_theme', next ? 'dark' : 'light');
+      try {
+        sessionStorage.setItem('portfolio_theme', next ? 'dark' : 'light');
+      } catch {}
       return next;
     });
   };
 
   useEffect(() => {
+    // Ensure any legacy localStorage dark mode from previous sessions is cleared
+    try {
+      localStorage.removeItem('portfolio_theme');
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
     document.body.style.backgroundColor = theme.bgPrimary;
     document.body.style.color = theme.textPrimary;
-  }, [theme]);
+  }, [theme, isDark]);
 
   const appContainerStyle = {
     backgroundColor: theme.bgPrimary,
