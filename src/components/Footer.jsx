@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import { scrollToSection } from '../utils/scroll';
 
 export const Footer = ({ theme, isDark }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -20,14 +20,14 @@ export const Footer = ({ theme, isDark }) => {
   };
 
   const navLinks = [
-    { label: 'Home', id: 'home' },
-    { label: 'About', id: 'about' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Experience', id: 'experience' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Services', id: 'services' },
-    { label: 'Education', id: 'education' },
-    { label: 'Contact', id: 'contact' }
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Skills', path: '/skills' },
+    { label: 'Experience', path: '/experience' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Services', path: '/services' },
+    { label: 'Education', path: '/education' },
+    { label: 'Contact', path: '/contact' }
   ];
 
   return (
@@ -51,10 +51,10 @@ export const Footer = ({ theme, isDark }) => {
             marginBottom: '40px'
           }}
         >
-          {/* Brand - scroll smoothly without URL change */}
+          {/* Brand Link to Home */}
           <div>
-            <button
-              onClick={() => scrollToSection('home')}
+            <Link
+              to="/"
               style={{
                 fontSize: '1.6rem',
                 fontWeight: '800',
@@ -62,11 +62,7 @@ export const Footer = ({ theme, isDark }) => {
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: 0
+                gap: '6px'
               }}
             >
               <span>{portfolioData.personal.firstName}</span>
@@ -88,7 +84,7 @@ export const Footer = ({ theme, isDark }) => {
               >
                 AI MERN
               </span>
-            </button>
+            </Link>
             <p
               style={{
                 fontSize: '0.9rem',
@@ -102,26 +98,24 @@ export const Footer = ({ theme, isDark }) => {
             </p>
           </div>
 
-          {/* Quick Nav Links - buttons without URL hash change */}
+          {/* Quick Nav Links */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
+              <Link
+                key={link.path}
+                to={link.path}
                 style={{
                   fontSize: '0.88rem',
                   color: theme.textSecondary,
-                  background: 'none',
-                  border: 'none',
+                  textDecoration: 'none',
                   fontWeight: '500',
-                  cursor: 'pointer',
                   padding: '4px 0',
                   transition: 'color 0.2s ease'
                 }}
                 className="hover-lift"
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </div>
 

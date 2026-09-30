@@ -14,7 +14,7 @@ import {
   Atom,
   Server
 } from 'lucide-react';
-import { scrollToSection } from '../utils/scroll';
+import { Link } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
 
 export const Hero = ({ theme, isDark }) => {
@@ -197,8 +197,8 @@ export const Hero = ({ theme, isDark }) => {
 
             {/* CTA Buttons */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', marginBottom: '36px' }}>
-              <button
-                onClick={() => scrollToSection('projects')}
+              <Link
+                to="/projects"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -209,17 +209,16 @@ export const Hero = ({ theme, isDark }) => {
                   color: '#ffffff',
                   fontWeight: '600',
                   fontSize: '0.98rem',
-                  border: 'none',
-                  cursor: 'pointer',
+                  textDecoration: 'none',
                   boxShadow: '0 4px 20px rgba(59, 130, 246, 0.4)'
                 }}
                 className="hover-lift"
               >
                 Explore Projects <ArrowRight size={18} />
-              </button>
+              </Link>
 
-              <button
-                onClick={() => scrollToSection('contact')}
+              <Link
+                to="/contact"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -231,12 +230,12 @@ export const Hero = ({ theme, isDark }) => {
                   border: `1px solid ${theme.borderSubtle}`,
                   fontWeight: '600',
                   fontSize: '0.98rem',
-                  cursor: 'pointer'
+                  textDecoration: 'none'
                 }}
                 className="hover-lift"
               >
                 Contact Me
-              </button>
+              </Link>
 
               <a
                 href={portfolioData.personal.resumeUrl}

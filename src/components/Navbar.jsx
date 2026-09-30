@@ -1,53 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Sun, Moon, Menu, X, Github } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import { scrollToSection } from '../utils/scroll';
 
 export const Navbar = ({ theme, isDark, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
 
   const navLinks = [
-    { label: 'Home', id: 'home' },
-    { label: 'About', id: 'about' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Experience', id: 'experience' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Services', id: 'services' },
-    { label: 'Education', id: 'education' },
-    { label: 'Contact', id: 'contact' }
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Skills', path: '/skills' },
+    { label: 'Experience', path: '/experience' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Services', path: '/services' },
+    { label: 'Education', path: '/education' },
+    { label: 'Contact', path: '/contact' }
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'services', 'education', 'contact'];
-      const scrollPosition = window.scrollY + 180;
-
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleNavClick = (e, sectionId) => {
-    e.preventDefault();
-    scrollToSection(sectionId);
-    setMobileMenuOpen(false);
-  };
 
   const headerStyle = {
     position: 'fixed',
@@ -60,11 +39,11 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
     alignItems: 'center',
     transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
     background: isScrolled
-      ? (isDark ? 'rgba(11, 15, 25, 0.85)' : 'rgba(255, 255, 255, 0.88)')
-      : 'transparent',
-    backdropFilter: isScrolled ? 'blur(16px)' : 'none',
-    WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
-    borderBottom: isScrolled ? `1px solid ${theme.borderSubtle}` : '1px solid transparent',
+      ? (isDark ? 'rgba(11, 15, 25, 0.88)' : 'rgba(255, 255, 255, 0.9)')
+      : (isDark ? 'rgba(11, 15, 25, 0.75)' : 'rgba(255, 255, 255, 0.8)'),
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
+    borderBottom: `1px solid ${theme.borderSubtle}`,
     boxShadow: isScrolled ? theme.shadowSmall : 'none'
   };
 
@@ -88,10 +67,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
     alignItems: 'center',
     gap: '6px',
     letterSpacing: '-0.02em',
-    cursor: 'pointer',
-    background: 'none',
-    border: 'none',
-    padding: 0
+    cursor: 'pointer'
   };
 
   const desktopNavStyle = {
@@ -104,8 +80,8 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
     border: `1px solid ${theme.borderSubtle}`
   };
 
-  const getLinkStyle = (sectionId) => {
-    const isActive = activeSection === sectionId;
+  const getLinkStyle = (path) => {
+    const isActive = location.pathname === path;
     return {
       textDecoration: 'none',
       fontSize: '0.88rem',
@@ -116,8 +92,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
       borderRadius: '9999px',
       transition: 'all 0.25s ease',
       boxShadow: isActive ? '0 2px 10px rgba(37, 99, 235, 0.35)' : 'none',
-      cursor: 'pointer',
-      border: 'none'
+      display: 'inline-block'
     };
   };
 
@@ -138,12 +113,8 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
   return (
     <header style={headerStyle}>
       <div style={navContainerStyle}>
-        {/* Brand Logo - scrolls to top without changing URL */}
-        <button
-          onClick={(e) => handleNavClick(e, 'home')}
-          style={logoStyle}
-          aria-label="Scroll to home"
-        >
+        {/* Brand Logo - links to Home page */}
+        <Link to="/" style={logoStyle} onClick={() => setMobileMenuOpen(false)}>
           <span>{portfolioData.personal.firstName}</span>
           <span style={{ color: '#3b82f6', fontSize: '1.8rem', lineHeight: '1' }}>.</span>
           <span
@@ -163,18 +134,18 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
           >
             AI MERN
           </span>
-        </button>
+        </Link>
 
-        {/* Desktop Navigation - smooth scrolls without changing URL hash */}
+        {/* Desktop Navigation - links to dedicated pages */}
         <nav className="hide-mobile" style={desktopNavStyle}>
           {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={(e) => handleNavClick(e, link.id)}
-              style={getLinkStyle(link.id)}
+            <Link
+              key={link.path}
+              to={link.path}
+              style={getLinkStyle(link.path)}
             >
               {link.label}
-            </button>
+            </Link>
           ))}
         </nav>
 
@@ -234,30 +205,34 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
             overflowY: 'auto'
           }}
         >
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={(e) => handleNavClick(e, link.id)}
-              style={{
-                fontSize: '1.15rem',
-                fontWeight: '600',
-                color: activeSection === link.id ? '#3b82f6' : theme.textPrimary,
-                padding: '14px 20px',
-                borderRadius: '12px',
-                background: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)',
-                border: `1px solid ${theme.borderSubtle}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-                cursor: 'pointer',
-                textAlign: 'left'
-              }}
-            >
-              <span>{link.label}</span>
-              <span style={{ color: '#3b82f6' }}>→</span>
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.path;
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  textDecoration: 'none',
+                  fontSize: '1.15rem',
+                  fontWeight: '600',
+                  color: isActive ? '#3b82f6' : theme.textPrimary,
+                  padding: '14px 20px',
+                  borderRadius: '12px',
+                  background: isActive
+                    ? (isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)')
+                    : (isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.03)'),
+                  border: `1px solid ${isActive ? 'rgba(59, 130, 246, 0.4)' : theme.borderSubtle}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <span>{link.label}</span>
+                <span style={{ color: '#3b82f6' }}>→</span>
+              </Link>
+            );
+          })}
 
           <div style={{ marginTop: '20px', display: 'flex', gap: '12px' }}>
             <a
