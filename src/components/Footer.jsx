@@ -227,7 +227,7 @@ export const Footer = ({ theme, isDark }) => {
           aria-label="Scroll to top"
           style={{
             position: 'fixed',
-            bottom: '28px',
+            bottom: '92px',
             right: '28px',
             width: '48px',
             height: '48px',

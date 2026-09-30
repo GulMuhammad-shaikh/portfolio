@@ -4,6 +4,7 @@ import { getTheme } from './styles/inlineStyles';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { Chatbot } from './components/Chatbot';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -72,6 +73,9 @@ export function App() {
 
         {/* Footer */}
         <Footer theme={theme} isDark={isDark} />
+
+        {/* Global Live Chatbot Widget */}
+        <Chatbot theme={theme} isDark={isDark} />
       </div>
     </BrowserRouter>
   );
