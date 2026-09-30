@@ -3,7 +3,7 @@ import { Experience } from '../components/Experience';
 
 export const ExperiencePage = ({ theme, isDark }) => {
   return (
-    <div style={{ paddingTop: '50px' }}>
+    <div className="page-wrapper">
       <Experience theme={theme} isDark={isDark} />
     </div>
   );

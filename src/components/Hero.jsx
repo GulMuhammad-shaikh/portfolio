@@ -177,6 +177,7 @@ export const Hero = ({ theme, isDark }) => {
             </h1>
 
             <div
+              className="hero-typewriter-wrap"
               style={{
                 fontSize: 'clamp(1.15rem, 2.4vw, 1.75rem)',
                 fontWeight: '700',

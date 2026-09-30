@@ -15,7 +15,7 @@ export const Projects = ({ theme, isDark }) => {
   const project = portfolioData.projects[0]; // CampusCoin
 
   return (
-    <section id="projects" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+    <section id="projects" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
       <div className="responsive-container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
@@ -84,15 +84,10 @@ export const Projects = ({ theme, isDark }) => {
         >
           {/* Top Banner */}
           <div
-            className="card-padding"
+            className="project-banner-responsive card-padding"
             style={{
               background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)',
-              borderBottom: `1px solid ${theme.borderSubtle}`,
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '20px'
+              borderBottom: `1px solid ${theme.borderSubtle}`
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
@@ -156,7 +151,7 @@ export const Projects = ({ theme, isDark }) => {
             </div>
 
             {/* Live CTAs */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+            <div className="project-actions-responsive">
               <a
                 href={project.live}
                 target="_blank"

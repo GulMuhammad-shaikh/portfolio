@@ -220,17 +220,17 @@ export const Footer = ({ theme, isDark }) => {
         </div>
       </div>
 
-      {/* Floating Scroll-to-top button */}
+      {/* Floating Scroll-to-top button (Bottom-Left) */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
           style={{
             position: 'fixed',
-            bottom: '92px',
-            right: '28px',
-            width: '48px',
-            height: '48px',
+            bottom: '24px',
+            left: '24px',
+            width: '46px',
+            height: '46px',
             borderRadius: '14px',
             background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
             color: '#ffffff',
@@ -240,10 +240,10 @@ export const Footer = ({ theme, isDark }) => {
             justifyContent: 'center',
             cursor: 'pointer',
             boxShadow: '0 8px 24px rgba(37, 99, 235, 0.45)',
-            zIndex: 9999,
+            zIndex: 9990,
             transition: 'all 0.3s ease'
           }}
-          className="hover-lift"
+          className="hover-lift scroll-top-btn"
         >
           <ArrowUp size={20} />
         </button>

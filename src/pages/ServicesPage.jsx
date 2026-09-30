@@ -3,7 +3,7 @@ import { Services } from '../components/Services';
 
 export const ServicesPage = ({ theme, isDark }) => {
   return (
-    <div style={{ paddingTop: '50px' }}>
+    <div className="page-wrapper">
       <Services theme={theme} isDark={isDark} />
     </div>
   );

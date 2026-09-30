@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolioData';
 
 export const Education = ({ theme, isDark }) => {
   return (
-    <section id="education" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+    <section id="education" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
       <div className="responsive-container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>

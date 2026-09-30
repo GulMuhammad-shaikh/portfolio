@@ -3,7 +3,7 @@ import { Projects } from '../components/Projects';
 
 export const ProjectsPage = ({ theme, isDark }) => {
   return (
-    <div style={{ paddingTop: '50px' }}>
+    <div className="page-wrapper">
       <Projects theme={theme} isDark={isDark} />
     </div>
   );

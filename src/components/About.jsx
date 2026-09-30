@@ -28,7 +28,7 @@ export const About = ({ theme, isDark }) => {
   ];
 
   return (
-    <section id="about" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+    <section id="about" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
       <div className="responsive-container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
@@ -202,7 +202,7 @@ export const About = ({ theme, isDark }) => {
               ))}
             </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
+            <div className="about-buttons-wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
               <a
                 href={portfolioData.personal.resumeUrl}
                 download="Gul_Muhammad_Resume.pdf"
@@ -273,18 +273,10 @@ export const About = ({ theme, isDark }) => {
               {infoItems.map((item, idx) => (
                 <div
                   key={idx}
+                  className="about-info-item"
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '12px 14px',
-                    borderRadius: '12px',
                     background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                    border: `1px solid ${theme.borderSubtle}`,
-                    flexWrap: 'wrap',
-                    gap: '8px',
-                    width: '100%',
-                    boxSizing: 'border-box'
+                    border: `1px solid ${theme.borderSubtle}`
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

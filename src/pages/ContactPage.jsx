@@ -3,7 +3,7 @@ import { Contact } from '../components/Contact';
 
 export const ContactPage = ({ theme, isDark }) => {
   return (
-    <div style={{ paddingTop: '50px' }}>
+    <div className="page-wrapper">
       <Contact theme={theme} isDark={isDark} />
     </div>
   );

@@ -138,6 +138,7 @@ export const Chatbot = ({ theme, isDark }) => {
     <>
       {/* Floating Chat Trigger Button */}
       <div
+        className={`chatbot-trigger-wrap ${isOpen ? 'hide-when-open-mobile' : ''}`}
         style={{
           position: 'fixed',
           bottom: '24px',
@@ -211,27 +212,21 @@ export const Chatbot = ({ theme, isDark }) => {
         </button>
       </div>
 
-      {/* Interactive Chat Window Modal */}
+      {/* Interactive Chat Window Modal - 100% STRAIGHT, ZERO TILT */}
       {isOpen && (
         <div
+          className="chatbot-window"
           style={{
-            position: 'fixed',
-            bottom: '90px',
-            right: '20px',
-            width: 'min(390px, calc(100vw - 40px))',
-            height: 'min(580px, calc(100vh - 120px))',
-            background: isDark ? 'rgba(15, 23, 42, 0.96)' : 'rgba(255, 255, 255, 0.98)',
+            background: isDark ? 'rgba(15, 23, 42, 0.98)' : 'rgba(255, 255, 255, 0.98)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             border: `1px solid ${theme.borderSubtle}`,
-            borderRadius: '24px',
             boxShadow: theme.shadowLarge,
             display: 'flex',
             flexDirection: 'column',
             zIndex: 9999,
             overflow: 'hidden',
-            boxSizing: 'border-box',
-            animation: 'floatSlow 6s ease-in-out infinite'
+            boxSizing: 'border-box'
           }}
         >
           {/* Header */}
@@ -466,7 +461,7 @@ export const Chatbot = ({ theme, isDark }) => {
                 background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
                 border: `1px solid ${theme.borderSubtle}`,
                 color: theme.textPrimary,
-                fontSize: '0.9rem',
+                fontSize: '16px',
                 outline: 'none',
                 boxSizing: 'border-box'
               }}

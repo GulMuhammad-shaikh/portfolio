@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolioData';
 
 export const Experience = ({ theme, isDark }) => {
   return (
-    <section id="experience" style={{ padding: '80px 0', position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+    <section id="experience" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
       <div className="responsive-container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
@@ -56,11 +56,11 @@ export const Experience = ({ theme, isDark }) => {
 
         {/* Timeline Container */}
         <div
+          className="timeline-container"
           style={{
             maxWidth: '860px',
             margin: '0 auto',
             position: 'relative',
-            paddingLeft: '24px',
             borderLeft: `2px solid ${isDark ? 'rgba(59, 130, 246, 0.35)' : 'rgba(37, 99, 235, 0.3)'}`,
             boxSizing: 'border-box',
             width: '100%'
@@ -76,13 +76,8 @@ export const Experience = ({ theme, isDark }) => {
             >
               {/* Timeline Indicator Dot */}
               <div
+                className="timeline-dot"
                 style={{
-                  position: 'absolute',
-                  left: '-35px',
-                  top: '4px',
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
                   background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                   border: `3px solid ${isDark ? '#0b0f19' : '#f8fafc'}`,
                   boxShadow: '0 0 10px rgba(59, 130, 246, 0.6)'
