@@ -12,6 +12,7 @@ import {
   Sparkles,
   CheckCircle2
 } from 'lucide-react';
+import { scrollToSection } from '../utils/scroll';
 import { portfolioData } from '../data/portfolioData';
 
 export const About = ({ theme, isDark }) => {
@@ -228,8 +229,8 @@ export const About = ({ theme, isDark }) => {
                 <Download size={18} /> Download CV
               </a>
 
-              <a
-                href="#contact"
+              <button
+                onClick={() => scrollToSection('contact')}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -240,12 +241,13 @@ export const About = ({ theme, isDark }) => {
                   color: theme.textPrimary,
                   border: `1px solid ${theme.borderSubtle}`,
                   fontWeight: '600',
-                  textDecoration: 'none'
+                  fontSize: '0.94rem',
+                  cursor: 'pointer'
                 }}
                 className="hover-lift"
               >
                 Let's Talk
-              </a>
+              </button>
             </div>
           </div>
 

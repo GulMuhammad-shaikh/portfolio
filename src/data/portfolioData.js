@@ -96,69 +96,17 @@ export const portfolioData = {
 
   projects: [
     {
-      id: "job-portal",
-      title: "AI-Powered Full-Stack Job Portal System",
-      subtitle: "Comprehensive Recruitment & AI Candidate Matcher",
+      id: "campus-coin",
+      title: "CampusCoin – Student Finance & Expense Tracker",
+      subtitle: "Personal Budgeting & Real-time Expense Management",
       category: "Full Stack",
       featured: true,
-      description: "An enterprise recruitment platform engineered with separated Admin and Job-Seeker portals. Integrated with AI-driven candidate recommendation features, live job filtering, applicant tracking pipelines, resume parsing, and secure role-based authentication.",
-      tags: ["React", "Node.js", "Express", "MongoDB", "AI APIs", "Bootstrap"],
-      github: "https://github.com/GulMuhammad-shaikh/job_portal",
-      live: "https://portfolio-delta-two-x1zj6gtl3b.vercel.app/",
-      accentColor: "#3b82f6",
-      metrics: "Admin CRM · Resume Uploads · Role-based Auth"
-    },
-    {
-      id: "sound-app",
-      title: "Sound – Audio & Media Management Platform",
-      subtitle: "Cloud Audio Streamer & File Vault",
-      category: "Full Stack",
-      featured: true,
-      description: "A dynamic web application for high-performance audio indexing and cloud file management. Features full CRUD operations, metadata extraction, dynamic playlist generation, audio streaming player, and structured database synchronization.",
-      tags: ["React", "PHP", "MySQL", "JavaScript", "REST APIs"],
-      github: "https://github.com/GulMuhammad-shaikh/Sound",
-      live: "https://portfolio-delta-two-x1zj6gtl3b.vercel.app/",
-      accentColor: "#8b5cf6",
-      metrics: "Live Audio Player · File Synchronization · Cloud Storage"
-    },
-    {
-      id: "online-voting",
-      title: "Smart Cryptographic Online Voting System",
-      subtitle: "Secure Ballot Verification Engine",
-      category: "Full Stack",
-      featured: false,
-      description: "A secure web-based voting portal featuring encrypted ballot verification, voter authentication, candidate management, tamper-evident counting, and real-time analytical dashboards for administrators.",
-      tags: ["Node.js", "React", "MySQL", "Security", "Express"],
+      description: "CampusCoin is an intuitive student expense tracker designed to help learners manage campus allowances, log day-to-day expenditures, track savings targets, categorize expenses, and visualize financial habits with clean analytics.",
+      tags: ["React", "JavaScript", "Vite", "Tailwind CSS", "State Management", "Analytics"],
       github: "https://github.com/GulMuhammad-shaikh",
-      live: "https://portfolio-delta-two-x1zj6gtl3b.vercel.app/",
+      live: "https://campus-coin-six.vercel.app/",
       accentColor: "#10b981",
-      metrics: "Zero-Tamper Voting · Real-time Tally · Admin Panel"
-    },
-    {
-      id: "quiz-system",
-      title: "Dynamic Interactive Examination & Quiz Engine",
-      subtitle: "Real-time Testing & Analytics Platform",
-      category: "Frontend",
-      featured: false,
-      description: "Fast, responsive quiz application supporting timed examination sessions, randomized question sets, category-based challenges, instant score computations, and visual performance reports.",
-      tags: ["React", "JavaScript", "Modern CSS", "State Management"],
-      github: "https://github.com/GulMuhammad-shaikh",
-      live: "https://portfolio-delta-two-x1zj6gtl3b.vercel.app/",
-      accentColor: "#f59e0b",
-      metrics: "Timed Tests · Auto-scoring · Instant Analytics"
-    },
-    {
-      id: "environmental-portal",
-      title: "Environmental Research & Survey Portal",
-      subtitle: "Ecological Data Management Suite",
-      category: "Full Stack",
-      featured: false,
-      description: "A centralized platform empowering academic and environmental institutions to execute ecological surveys, manage participant registries, administer green competitions, and generate visual survey insights.",
-      tags: ["PHP", "MySQL", "JavaScript", "Charts", "Bootstrap"],
-      github: "https://github.com/GulMuhammad-shaikh",
-      live: "https://portfolio-delta-two-x1zj6gtl3b.vercel.app/",
-      accentColor: "#06b6d4",
-      metrics: "Multi-school Survey · Data Visualization · Report Generator"
+      metrics: "Daily Expense Tracking · Smart Categories · Visual Analytics"
     }
   ],
 

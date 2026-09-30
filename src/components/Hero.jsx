@@ -14,6 +14,7 @@ import {
   Atom,
   Server
 } from 'lucide-react';
+import { scrollToSection } from '../utils/scroll';
 import { portfolioData } from '../data/portfolioData';
 
 export const Hero = ({ theme, isDark }) => {
@@ -196,8 +197,8 @@ export const Hero = ({ theme, isDark }) => {
 
             {/* CTA Buttons */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', marginBottom: '36px' }}>
-              <a
-                href="#projects"
+              <button
+                onClick={() => scrollToSection('projects')}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -207,16 +208,18 @@ export const Hero = ({ theme, isDark }) => {
                   background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
                   color: '#ffffff',
                   fontWeight: '600',
-                  textDecoration: 'none',
+                  fontSize: '0.98rem',
+                  border: 'none',
+                  cursor: 'pointer',
                   boxShadow: '0 4px 20px rgba(59, 130, 246, 0.4)'
                 }}
                 className="hover-lift"
               >
                 Explore Projects <ArrowRight size={18} />
-              </a>
+              </button>
 
-              <a
-                href="#contact"
+              <button
+                onClick={() => scrollToSection('contact')}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -227,12 +230,13 @@ export const Hero = ({ theme, isDark }) => {
                   color: theme.textPrimary,
                   border: `1px solid ${theme.borderSubtle}`,
                   fontWeight: '600',
-                  textDecoration: 'none'
+                  fontSize: '0.98rem',
+                  cursor: 'pointer'
                 }}
                 className="hover-lift"
               >
                 Contact Me
-              </a>
+              </button>
 
               <a
                 href={portfolioData.personal.resumeUrl}

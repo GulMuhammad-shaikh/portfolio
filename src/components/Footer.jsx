@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Heart, Sparkles } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { scrollToSection } from '../utils/scroll';
 
 export const Footer = ({ theme, isDark }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -19,14 +20,14 @@ export const Footer = ({ theme, isDark }) => {
   };
 
   const navLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Services', href: '#services' },
-    { label: 'Education', href: '#education' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Home', id: 'home' },
+    { label: 'About', id: 'about' },
+    { label: 'Skills', id: 'skills' },
+    { label: 'Experience', id: 'experience' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Services', id: 'services' },
+    { label: 'Education', id: 'education' },
+    { label: 'Contact', id: 'contact' }
   ];
 
   return (
@@ -50,10 +51,10 @@ export const Footer = ({ theme, isDark }) => {
             marginBottom: '40px'
           }}
         >
-          {/* Brand */}
+          {/* Brand - scroll smoothly without URL change */}
           <div>
-            <a
-              href="#home"
+            <button
+              onClick={() => scrollToSection('home')}
               style={{
                 fontSize: '1.6rem',
                 fontWeight: '800',
@@ -61,7 +62,11 @@ export const Footer = ({ theme, isDark }) => {
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px'
+                gap: '6px',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0
               }}
             >
               <span>{portfolioData.personal.firstName}</span>
@@ -83,7 +88,7 @@ export const Footer = ({ theme, isDark }) => {
               >
                 AI MERN
               </span>
-            </a>
+            </button>
             <p
               style={{
                 fontSize: '0.9rem',
@@ -97,23 +102,26 @@ export const Footer = ({ theme, isDark }) => {
             </p>
           </div>
 
-          {/* Quick Nav Links */}
+          {/* Quick Nav Links - buttons without URL hash change */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
                 style={{
                   fontSize: '0.88rem',
                   color: theme.textSecondary,
-                  textDecoration: 'none',
+                  background: 'none',
+                  border: 'none',
                   fontWeight: '500',
+                  cursor: 'pointer',
+                  padding: '4px 0',
                   transition: 'color 0.2s ease'
                 }}
                 className="hover-lift"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -132,7 +140,8 @@ export const Footer = ({ theme, isDark }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: theme.textPrimary
+                color: theme.textPrimary,
+                textDecoration: 'none'
               }}
               className="hover-lift"
               title="GitHub"
@@ -153,7 +162,8 @@ export const Footer = ({ theme, isDark }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#0a66c2'
+                color: '#0a66c2',
+                textDecoration: 'none'
               }}
               className="hover-lift"
               title="LinkedIn"
@@ -172,7 +182,8 @@ export const Footer = ({ theme, isDark }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#ea4335'
+                color: '#ea4335',
+                textDecoration: 'none'
               }}
               className="hover-lift"
               title="Email"
