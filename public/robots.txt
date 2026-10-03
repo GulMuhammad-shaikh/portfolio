@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Host & Sitemap specification for Search Engines
+Host: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/
+Sitemap: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/sitemap.xml

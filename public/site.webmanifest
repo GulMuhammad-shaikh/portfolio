@@ -1,0 +1,16 @@
+{
+  "name": "Gul Muhammad | MERN Stack Developer (AI Powered)",
+  "short_name": "Gul Muhammad",
+  "description": "Official portfolio of Gul Muhammad, MERN Stack Developer and AI solutions specialist.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050608",
+  "theme_color": "#050608",
+  "icons": [
+    {
+      "src": "/profile.png",
+      "sizes": "408x612",
+      "type": "image/png"
+    }
+  ]
+}

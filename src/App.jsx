@@ -4,6 +4,7 @@ import { getTheme } from './styles/inlineStyles';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { SeoManager } from './components/SeoManager';
 import { Chatbot } from './components/Chatbot';
 
 import { HomePage } from './pages/HomePage';
@@ -63,6 +64,7 @@ export function App() {
 
   return (
     <BrowserRouter>
+      <SeoManager />
       <ScrollToTop />
       <div style={appContainerStyle}>
         {/* Header & Navbar */}
