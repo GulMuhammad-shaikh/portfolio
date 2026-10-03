@@ -21,29 +21,8 @@ export const Hero = ({ theme, isDark }) => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
 
   const roles = portfolioData.personal.typingRoles;
-
-  // Track window scroll position to rotate the portrait image smoothly on scroll
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Compute rotation angle based on scroll down (e.g. 0.18 deg per pixel scrolled)
-  const rotationDeg = scrollY * 0.18;
 
   // Typewriter text animation
   useEffect(() => {
@@ -256,21 +235,16 @@ export const Hero = ({ theme, isDark }) => {
               }}
             />
 
-            {/* Rotating Portrait Image on Scroll */}
+            {/* Stable Portrait Image (Straight, Zero Rotation) */}
             <div
-              title="Scroll down to rotate!"
               style={{
                 position: 'relative',
                 zIndex: 2,
-                transform: `rotate(${rotationDeg}deg)`,
-                transition: 'transform 0.12s cubic-bezier(0.1, 0.9, 0.2, 1)',
-                willChange: 'transform',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: 'min(360px, 78vw)',
-                height: 'min(480px, 85vw)',
-                cursor: 'pointer'
+                height: 'min(480px, 85vw)'
               }}
             >
               <img
@@ -290,29 +264,6 @@ export const Hero = ({ theme, isDark }) => {
                   pointerEvents: 'auto'
                 }}
               />
-            </div>
-
-            {/* Subtle Interactive Hint Badge */}
-            <div
-              style={{
-                marginTop: '12px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '4px 12px',
-                borderRadius: '9999px',
-                background: isDark ? 'rgba(15, 23, 42, 0.8)' : 'rgba(255, 255, 255, 0.9)',
-                border: `1px solid ${theme.borderSubtle}`,
-                fontSize: '0.72rem',
-                fontWeight: '700',
-                color: theme.textMuted,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                zIndex: 3
-              }}
-            >
-              <Sparkles size={12} color="#3b82f6" />
-              <span>Scroll to Rotate Picture</span>
             </div>
           </div>
 
