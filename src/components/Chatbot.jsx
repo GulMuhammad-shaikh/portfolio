@@ -217,7 +217,7 @@ export const Chatbot = ({ theme, isDark }) => {
         <div
           className="chatbot-window"
           style={{
-            background: isDark ? 'rgba(15, 23, 42, 0.98)' : 'rgba(255, 255, 255, 0.98)',
+            background: isDark ? 'rgba(7, 9, 13, 0.98)' : 'rgba(255, 255, 255, 0.98)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             border: `1px solid ${theme.borderSubtle}`,

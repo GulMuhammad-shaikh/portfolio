@@ -73,8 +73,8 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
     alignItems: 'center',
     transition: 'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
     background: isScrolled
-      ? (isDark ? 'rgba(11, 19, 43, 0.95)' : 'rgba(255, 255, 255, 0.95)')
-      : (isDark ? 'rgba(11, 19, 43, 0.88)' : 'rgba(255, 255, 255, 0.88)'),
+      ? (isDark ? 'rgba(5, 6, 8, 0.95)' : 'rgba(255, 255, 255, 0.95)')
+      : (isDark ? 'rgba(5, 6, 8, 0.88)' : 'rgba(255, 255, 255, 0.88)'),
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
     borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
@@ -264,22 +264,23 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
             href={portfolioData.personal.resumeUrl}
             download="Gul Muhammad Web Developer (1).pdf"
             style={{
-              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+              background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
               color: '#ffffff',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.22)' : 'none',
               textDecoration: 'none',
-              padding: '7px 14px',
-              borderRadius: '10px',
+              padding: '7px 16px',
+              borderRadius: '9999px',
               fontWeight: 700,
               fontSize: '12px',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
+              boxShadow: isDark ? '0 2px 10px rgba(0, 0, 0, 0.4)' : '0 4px 14px rgba(37, 99, 235, 0.35)',
               transition: 'all 0.2s ease'
             }}
             className="hide-mobile hover-lift"
           >
-            <Download size={14} /> CV
+            <Download size={14} /> Resume
           </a>
 
           {/* Mobile Theme Toggle Button (Campus Coin Style) */}
@@ -359,11 +360,11 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
             right: 0,
             maxHeight: 'calc(100vh - 68px)',
             overflowY: 'auto',
-            background: isDark ? 'rgba(11, 19, 43, 0.98)' : 'rgba(255, 255, 255, 0.98)',
+            background: isDark ? 'rgba(5, 6, 8, 0.98)' : 'rgba(255, 255, 255, 0.98)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid rgba(0, 0, 0, 0.1)',
-            boxShadow: isDark ? '0 20px 40px rgba(0, 0, 0, 0.5)' : '0 20px 40px rgba(15, 23, 42, 0.12)',
+            boxShadow: isDark ? '0 20px 40px rgba(0, 0, 0, 0.6)' : '0 20px 40px rgba(15, 23, 42, 0.12)',
             padding: '16px 20px 24px',
             zIndex: 999,
             boxSizing: 'border-box'

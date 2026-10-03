@@ -88,24 +88,24 @@ export const Hero = ({ theme, isDark }) => {
         width: '100%',
         maxWidth: '100vw',
         background: isDark
-          ? 'radial-gradient(circle at 50% 45%, #0d1527 0%, #060911 80%)'
+          ? '#050608'
           : 'radial-gradient(circle at 50% 45%, #ffffff 0%, #f1f5f9 90%)'
       }}
     >
-      {/* Studio Radial Vignette & Warm Spotlight Aura */}
+      {/* Studio Neutral Radial Spotlight Aura (matching video reel) */}
       <div
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 'min(700px, 95vw)',
-          height: 'min(700px, 95vw)',
+          width: 'min(750px, 95vw)',
+          height: 'min(750px, 95vw)',
           borderRadius: '50%',
           background: isDark
-            ? 'radial-gradient(circle, rgba(251, 146, 60, 0.18) 0%, rgba(245, 158, 11, 0.10) 35%, rgba(59, 130, 246, 0.08) 60%, transparent 80%)'
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(148, 163, 184, 0.06) 35%, rgba(15, 23, 42, 0.03) 60%, transparent 75%)'
             : 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 45%, transparent 75%)',
-          filter: 'blur(70px)',
+          filter: 'blur(75px)',
           pointerEvents: 'none',
           zIndex: 0
         }}
@@ -113,7 +113,7 @@ export const Hero = ({ theme, isDark }) => {
       />
 
       <div className="responsive-container" style={{ position: 'relative', zIndex: 2 }}>
-        {/* Studio 3-Column Balanced Grid (matching laptop reference photo) */}
+        {/* Studio 3-Column Balanced Grid (matching video reel) */}
         <div className="hero-studio-grid">
           {/* ================= LEFT COLUMN ================= */}
           <div className="hero-studio-col-left" style={{ textAlign: 'left' }}>
@@ -127,25 +127,25 @@ export const Hero = ({ theme, isDark }) => {
                 fontWeight: '800',
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: '#3b82f6',
+                color: isDark ? '#94a3b8' : '#3b82f6',
                 marginBottom: '16px'
               }}
             >
               <span>HI, I'M</span>
               <span
                 style={{
-                  background: isDark ? 'rgba(59, 130, 246, 0.18)' : 'rgba(37, 99, 235, 0.1)',
+                  background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(37, 99, 235, 0.1)',
                   padding: '3px 10px',
                   borderRadius: '6px',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
-                  color: '#3b82f6'
+                  border: isDark ? '1px solid rgba(255, 255, 255, 0.25)' : '1px solid rgba(59, 130, 246, 0.3)',
+                  color: isDark ? '#ffffff' : '#3b82f6'
                 }}
               >
                 GUL MUHAMMAD
               </span>
             </div>
 
-            {/* Massive Bold Headline (SCALABLE SYSTEMS) */}
+            {/* Massive Bold Headline (CREATIVE DEVELOPER matching video) */}
             <h1
               style={{
                 fontSize: 'clamp(2.7rem, 5.2vw, 4.4rem)',
@@ -157,19 +157,19 @@ export const Hero = ({ theme, isDark }) => {
                 textTransform: 'uppercase'
               }}
             >
-              SCALABLE
+              CREATIVE
               <br />
               <span
                 style={{
                   background: isDark
-                    ? 'linear-gradient(135deg, #ffffff 40%, #94a3b8 100%)'
+                    ? 'linear-gradient(180deg, #ffffff 40%, #64748b 100%)'
                     : 'linear-gradient(135deg, #0f172a 40%, #3b82f6 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   display: 'inline-block'
                 }}
               >
-                SYSTEMS
+                DEVELOPER
               </span>
             </h1>
 
@@ -188,7 +188,7 @@ export const Hero = ({ theme, isDark }) => {
               }}
             >
               <span>Focusing on</span>
-              <span style={{ color: '#3b82f6', fontWeight: '700' }}>{typewriterText}</span>
+              <span style={{ color: isDark ? '#38bdf8' : '#3b82f6', fontWeight: '700' }}>{typewriterText}</span>
               <span className="cursor-blink" />
             </div>
 
@@ -248,9 +248,9 @@ export const Hero = ({ theme, isDark }) => {
                 left: '0',
                 borderRadius: '50%',
                 background: isDark
-                  ? 'radial-gradient(circle at 50% 45%, rgba(251, 146, 60, 0.22) 0%, rgba(245, 158, 11, 0.12) 35%, rgba(59, 130, 246, 0.08) 65%, transparent 80%)'
+                  ? 'radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.16) 0%, rgba(148, 163, 184, 0.08) 35%, transparent 75%)'
                   : 'radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.16) 0%, rgba(139, 92, 246, 0.1) 45%, transparent 75%)',
-                filter: 'blur(45px)',
+                filter: 'blur(50px)',
                 pointerEvents: 'none',
                 zIndex: 0
               }}
@@ -283,7 +283,7 @@ export const Hero = ({ theme, isDark }) => {
                   objectFit: 'contain',
                   objectPosition: 'bottom center',
                   filter: isDark
-                    ? 'drop-shadow(0 15px 35px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 45px rgba(251, 146, 60, 0.2))'
+                    ? 'drop-shadow(0 15px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 35px rgba(255, 255, 255, 0.08))'
                     : 'drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15))',
                   maskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
@@ -318,14 +318,14 @@ export const Hero = ({ theme, isDark }) => {
 
           {/* ================= RIGHT COLUMN ================= */}
           <div className="hero-studio-col-right" style={{ textAlign: 'left' }}>
-            {/* Subtitle / Kicker */}
+            {/* Subtitle / Kicker matching video (TURNING IDEAS INTO REALITY) */}
             <div
               style={{
                 fontSize: '0.8rem',
                 fontWeight: '800',
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: '#3b82f6',
+                color: isDark ? '#94a3b8' : '#3b82f6',
                 marginBottom: '14px',
                 display: 'flex',
                 alignItems: 'center',
@@ -342,10 +342,10 @@ export const Hero = ({ theme, isDark }) => {
                   boxShadow: '0 0 10px #10b981'
                 }}
               />
-              <span>ROBUST BACKEND & AI ARCHITECTURE</span>
+              <span>TURNING IDEAS INTO REALITY</span>
             </div>
 
-            {/* Architecture description paragraph */}
+            {/* Architecture description paragraph matching video */}
             <p
               style={{
                 fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
@@ -355,7 +355,7 @@ export const Hero = ({ theme, isDark }) => {
                 maxWidth: '460px'
               }}
             >
-              Architecting robust backend pipelines, cloud microservices, intelligent AI workflows, and high-performance database optimization.
+              Available for hire. Building fast, responsive, and intelligent web applications using modern tech stacks.
             </p>
 
             {/* Action Pill Buttons (matching laptop photo style: solid pill + outline pill) */}
@@ -369,7 +369,7 @@ export const Hero = ({ theme, isDark }) => {
                 marginBottom: '32px'
               }}
             >
-              {/* Primary Pill Button (View My Work / Explore Projects) */}
+              {/* Primary Pill Button (See My Work) */}
               <Link
                 to="/projects"
                 style={{
@@ -391,7 +391,7 @@ export const Hero = ({ theme, isDark }) => {
                 }}
                 className="hover-lift"
               >
-                <span>View My Work</span>
+                <span>See My Work</span>
                 <ArrowRight size={17} />
               </Link>
 
@@ -405,9 +405,9 @@ export const Hero = ({ theme, isDark }) => {
                   gap: '8px',
                   padding: '13px 24px',
                   borderRadius: '9999px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-                  color: theme.textPrimary,
-                  border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)'}`,
+                  background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)',
+                  color: isDark ? '#ffffff' : theme.textPrimary,
+                  border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.15)'}`,
                   fontWeight: '600',
                   fontSize: '0.92rem',
                   textDecoration: 'none',
@@ -429,9 +429,9 @@ export const Hero = ({ theme, isDark }) => {
                   gap: '7px',
                   padding: '13px 22px',
                   borderRadius: '9999px',
-                  background: isDark ? 'rgba(59, 130, 246, 0.12)' : 'rgba(37, 99, 235, 0.08)',
-                  color: '#3b82f6',
-                  border: '1px solid rgba(59, 130, 246, 0.35)',
+                  background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(37, 99, 235, 0.08)',
+                  color: isDark ? '#e2e8f0' : '#3b82f6',
+                  border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(59, 130, 246, 0.35)'}`,
                   fontWeight: '600',
                   fontSize: '0.92rem',
                   textDecoration: 'none',
@@ -439,7 +439,7 @@ export const Hero = ({ theme, isDark }) => {
                 }}
                 className="hover-lift"
               >
-                <Download size={16} /> CV
+                <Download size={16} /> Resume
               </a>
             </div>
 

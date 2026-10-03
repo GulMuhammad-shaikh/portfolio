@@ -34,7 +34,7 @@ export const Footer = ({ theme, isDark }) => {
     <footer
       style={{
         borderTop: `1px solid ${theme.borderSubtle}`,
-        background: isDark ? '#080c14' : '#f1f5f9',
+        background: isDark ? '#040507' : '#f1f5f9',
         padding: '60px 0 30px',
         position: 'relative'
       }}

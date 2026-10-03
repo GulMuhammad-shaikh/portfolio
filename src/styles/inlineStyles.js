@@ -1,26 +1,26 @@
 export const getTheme = (isDark) => {
   return {
     isDark,
-    bgPrimary: isDark ? '#0b0f19' : '#f8fafc',
-    bgSecondary: isDark ? '#111827' : '#ffffff',
-    bgTertiary: isDark ? '#1f2937' : '#f1f5f9',
-    bgCard: isDark ? 'rgba(17, 24, 39, 0.75)' : 'rgba(255, 255, 255, 0.85)',
-    bgCardHover: isDark ? 'rgba(31, 41, 55, 0.9)' : 'rgba(241, 245, 249, 0.95)',
+    bgPrimary: isDark ? '#050608' : '#f8fafc',
+    bgSecondary: isDark ? '#0a0d13' : '#ffffff',
+    bgTertiary: isDark ? '#11151e' : '#f1f5f9',
+    bgCard: isDark ? 'rgba(12, 15, 22, 0.75)' : 'rgba(255, 255, 255, 0.85)',
+    bgCardHover: isDark ? 'rgba(20, 25, 36, 0.9)' : 'rgba(241, 245, 249, 0.95)',
     borderSubtle: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
-    borderHover: isDark ? 'rgba(59, 130, 246, 0.5)' : 'rgba(37, 99, 235, 0.4)',
-    textPrimary: isDark ? '#f9fafb' : '#0f172a',
-    textSecondary: isDark ? '#9ca3af' : '#475569',
-    textMuted: isDark ? '#6b7280' : '#64748b',
+    borderHover: isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(37, 99, 235, 0.4)',
+    textPrimary: isDark ? '#ffffff' : '#0f172a',
+    textSecondary: isDark ? '#94a3b8' : '#475569',
+    textMuted: isDark ? '#64748b' : '#64748b',
     accent: '#3b82f6',
-    accentGradient: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)',
+    accentGradient: 'linear-gradient(135deg, #ffffff 0%, #94a3b8 100%)',
     accentGradientSubtle: isDark
-      ? 'linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15))'
+      ? 'linear-gradient(135deg, rgba(255,255,255,0.08), rgba(148,163,184,0.08))'
       : 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1))',
-    glowColor: isDark ? 'rgba(59, 130, 246, 0.25)' : 'rgba(59, 130, 246, 0.15)',
-    navGlass: isDark ? 'rgba(11, 15, 25, 0.8)' : 'rgba(255, 255, 255, 0.85)',
-    shadowSmall: isDark ? '0 4px 6px -1px rgba(0, 0, 0, 0.4)' : '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
-    shadowMedium: isDark ? '0 10px 15px -3px rgba(0, 0, 0, 0.5)' : '0 10px 15px -3px rgba(0, 0, 0, 0.08)',
-    shadowLarge: isDark ? '0 20px 25px -5px rgba(0, 0, 0, 0.6)' : '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
+    glowColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(59, 130, 246, 0.15)',
+    navGlass: isDark ? 'rgba(5, 6, 8, 0.85)' : 'rgba(255, 255, 255, 0.85)',
+    shadowSmall: isDark ? '0 4px 10px rgba(0, 0, 0, 0.6)' : '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+    shadowMedium: isDark ? '0 10px 25px rgba(0, 0, 0, 0.7)' : '0 10px 15px -3px rgba(0, 0, 0, 0.08)',
+    shadowLarge: isDark ? '0 20px 40px rgba(0, 0, 0, 0.85)' : '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
   };
 };
 

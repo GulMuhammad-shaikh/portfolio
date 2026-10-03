@@ -17,12 +17,12 @@ import { ContactPage } from './pages/ContactPage';
 
 export function App() {
   const [isDark, setIsDark] = useState(() => {
-    // Default to Light Mode whenever user opens this website
+    // Default to Black Theme as requested
     try {
       const sessionTheme = sessionStorage.getItem('portfolio_theme');
       if (sessionTheme) return sessionTheme === 'dark';
     } catch {}
-    return false; // Default: Light Mode
+    return true; // Default: Black Theme
   });
 
   const theme = getTheme(isDark);
