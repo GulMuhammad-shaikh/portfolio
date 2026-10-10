@@ -6,14 +6,24 @@ import {
   Linkedin,
   Github,
   Send,
-  MapPin,
   Copy,
   Check,
-  MessageSquare,
-  MessageCircle
+  MessageCircle,
+  CheckCircle2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { portfolioData } from '../data/portfolioData';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent
+} from '@/components/ui/card';
 
 export const Contact = ({ theme, isDark }) => {
   const [formData, setFormData] = useState({
@@ -53,514 +63,258 @@ export const Contact = ({ theme, isDark }) => {
     }, 600);
   };
 
-  const inputStyle = {
-    width: '100%',
-    padding: '14px 18px',
-    borderRadius: '12px',
-    background: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.02)',
-    border: `1px solid ${theme.borderSubtle}`,
-    color: theme.textPrimary,
-    fontSize: '0.95rem',
-    outline: 'none',
-    transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
-    boxSizing: 'border-box'
-  };
-
   return (
-    <section id="contact" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
-      <div className="responsive-container">
+    <section id="contact" className="py-12 md:py-20 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              fontSize: '0.82rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: '#3b82f6',
-              background: isDark ? 'rgba(59, 130, 246, 0.12)' : 'rgba(59, 130, 246, 0.08)',
-              border: `1px solid ${theme.borderSubtle}`,
-              marginBottom: '16px'
-            }}
-          >
-            <Sparkles size={15} />
-            <span>GET IN TOUCH</span>
-          </div>
-
-          <h2
-            style={{
-              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
-              fontWeight: '800',
-              color: theme.textPrimary,
-              letterSpacing: '-0.02em',
-              margin: '0 0 16px 0'
-            }}
-          >
-            Contact <span style={{ color: '#3b82f6' }}>Me</span>
+        <div className="text-center mb-12">
+          <Badge variant="outline" className="mb-3 py-1 px-3 text-xs font-semibold gap-1.5 border-primary/30 text-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Get in touch</span>
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            Contact <span className="text-primary">Me</span>
           </h2>
-
-          <p
-            style={{
-              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
-              color: theme.textSecondary,
-              maxWidth: '620px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}
-          >
-            Have a project in mind, seeking a MERN Stack Developer, or looking to collaborate? Reach out directly!
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Have a project in mind, seeking a Full-Stack MERN Developer, or looking to collaborate? Reach out directly!
           </p>
         </div>
 
         {/* Contact Container Grid */}
-        <div className="responsive-2col">
-          {/* Left Column: Direct Contact Details */}
-          <div
-            className="interactive-card card-padding"
-            style={{
-              background: theme.bgCard,
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: `1px solid ${theme.borderSubtle}`,
-              borderRadius: '20px',
-              boxShadow: theme.shadowMedium,
-              boxSizing: 'border-box'
-            }}
-          >
-            <h3
-              style={{
-                fontSize: '1.5rem',
-                fontWeight: '700',
-                color: theme.textPrimary,
-                marginBottom: '12px'
-              }}
-            >
-              Let's Build Something Great
-            </h3>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Left Column: Direct Contact Details (5 cols) */}
+          <Card className="lg:col-span-5 p-6 sm:p-8 border-border/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-3">
+                Let's Build Something Great
+              </CardTitle>
 
-            <p
-              style={{
-                fontSize: '0.96rem',
-                lineHeight: '1.7',
-                color: theme.textSecondary,
-                marginBottom: '32px'
-              }}
-            >
-              Whether you need a dynamic web app, an AI-powered portal, API integration, or full-stack software consulting, I'm ready to contribute.
-            </p>
+              <CardDescription className="text-sm text-muted-foreground leading-relaxed mb-6">
+                Whether you need a full-stack web application, clean REST APIs, or frontend engineering, I'm ready to contribute to your team.
+              </CardDescription>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              {/* Email Card */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '16px 20px',
-                  borderRadius: '14px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                  border: `1px solid ${theme.borderSubtle}`
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                  <div
-                    style={{
-                      width: '42px',
-                      height: '42px',
-                      borderRadius: '10px',
-                      background: 'rgba(234, 67, 53, 0.12)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#ea4335'
-                    }}
+              <div className="flex flex-col gap-3.5">
+                {/* Email Card */}
+                <div className="flex items-center justify-between p-3.5 rounded-xl border border-border/70 bg-muted/30">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="h-9 w-9 rounded-lg bg-rose-500/10 text-rose-500 border border-rose-500/20 flex items-center justify-center shrink-0">
+                      <Mail className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                        Email
+                      </div>
+                      <a
+                        href={`mailto:${portfolioData.personal.email}`}
+                        className="text-xs sm:text-sm font-semibold text-foreground hover:text-primary transition-colors truncate block"
+                      >
+                        {portfolioData.personal.email}
+                      </a>
+                    </div>
+                  </div>
+
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                    onClick={() => handleCopy(portfolioData.personal.email, 'email')}
+                    title="Copy Email"
                   >
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: '600' }}>EMAIL</div>
-                    <a
-                      href={`mailto:${portfolioData.personal.email}`}
-                      style={{
-                        fontSize: '0.94rem',
-                        fontWeight: '600',
-                        color: theme.textPrimary,
-                        textDecoration: 'none'
-                      }}
-                    >
-                      {portfolioData.personal.email}
-                    </a>
-                  </div>
+                    {copiedField === 'email' ? (
+                      <Check className="h-4 w-4 text-emerald-500" />
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                  </Button>
                 </div>
 
-                <button
-                  onClick={() => handleCopy(portfolioData.personal.email, 'email')}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: copiedField === 'email' ? '#10b981' : theme.textMuted,
-                    cursor: 'pointer',
-                    padding: '8px'
-                  }}
-                  title="Copy Email"
-                >
-                  {copiedField === 'email' ? <Check size={18} /> : <Copy size={18} />}
-                </button>
-              </div>
+                {/* Phone Card */}
+                <div className="flex items-center justify-between p-3.5 rounded-xl border border-border/70 bg-muted/30">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="h-9 w-9 rounded-lg bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                      <Phone className="h-4 w-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                        Phone / WhatsApp
+                      </div>
+                      <a
+                        href={`tel:${portfolioData.personal.phone.replace(/[^0-9+]/g, '')}`}
+                        className="text-xs sm:text-sm font-semibold text-foreground hover:text-primary transition-colors truncate block"
+                      >
+                        {portfolioData.personal.phone}
+                      </a>
+                    </div>
+                  </div>
 
-              {/* Phone Card */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '16px 20px',
-                  borderRadius: '14px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                  border: `1px solid ${theme.borderSubtle}`
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                  <div
-                    style={{
-                      width: '42px',
-                      height: '42px',
-                      borderRadius: '10px',
-                      background: 'rgba(16, 185, 129, 0.12)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#10b981'
-                    }}
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                    onClick={() => handleCopy(portfolioData.personal.phone, 'phone')}
+                    title="Copy Phone"
                   >
-                    <Phone size={20} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: '600' }}>PHONE / WHATSAPP</div>
-                    <a
-                      href={`tel:${portfolioData.personal.phone.replace(/[^0-9+]/g, '')}`}
-                      style={{
-                        fontSize: '0.94rem',
-                        fontWeight: '600',
-                        color: theme.textPrimary,
-                        textDecoration: 'none'
-                      }}
-                    >
-                      {portfolioData.personal.phone}
-                    </a>
-                  </div>
+                    {copiedField === 'phone' ? (
+                      <Check className="h-4 w-4 text-emerald-500" />
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                  </Button>
                 </div>
 
-                <button
-                  onClick={() => handleCopy(portfolioData.personal.phone, 'phone')}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: copiedField === 'phone' ? '#10b981' : theme.textMuted,
-                    cursor: 'pointer',
-                    padding: '8px'
-                  }}
-                  title="Copy Phone"
+                {/* WhatsApp Quick Message Button */}
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full gap-2 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
                 >
-                  {copiedField === 'phone' ? <Check size={18} /> : <Copy size={18} />}
-                </button>
+                  <a
+                    href="https://wa.me/923042681062?text=Hi%20Gul%20Muhammad,%20I%20saw%20your%20portfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Chat on WhatsApp</span>
+                  </a>
+                </Button>
               </div>
+            </div>
 
-              {/* WhatsApp Quick Message Button */}
-              <a
-                href={`https://wa.me/923042681062?text=Hi%20Gul%20Muhammad,%20I%20saw%20your%20portfolio`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '10px',
-                  padding: '14px',
-                  borderRadius: '12px',
-                  background: 'rgba(37, 211, 102, 0.15)',
-                  border: '1px solid rgba(37, 211, 102, 0.35)',
-                  color: '#25d366',
-                  fontWeight: '700',
-                  textDecoration: 'none',
-                  fontSize: '0.94rem'
-                }}
-                className="hover-lift"
-              >
-                <MessageCircle size={20} /> Chat on WhatsApp
-              </a>
-
-              {/* Social Profiles Row */}
-              <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
+            {/* Social Profiles Row */}
+            <div className="grid grid-cols-2 gap-3 pt-6 mt-6 border-t border-border">
+              <Button asChild variant="outline" size="sm" className="gap-2">
                 <a
                   href={portfolioData.personal.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    flex: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    padding: '12px',
-                    borderRadius: '12px',
-                    background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
-                    border: `1px solid ${theme.borderSubtle}`,
-                    color: theme.textPrimary,
-                    fontWeight: '600',
-                    fontSize: '0.9rem',
-                    textDecoration: 'none'
-                  }}
-                  className="hover-lift"
                 >
-                  <Linkedin size={18} color="#0a66c2" /> LinkedIn
+                  <Linkedin className="h-4 w-4 text-blue-600" />
+                  <span>LinkedIn</span>
                 </a>
+              </Button>
 
+              <Button asChild variant="outline" size="sm" className="gap-2">
                 <a
                   href={portfolioData.personal.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    flex: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    padding: '12px',
-                    borderRadius: '12px',
-                    background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)',
-                    border: `1px solid ${theme.borderSubtle}`,
-                    color: theme.textPrimary,
-                    fontWeight: '600',
-                    fontSize: '0.9rem',
-                    textDecoration: 'none'
-                  }}
-                  className="hover-lift"
                 >
-                  <Github size={18} /> GitHub
+                  <Github className="h-4 w-4" />
+                  <span>GitHub</span>
                 </a>
-              </div>
+              </Button>
             </div>
-          </div>
+          </Card>
 
-          {/* Right Column: Interactive Contact Form */}
-          <div
-            className="interactive-card card-padding"
-            style={{
-              background: theme.bgCard,
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: `1px solid ${theme.borderSubtle}`,
-              borderRadius: '20px',
-              boxShadow: theme.shadowMedium,
-              boxSizing: 'border-box'
-            }}
-          >
+          {/* Right Column: Interactive Contact Form (7 cols) */}
+          <Card className="lg:col-span-7 p-6 sm:p-8 border-border/80 shadow-sm">
             {submitted ? (
-              <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                <div
-                  style={{
-                    width: '70px',
-                    height: '70px',
-                    borderRadius: '50%',
-                    background: 'rgba(16, 185, 129, 0.15)',
-                    border: '2px solid #10b981',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#10b981',
-                    margin: '0 auto 20px auto'
-                  }}
-                >
-                  <Check size={36} />
+              <div className="text-center py-12 px-4 flex flex-col items-center">
+                <div className="h-14 w-14 rounded-full bg-emerald-500/15 border-2 border-emerald-500 flex items-center justify-center text-emerald-500 mb-4">
+                  <Check className="h-7 w-7" />
                 </div>
 
-                <h3
-                  style={{
-                    fontSize: '1.5rem',
-                    fontWeight: '700',
-                    color: theme.textPrimary,
-                    marginBottom: '10px'
-                  }}
-                >
+                <CardTitle className="text-2xl font-bold text-foreground mb-2">
                   Message Sent Successfully!
-                </h3>
+                </CardTitle>
 
-                <p
-                  style={{
-                    fontSize: '0.98rem',
-                    color: theme.textSecondary,
-                    maxWidth: '440px',
-                    margin: '0 auto 26px auto',
-                    lineHeight: '1.6'
-                  }}
-                >
-                  Thank you for reaching out, <strong>{formData.name || 'there'}</strong>! I will review your message and respond directly via {formData.email || 'email'} promptly.
+                <p className="text-sm text-muted-foreground max-w-sm mb-6 leading-relaxed">
+                  Thank you for reaching out, <strong className="text-foreground">{formData.name || 'there'}</strong>! I will review your inquiry and get back to you promptly.
                 </p>
 
-                <button
+                <Button
                   onClick={() => {
                     setSubmitted(false);
                     setFormData({ name: '', email: '', subject: '', message: '' });
                   }}
-                  style={{
-                    padding: '12px 28px',
-                    borderRadius: '10px',
-                    background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
-                    color: '#ffffff',
-                    border: 'none',
-                    fontWeight: '600',
-                    cursor: 'pointer'
-                  }}
+                  className="gap-2"
                 >
                   Send Another Message
-                </button>
+                </Button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <h3
-                  style={{
-                    fontSize: 'clamp(1.2rem, 2.5vw, 1.4rem)',
-                    fontWeight: '700',
-                    color: theme.textPrimary,
-                    margin: 0
-                  }}
-                >
-                  Send a Direct Message
-                </h3>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <div>
+                  <CardTitle className="text-xl font-bold text-foreground">
+                    Send a Direct Message
+                  </CardTitle>
+                  <CardDescription className="text-xs text-muted-foreground mt-1">
+                    Fill out the form below and I will respond within 24 hours.
+                  </CardDescription>
+                </div>
 
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
-                    gap: '16px'
-                  }}
-                >
-                  <div>
-                    <label
-                      style={{
-                        display: 'block',
-                        fontSize: '0.84rem',
-                        fontWeight: '600',
-                        color: theme.textSecondary,
-                        marginBottom: '8px'
-                      }}
-                    >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-semibold text-foreground">
                       Your Name
                     </label>
-                    <input
+                    <Input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="e.g. John Doe"
                       required
-                      style={inputStyle}
                     />
                   </div>
 
-                  <div>
-                    <label
-                      style={{
-                        display: 'block',
-                        fontSize: '0.84rem',
-                        fontWeight: '600',
-                        color: theme.textSecondary,
-                        marginBottom: '8px'
-                      }}
-                    >
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-semibold text-foreground">
                       Your Email
                     </label>
-                    <input
+                    <Input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="e.g. john@example.com"
                       required
-                      style={inputStyle}
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label
-                    style={{
-                      display: 'block',
-                      fontSize: '0.84rem',
-                      fontWeight: '600',
-                      color: theme.textSecondary,
-                      marginBottom: '8px'
-                    }}
-                  >
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-semibold text-foreground">
                     Subject
                   </label>
-                  <input
+                  <Input
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="e.g. Project Inquiry / Collaboration"
+                    placeholder="e.g. Full-Stack Project Inquiry"
                     required
-                    style={inputStyle}
                   />
                 </div>
 
-                <div>
-                  <label
-                    style={{
-                      display: 'block',
-                      fontSize: '0.84rem',
-                      fontWeight: '600',
-                      color: theme.textSecondary,
-                      marginBottom: '8px'
-                    }}
-                  >
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-semibold text-foreground">
                     Message
                   </label>
-                  <textarea
+                  <Textarea
                     name="message"
-                    rows={5}
+                    rows={4}
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Hello Gul, I would like to discuss..."
                     required
-                    style={{ ...inputStyle, resize: 'vertical' }}
                   />
                 </div>
 
-                <button
+                <Button
                   type="submit"
                   disabled={isSubmitting}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '10px',
-                    padding: '14px 28px',
-                    borderRadius: '12px',
-                    background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
-                    color: '#ffffff',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    border: 'none',
-                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                    boxShadow: '0 4px 20px rgba(59, 130, 246, 0.4)',
-                    transition: 'all 0.3s ease'
-                  }}
-                  className="hover-lift"
+                  size="lg"
+                  className="w-full sm:w-auto self-start gap-2 shadow-sm"
                 >
-                  <Send size={18} />
+                  <Send className="h-4 w-4" />
                   <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
-                </button>
+                </Button>
               </form>
             )}
-          </div>
+          </Card>
         </div>
       </div>
     </section>

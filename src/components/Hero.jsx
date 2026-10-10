@@ -17,6 +17,16 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter
+} from '@/components/ui/card';
 
 export const Hero = ({ theme, isDark }) => {
   const techStack = [
@@ -33,525 +43,202 @@ export const Hero = ({ theme, isDark }) => {
   ];
 
   return (
-    <section
-      id="home"
-      style={{
-        position: 'relative',
-        padding: '120px 0 60px',
-        overflow: 'hidden',
-        boxSizing: 'border-box',
-        width: '100%'
-      }}
-    >
+    <section id="home" className="relative pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden w-full">
       {/* Subtle Ambient Background Glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '15%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 'min(900px, 90vw)',
-          height: '450px',
-          borderRadius: '50%',
-          background: isDark
-            ? 'radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(59, 130, 246, 0.05) 45%, transparent 70%)'
-            : 'radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(59, 130, 246, 0.03) 50%, transparent 70%)',
-          filter: 'blur(80px)',
-          pointerEvents: 'none',
-          zIndex: 0
-        }}
-      />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-primary/10 dark:bg-primary/15 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-      <div className="responsive-container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Main 2-Column Balanced Hero Grid */}
-        <div className="hero-grid-modern">
-          {/* Left Column: Authoritative Developer Introduction */}
-          <div style={{ textAlign: 'left' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Main 2-Column Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Authoritative Developer Introduction (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
             {/* Live Availability Status Badge */}
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '6px 14px',
-                borderRadius: '9999px',
-                background: isDark ? 'rgba(16, 185, 129, 0.1)' : 'rgba(16, 185, 129, 0.08)',
-                border: '1px solid rgba(16, 185, 129, 0.25)',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                color: '#10b981',
-                marginBottom: '20px'
-              }}
-            >
-              <span
-                style={{
-                  width: '7px',
-                  height: '7px',
-                  borderRadius: '50%',
-                  background: '#10b981',
-                  boxShadow: '0 0 8px #10b981'
-                }}
-              />
+            <Badge variant="success" className="mb-5 py-1.5 px-3.5 text-xs font-medium gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
               <span>Available for full-time roles & projects</span>
-            </div>
+            </Badge>
 
             {/* Clear, High-Impact Headline */}
-            <h1
-              style={{
-                fontSize: 'clamp(2.4rem, 4.8vw, 3.8rem)',
-                fontWeight: 800,
-                lineHeight: 1.15,
-                letterSpacing: '-0.03em',
-                color: theme.textPrimary,
-                margin: '0 0 20px 0'
-              }}
-            >
-              Engineering scalable{' '}
-              <span
-                style={{
-                  background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  display: 'inline-block'
-                }}
-              >
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12] mb-5">
+              Engineering reliable{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400">
                 full-stack
               </span>{' '}
               web applications.
             </h1>
 
             {/* Authentic, Trustworthy Bio */}
-            <p
-              style={{
-                fontSize: 'clamp(1rem, 1.8vw, 1.12rem)',
-                lineHeight: 1.7,
-                color: theme.textSecondary,
-                maxWidth: '560px',
-                margin: '0 0 32px 0'
-              }}
-            >
-              Hi, I'm <strong style={{ color: theme.textPrimary }}>Gul Muhammad</strong> — a Full-Stack MERN Developer based in Karachi, Pakistan. I build dependable web applications with React, Node.js, Express, and MongoDB, focused on clean architecture, real-world utility, and seamless user experiences.
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mb-8">
+              Hi, I'm <strong className="text-foreground font-semibold">Gul Muhammad</strong> — a Full-Stack Developer specializing in the MERN stack in Karachi, Pakistan. I craft performant web platforms with React, Node.js, Express, and MongoDB, focused on clean architecture and great user experiences.
             </p>
 
             {/* Call-to-Action Buttons */}
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                gap: '12px',
-                marginBottom: '40px'
-              }}
-            >
+            <div className="flex flex-wrap items-center gap-3 mb-10 w-full sm:w-auto">
               {/* Primary: View Projects */}
-              <Link
-                to="/projects"
-                className="hover-lift"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '12px 24px',
-                  borderRadius: '12px',
-                  background: '#2563eb',
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '0.92rem',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 16px rgba(37, 99, 235, 0.35)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <span>View Projects</span>
-                <ArrowRight size={17} />
-              </Link>
+              <Button asChild size="lg" className="gap-2 shadow-sm">
+                <Link to="/projects">
+                  <span>View Projects</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
 
               {/* Secondary: Download Resume */}
-              <a
-                href={portfolioData.personal.resumeUrl}
-                download="Gul Muhammad Web Developer (1).pdf"
-                className="hover-lift"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '12px 22px',
-                  borderRadius: '12px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#ffffff',
-                  color: theme.textPrimary,
-                  border: `1px solid ${theme.borderSubtle}`,
-                  fontWeight: 600,
-                  fontSize: '0.92rem',
-                  textDecoration: 'none',
-                  boxShadow: isDark ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.04)',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <Download size={16} />
-                <span>Download CV</span>
-              </a>
+              <Button asChild variant="outline" size="lg" className="gap-2 shadow-sm">
+                <a
+                  href={portfolioData.personal.resumeUrl}
+                  download="Gul Muhammad Web Developer (1).pdf"
+                >
+                  <Download className="h-4 w-4" />
+                  <span>Download CV</span>
+                </a>
+              </Button>
 
-              {/* Contact Me */}
-              <Link
-                to="/contact"
-                className="hover-lift"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '12px 20px',
-                  borderRadius: '12px',
-                  background: 'transparent',
-                  color: theme.textSecondary,
-                  border: `1px solid ${theme.borderSubtle}`,
-                  fontWeight: 600,
-                  fontSize: '0.92rem',
-                  textDecoration: 'none',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <Mail size={16} />
-                <span>Contact</span>
-              </Link>
+              {/* Tertiary: Contact */}
+              <Button asChild variant="ghost" size="lg" className="gap-2">
+                <Link to="/contact">
+                  <Mail className="h-4 w-4" />
+                  <span>Contact</span>
+                </Link>
+              </Button>
             </div>
 
             {/* Quick Metrics / Credibility Highlights */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-                gap: '16px',
-                paddingTop: '24px',
-                borderTop: `1px solid ${theme.borderSubtle}`,
-                maxWidth: '560px'
-              }}
-            >
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-border w-full max-w-xl">
               <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                <div className="text-2xl font-bold tracking-tight text-foreground">
                   1+ Yrs
                 </div>
-                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
+                <div className="text-xs text-muted-foreground font-medium mt-0.5">
                   Hands-on Experience
                 </div>
               </div>
 
               <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                <div className="text-2xl font-bold tracking-tight text-foreground">
                   CampusCoin
                 </div>
-                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
-                  Featured Live Project
+                <div className="text-xs text-muted-foreground font-medium mt-0.5">
+                  Featured Project
                 </div>
               </div>
 
               <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                <div className="text-2xl font-bold tracking-tight text-foreground">
                   ADSE
                 </div>
-                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
-                  Aptech Learning Center
+                <div className="text-xs text-muted-foreground font-medium mt-0.5">
+                  Aptech Learning
                 </div>
               </div>
 
               <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                <div className="text-2xl font-bold tracking-tight text-foreground">
                   Karachi
                 </div>
-                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
+                <div className="text-xs text-muted-foreground font-medium mt-0.5">
                   Sindh, Pakistan
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Framed Developer Presentation Card */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative'
-            }}
-          >
-            {/* Clean Framed Card */}
-            <div
-              className="interactive-card"
-              style={{
-                width: '100%',
-                maxWidth: '420px',
-                borderRadius: '24px',
-                background: theme.bgCard,
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: `1px solid ${theme.borderSubtle}`,
-                boxShadow: theme.shadowLarge,
-                overflow: 'hidden',
-                position: 'relative'
-              }}
-            >
-              {/* Card Top Header */}
-              <div
-                style={{
-                  padding: '16px 20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderBottom: `1px solid ${theme.borderSubtle}`,
-                  background: isDark ? 'rgba(255, 255, 255, 0.02)' : '#f8fafc'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '50%',
-                      background: '#ef4444'
-                    }}
-                  />
-                  <span
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '50%',
-                      background: '#f59e0b'
-                    }}
-                  />
-                  <span
-                    style={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '50%',
-                      background: '#10b981'
-                    }}
-                  />
+          {/* Right Column: Framed Developer Presentation Card (5 cols) */}
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <Card className="w-full max-w-md overflow-hidden border-border/80 shadow-lg hover:shadow-xl transition-all duration-300">
+              {/* Card Window Top Header */}
+              <CardHeader className="py-3 px-4 flex flex-row items-center justify-between border-b border-border bg-muted/40 space-y-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-500/80 inline-block" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80 inline-block" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80 inline-block" />
                 </div>
-
-                <div
-                  style={{
-                    fontSize: '0.74rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    color: theme.textMuted,
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  developer.json
+                <div className="text-[11px] font-mono font-medium text-muted-foreground tracking-wider uppercase">
+                  developer.profile
                 </div>
-              </div>
+              </CardHeader>
 
               {/* Developer Photo Container */}
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: '380px',
-                  background: isDark
-                    ? 'linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, rgba(10, 12, 16, 0.95) 100%)'
-                    : 'linear-gradient(180deg, rgba(37, 99, 235, 0.05) 0%, rgba(248, 250, 252, 0.95) 100%)',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  justifyContent: 'center',
-                  overflow: 'hidden'
-                }}
-              >
+              <div className="relative w-full h-80 sm:h-96 bg-gradient-to-b from-primary/5 via-muted/20 to-muted/80 flex items-end justify-center overflow-hidden">
                 <img
                   src="/profile.png"
-                  alt="Gul Muhammad - MERN Stack Developer"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    objectPosition: 'bottom center',
-                    filter: isDark
-                      ? 'drop-shadow(0 10px 25px rgba(0, 0, 0, 0.8))'
-                      : 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1))'
-                  }}
+                  alt="Gul Muhammad - Full-Stack Developer"
+                  className="w-full h-full object-contain object-bottom drop-shadow-md transition-transform duration-300 hover:scale-[1.02]"
                 />
 
-                {/* Status Pill Floating at Bottom of Photo */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '16px',
-                    left: '16px',
-                    right: '16px',
-                    padding: '10px 14px',
-                    borderRadius: '14px',
-                    background: isDark ? 'rgba(10, 12, 16, 0.85)' : 'rgba(255, 255, 255, 0.92)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
-                    border: `1px solid ${theme.borderSubtle}`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)'
-                  }}
-                >
+                {/* Floating Profile Details Pill */}
+                <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-background/85 backdrop-blur-md border border-border flex items-center justify-between shadow-sm">
                   <div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 800, color: theme.textPrimary }}>
+                    <div className="text-sm font-bold text-foreground">
                       Gul Muhammad
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#2563eb', fontWeight: 600 }}>
-                      MERN Stack & AI Developer
+                    <div className="text-xs font-semibold text-primary">
+                      Full-Stack MERN Developer
                     </div>
                   </div>
 
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      fontSize: '0.7rem',
-                      fontWeight: 600,
-                      color: theme.textMuted
-                    }}
-                  >
-                    <MapPin size={12} color="#2563eb" />
+                  <div className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                    <MapPin className="h-3 w-3 text-primary" />
                     <span>Karachi</span>
                   </div>
                 </div>
               </div>
 
               {/* Card Footer Details */}
-              <div
-                style={{
-                  padding: '16px 20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderTop: `1px solid ${theme.borderSubtle}`,
-                  background: isDark ? 'rgba(255, 255, 255, 0.02)' : '#ffffff'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <a
-                    href={portfolioData.personal.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover-lift"
-                    style={{
-                      padding: '7px 12px',
-                      borderRadius: '8px',
-                      background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#f1f5f9',
-                      color: theme.textPrimary,
-                      textDecoration: 'none',
-                      fontSize: '0.78rem',
-                      fontWeight: 600,
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px'
-                    }}
-                  >
-                    <Github size={14} /> GitHub
-                  </a>
+              <CardFooter className="py-3 px-4 flex items-center justify-between border-t border-border bg-card">
+                <div className="flex items-center gap-2">
+                  <Button asChild variant="outline" size="sm" className="h-8 gap-1.5 text-xs">
+                    <a
+                      href={portfolioData.personal.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="h-3.5 w-3.5" />
+                      <span>GitHub</span>
+                    </a>
+                  </Button>
 
-                  <a
-                    href={portfolioData.personal.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover-lift"
-                    style={{
-                      padding: '7px 12px',
-                      borderRadius: '8px',
-                      background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#f1f5f9',
-                      color: theme.textPrimary,
-                      textDecoration: 'none',
-                      fontSize: '0.78rem',
-                      fontWeight: 600,
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px'
-                    }}
-                  >
-                    <Linkedin size={14} /> LinkedIn
-                  </a>
+                  <Button asChild variant="outline" size="sm" className="h-8 gap-1.5 text-xs">
+                    <a
+                      href={portfolioData.personal.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Linkedin className="h-3.5 w-3.5" />
+                      <span>LinkedIn</span>
+                    </a>
+                  </Button>
                 </div>
 
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '0.74rem',
-                    fontWeight: 700,
-                    color: '#10b981'
-                  }}
-                >
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: '#10b981'
-                    }}
-                  />
-                  <span>Verified</span>
-                </div>
-              </div>
-            </div>
+                <Badge variant="success" className="text-[11px] font-semibold py-0.5 px-2">
+                  Verified
+                </Badge>
+              </CardFooter>
+            </Card>
           </div>
         </div>
 
         {/* Tech Stack Strip */}
-        <div
-          style={{
-            marginTop: '56px',
-            paddingTop: '32px',
-            borderTop: `1px solid ${theme.borderSubtle}`,
-            width: '100%'
-          }}
-        >
-          <div
-            style={{
-              fontSize: '0.74rem',
-              fontWeight: 800,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: theme.textMuted,
-              marginBottom: '16px'
-            }}
-          >
+        <div className="mt-14 pt-8 border-t border-border w-full">
+          <div className="text-xs font-bold tracking-wider uppercase text-muted-foreground mb-4">
             Core Technologies & Toolkit
           </div>
 
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '10px',
-              alignItems: 'center'
-            }}
-          >
+          <div className="flex flex-wrap gap-2 items-center">
             {techStack.map((tech, idx) => (
-              <div
+              <Badge
                 key={idx}
-                className="hover-lift"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '6px 14px',
-                  borderRadius: '10px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.04)' : '#ffffff',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  color: theme.textPrimary,
-                  boxShadow: isDark ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.03)'
-                }}
+                variant="outline"
+                className="py-1.5 px-3 text-xs font-medium bg-card/50 hover:bg-accent/60 transition-colors gap-2"
               >
                 <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: tech.color
-                  }}
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: tech.color }}
                 />
                 <span>{tech.name}</span>
-              </div>
+              </Badge>
             ))}
           </div>
         </div>

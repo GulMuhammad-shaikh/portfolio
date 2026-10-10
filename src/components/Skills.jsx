@@ -21,6 +21,9 @@ import {
   Cloud
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 
 export const Skills = ({ theme, isDark }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -31,245 +34,119 @@ export const Skills = ({ theme, isDark }) => {
       : portfolioData.skills.filter((s) => s.category === activeCategory);
 
   const getIcon = (iconName) => {
-    const props = { size: 22, color: '#3b82f6' };
+    const props = { className: 'h-5 w-5' };
     switch (iconName) {
       case 'Atom':
-        return <Atom {...props} color="#38bdf8" />;
+        return <Atom {...props} className="h-5 w-5 text-sky-400" />;
       case 'FileCode2':
-        return <FileCode2 {...props} color="#f59e0b" />;
+        return <FileCode2 {...props} className="h-5 w-5 text-amber-500" />;
       case 'Globe':
-        return <Globe {...props} color="#ffffff" />;
+        return <Globe {...props} className="h-5 w-5 text-blue-500" />;
       case 'Palette':
-        return <Palette {...props} color="#ec4899" />;
+        return <Palette {...props} className="h-5 w-5 text-pink-500" />;
       case 'Layout':
-        return <Layout {...props} color="#06b6d4" />;
+        return <Layout {...props} className="h-5 w-5 text-cyan-500" />;
       case 'Boxes':
-        return <Boxes {...props} color="#8b5cf6" />;
+        return <Boxes {...props} className="h-5 w-5 text-purple-500" />;
       case 'Server':
-        return <Server {...props} color="#10b981" />;
+        return <Server {...props} className="h-5 w-5 text-emerald-500" />;
       case 'Cpu':
-        return <Cpu {...props} color="#f97316" />;
+        return <Cpu {...props} className="h-5 w-5 text-orange-500" />;
       case 'Database':
-        return <Database {...props} color="#10b981" />;
+        return <Database {...props} className="h-5 w-5 text-emerald-500" />;
       case 'Code':
-        return <Code2 {...props} color="#8b5cf6" />;
+        return <Code2 {...props} className="h-5 w-5 text-violet-500" />;
       case 'HardDrive':
-        return <HardDrive {...props} color="#3b82f6" />;
+        return <HardDrive {...props} className="h-5 w-5 text-blue-500" />;
       case 'ShieldCheck':
-        return <ShieldCheck {...props} color="#ec4899" />;
+        return <ShieldCheck {...props} className="h-5 w-5 text-pink-500" />;
       case 'Sparkles':
-        return <Sparkles {...props} color="#f59e0b" />;
+        return <Sparkles {...props} className="h-5 w-5 text-amber-500" />;
       case 'Bot':
-        return <Bot {...props} color="#8b5cf6" />;
+        return <Bot {...props} className="h-5 w-5 text-purple-500" />;
       case 'GitBranch':
-        return <GitBranch {...props} color="#f43f5e" />;
+        return <GitBranch {...props} className="h-5 w-5 text-rose-500" />;
       case 'Cloud':
-        return <Cloud {...props} color="#06b6d4" />;
+        return <Cloud {...props} className="h-5 w-5 text-cyan-500" />;
       case 'Terminal':
-        return <Terminal {...props} color="#eab308" />;
+        return <Terminal {...props} className="h-5 w-5 text-yellow-500" />;
       case 'Laptop':
-        return <Laptop {...props} color="#3b82f6" />;
+        return <Laptop {...props} className="h-5 w-5 text-blue-500" />;
       default:
-        return <Code2 {...props} />;
+        return <Code2 {...props} className="h-5 w-5 text-primary" />;
     }
   };
 
   return (
-    <section id="skills" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
-      <div className="responsive-container">
+    <section id="skills" className="py-12 md:py-20 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              fontSize: '0.82rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: '#3b82f6',
-              background: isDark ? 'rgba(59, 130, 246, 0.12)' : 'rgba(59, 130, 246, 0.08)',
-              border: `1px solid ${theme.borderSubtle}`,
-              marginBottom: '16px'
-            }}
-          >
-            <Sparkles size={15} />
-            <span>MY TOOLKIT</span>
-          </div>
-
-          <h2
-            style={{
-              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
-              fontWeight: '800',
-              color: theme.textPrimary,
-              letterSpacing: '-0.02em',
-              margin: '0 0 16px 0'
-            }}
-          >
-            Technical <span style={{ color: '#3b82f6' }}>Skills</span>
+        <div className="text-center mb-12">
+          <Badge variant="outline" className="mb-3 py-1 px-3 text-xs font-semibold gap-1.5 border-primary/30 text-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>My toolkit</span>
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            Technical <span className="text-primary">Skills</span>
           </h2>
-
-          <p
-            style={{
-              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
-              color: theme.textSecondary,
-              maxWidth: '620px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}
-          >
-            Extensive expertise spanning MERN full-stack development, modern frontend frameworks, database engineering, and AI tool integration.
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Extensive expertise spanning MERN full-stack development, modern frontend frameworks, database engineering, and modern web tooling.
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '10px',
-            marginBottom: '36px'
-          }}
-        >
+        {/* Filter Tabs using shadcn Button */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {portfolioData.skillCategories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
-              <button
+              <Button
                 key={cat.id}
+                variant={isActive ? 'default' : 'outline'}
+                size="sm"
                 onClick={() => setActiveCategory(cat.id)}
-                style={{
-                  padding: '8px 20px',
-                  borderRadius: '9999px',
-                  fontSize: '0.88rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  border: isActive ? '1px solid transparent' : `1px solid ${theme.borderSubtle}`,
-                  background: isActive
-                    ? 'linear-gradient(135deg, #2563eb, #7c3aed)'
-                    : isDark
-                    ? 'rgba(255, 255, 255, 0.04)'
-                    : 'rgba(0, 0, 0, 0.03)',
-                  color: isActive ? '#ffffff' : theme.textSecondary,
-                  transition: 'all 0.25s ease',
-                  boxShadow: isActive ? '0 4px 15px rgba(37, 99, 235, 0.35)' : 'none'
-                }}
-                className="hover-lift"
+                className="rounded-full text-xs font-semibold transition-all duration-200"
               >
                 {cat.label}
-              </button>
+              </Button>
             );
           })}
         </div>
 
-        {/* Skills Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))',
-            gap: '20px',
-            width: '100%'
-          }}
-        >
+        {/* Skills Grid using shadcn Card */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredSkills.map((skill, idx) => (
-            <div
+            <Card
               key={idx}
-              className="interactive-card"
-              style={{
-                background: theme.bgCard,
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: `1px solid ${theme.borderSubtle}`,
-                borderRadius: '16px',
-                padding: '24px',
-                boxShadow: theme.shadowSmall
-              }}
+              className="p-5 border-border/80 shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-200"
             >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: '16px'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div
-                    style={{
-                      width: '42px',
-                      height: '42px',
-                      borderRadius: '12px',
-                      background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                      border: `1px solid ${theme.borderSubtle}`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-xl bg-muted border border-border flex items-center justify-center shrink-0">
                     {getIcon(skill.icon)}
                   </div>
                   <div>
-                    <h3
-                      style={{
-                        fontSize: '1rem',
-                        fontWeight: '700',
-                        color: theme.textPrimary,
-                        margin: 0
-                      }}
-                    >
+                    <h3 className="text-sm sm:text-base font-bold text-foreground">
                       {skill.name}
                     </h3>
-                    <span
-                      style={{
-                        fontSize: '0.72rem',
-                        fontWeight: '600',
-                        color: theme.textMuted,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em'
-                      }}
-                    >
+                    <Badge variant="outline" className="text-[10px] py-0 px-1.5 font-medium border-border/60">
                       {skill.tag}
-                    </span>
+                    </Badge>
                   </div>
                 </div>
 
-                <span
-                  style={{
-                    fontSize: '0.92rem',
-                    fontWeight: '700',
-                    color: '#3b82f6'
-                  }}
-                >
+                <span className="text-xs font-bold text-primary font-mono">
                   {skill.level}%
                 </span>
               </div>
 
-              {/* Progress Bar Container */}
-              <div
-                style={{
-                  width: '100%',
-                  height: '7px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
-                  borderRadius: '9999px',
-                  overflow: 'hidden',
-                  position: 'relative'
-                }}
-              >
+              {/* Progress Bar */}
+              <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
                 <div
-                  style={{
-                    width: `${skill.level}%`,
-                    height: '100%',
-                    borderRadius: '9999px',
-                    background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)',
-                    transition: 'width 1s cubic-bezier(0.4, 0, 0.2, 1)'
-                  }}
+                  className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${skill.level}%` }}
                 />
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

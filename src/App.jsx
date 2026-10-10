@@ -47,6 +47,11 @@ export function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
     document.body.style.backgroundColor = theme.bgPrimary;
     document.body.style.color = theme.textPrimary;
   }, [theme, isDark]);

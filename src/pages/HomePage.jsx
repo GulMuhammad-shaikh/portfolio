@@ -7,385 +7,211 @@ import {
   User,
   Briefcase,
   GraduationCap,
-  Mail,
   ExternalLink,
   Github,
   CheckCircle2,
-  Wallet,
-  TrendingUp,
-  ShieldCheck,
-  Layers
+  Wallet
 } from 'lucide-react';
 import { Hero } from '../components/Hero';
 import { portfolioData } from '../data/portfolioData';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter
+} from '@/components/ui/card';
 
 export const HomePage = ({ theme, isDark }) => {
-  const project = portfolioData.projects[0]; // CampusCoin
-
   const quickCards = [
     {
       title: 'About Me',
       description: 'Background, ADSE studies at Aptech, engineering principles, and core values.',
       path: '/about',
-      icon: <User size={22} color="#2563eb" />,
-      color: '#2563eb'
+      icon: <User className="h-5 w-5 text-blue-500" />,
+      colorClass: 'text-blue-500'
     },
     {
       title: 'Technical Skills',
       description: 'Comprehensive toolkit across React, Node.js, Express, MongoDB, and modern tools.',
       path: '/skills',
-      icon: <Code2 size={22} color="#8b5cf6" />,
-      color: '#8b5cf6'
+      icon: <Code2 className="h-5 w-5 text-violet-500" />,
+      colorClass: 'text-violet-500'
     },
     {
       title: 'Work Experience',
       description: 'Hands-on roles at Bidec Solutions, CoreTech Innovations, and production workflows.',
       path: '/experience',
-      icon: <Briefcase size={22} color="#10b981" />,
-      color: '#10b981'
+      icon: <Briefcase className="h-5 w-5 text-emerald-500" />,
+      colorClass: 'text-emerald-500'
     },
     {
       title: 'Education & Aptech',
       description: 'Advance Diploma in Software Engineering (ADSE) and academic qualifications.',
       path: '/education',
-      icon: <GraduationCap size={22} color="#f59e0b" />,
-      color: '#f59e0b'
+      icon: <GraduationCap className="h-5 w-5 text-amber-500" />,
+      colorClass: 'text-amber-500'
     }
   ];
 
   return (
-    <div>
+    <div className="w-full">
       {/* High-Trust Hero Section */}
       <Hero theme={theme} isDark={isDark} />
 
       {/* Featured Project Showcase: CampusCoin */}
-      <section style={{ padding: '40px 0 70px', position: 'relative', width: '100%' }}>
-        <div className="responsive-container">
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
+      <section className="py-10 md:py-16 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
             <div>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: '#2563eb',
-                  marginBottom: '8px'
-                }}
-              >
-                <Sparkles size={14} />
-                <span>PROOF OF WORK</span>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-2">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Proof of Work</span>
               </div>
-              <h2
-                style={{
-                  fontSize: 'clamp(1.7rem, 3.5vw, 2.3rem)',
-                  fontWeight: 800,
-                  letterSpacing: '-0.02em',
-                  color: theme.textPrimary,
-                  margin: 0
-                }}
-              >
-                Featured Project
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                Featured Project Spotlight
               </h2>
             </div>
 
-            <Link
-              to="/projects"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '0.88rem',
-                fontWeight: 700,
-                color: '#2563eb',
-                textDecoration: 'none'
-              }}
-              className="hover-lift"
-            >
-              <span>View all projects</span>
-              <ArrowRight size={16} />
-            </Link>
+            <Button asChild variant="ghost" className="gap-1.5 text-primary self-start sm:self-auto hover:text-primary">
+              <Link to="/projects">
+                <span>View all projects</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
 
           {/* CampusCoin Spotlight Card */}
-          <div
-            className="interactive-card"
-            style={{
-              background: theme.bgCard,
-              borderRadius: '24px',
-              border: `1px solid ${theme.borderSubtle}`,
-              boxShadow: theme.shadowMedium,
-              overflow: 'hidden'
-            }}
-          >
-            <div
-              style={{
-                padding: 'clamp(24px, 4vw, 36px)',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-                gap: '32px',
-                alignItems: 'center'
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-                  <div
-                    style={{
-                      width: '42px',
-                      height: '42px',
-                      borderRadius: '12px',
-                      background: 'linear-gradient(135deg, #10b981, #059669)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#ffffff',
-                      boxShadow: '0 4px 14px rgba(16, 185, 129, 0.3)'
-                    }}
-                  >
-                    <Wallet size={22} />
+          <Card className="border-border/80 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+            <div className="p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left Column: Project Details (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col items-start">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-11 w-11 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex items-center justify-center shadow-sm">
+                    <Wallet className="h-5 w-5" />
                   </div>
                   <div>
-                    <span
-                      style={{
-                        fontSize: '0.74rem',
-                        fontWeight: 700,
-                        color: '#10b981',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.06em'
-                      }}
-                    >
+                    <Badge variant="success" className="text-[11px] font-semibold py-0.5 px-2">
                       Fintech · Student Expense Tracker
-                    </span>
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary, margin: 0 }}>
+                    </Badge>
+                    <h3 className="text-2xl font-bold tracking-tight text-foreground mt-0.5">
                       CampusCoin
                     </h3>
                   </div>
                 </div>
 
-                <p
-                  style={{
-                    fontSize: '0.96rem',
-                    color: theme.textSecondary,
-                    lineHeight: 1.65,
-                    marginBottom: '20px'
-                  }}
-                >
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
                   A real-time financial tracking and budgeting web app created for college students. Enables daily expenditure logging, category breakdown, smart savings goals, and visual spending analytics.
                 </p>
 
-                {/* Tech Pills */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
+                {/* Tech Badges */}
+                <div className="flex flex-wrap gap-1.5 mb-6">
                   {['React.js', 'JavaScript ES6+', 'Vite', 'Tailwind CSS', 'State Management', 'Analytics'].map((tag, idx) => (
-                    <span
+                    <Badge
                       key={idx}
-                      style={{
-                        padding: '4px 11px',
-                        borderRadius: '8px',
-                        background: isDark ? 'rgba(255, 255, 255, 0.05)' : '#f1f5f9',
-                        color: theme.textPrimary,
-                        fontSize: '0.78rem',
-                        fontWeight: 600,
-                        border: `1px solid ${theme.borderSubtle}`
-                      }}
+                      variant="secondary"
+                      className="text-xs font-medium py-1 px-2.5 bg-secondary/60 hover:bg-secondary border border-border/50"
                     >
                       {tag}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
 
-                {/* Actions */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-                  <a
-                    href="https://campus-coin-six.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover-lift"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      padding: '11px 22px',
-                      borderRadius: '12px',
-                      background: '#10b981',
-                      color: '#ffffff',
-                      textDecoration: 'none',
-                      fontWeight: 700,
-                      fontSize: '0.9rem',
-                      boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)'
-                    }}
-                  >
-                    <span>Live Demo</span>
-                    <ExternalLink size={16} />
-                  </a>
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button asChild size="default" className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm">
+                    <a
+                      href="https://campus-coin-six.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>Live Demo</span>
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </Button>
 
-                  <a
-                    href="https://github.com/GulMuhammad-shaikh"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover-lift"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      padding: '11px 20px',
-                      borderRadius: '12px',
-                      background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#ffffff',
-                      color: theme.textPrimary,
-                      textDecoration: 'none',
-                      fontWeight: 600,
-                      fontSize: '0.9rem',
-                      border: `1px solid ${theme.borderSubtle}`
-                    }}
-                  >
-                    <Github size={16} />
-                    <span>View GitHub Repo</span>
-                  </a>
+                  <Button asChild variant="outline" size="default" className="gap-2">
+                    <a
+                      href="https://github.com/GulMuhammad-shaikh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="h-4 w-4" />
+                      <span>View GitHub Repo</span>
+                    </a>
+                  </Button>
                 </div>
               </div>
 
-              {/* Right: Key Features Box */}
-              <div
-                style={{
-                  background: isDark ? 'rgba(255, 255, 255, 0.02)' : '#f8fafc',
-                  padding: '24px',
-                  borderRadius: '18px',
-                  border: `1px solid ${theme.borderSubtle}`
-                }}
-              >
-                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: theme.textPrimary, marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  Core System Highlights
-                </div>
+              {/* Right Column: Key Features Box (5 cols) */}
+              <div className="lg:col-span-5">
+                <div className="rounded-xl border border-border bg-muted/40 p-5 sm:p-6">
+                  <div className="text-xs font-bold uppercase tracking-wider text-foreground mb-4">
+                    Core System Architecture
+                  </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {[
-                    'Instant transaction logging with dynamic category distribution',
-                    'Interactive budget vs actual expenditure bar graphs & indicators',
-                    'Fully responsive across mobile phones, tablets, and desktop displays',
-                    'Clean modular architecture with component reusability and fast Vite builds'
-                  ].map((highlight, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0, marginTop: '3px' }} />
-                      <span style={{ fontSize: '0.86rem', color: theme.textSecondary, lineHeight: 1.5 }}>
-                        {highlight}
-                      </span>
-                    </div>
-                  ))}
+                  <div className="flex flex-col gap-3">
+                    {[
+                      'Instant transaction logging with dynamic category distribution',
+                      'Interactive budget vs actual expenditure bar indicators',
+                      'Fully responsive across mobile phones, tablets, and desktops',
+                      'Clean modular architecture with component reusability and fast Vite builds'
+                    ].map((highlight, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <span className="text-xs sm:text-sm text-muted-foreground leading-snug">
+                          {highlight}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </section>
 
       {/* Explore Section Cards */}
-      <section style={{ padding: '20px 0 80px', position: 'relative', width: '100%' }}>
-        <div className="responsive-container">
-          <div style={{ textAlign: 'center', marginBottom: '36px' }}>
-            <span
-              style={{
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                color: '#2563eb',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em'
-              }}
-            >
-              EXPLORE MORE
+      <section className="py-10 pb-20 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">
+              Portfolio Navigation
             </span>
-            <h2
-              style={{
-                fontSize: 'clamp(1.7rem, 3.5vw, 2.3rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.02em',
-                color: theme.textPrimary,
-                marginTop: '6px'
-              }}
-            >
-              Dive Into Dedicated Sections
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mt-1">
+              Explore Dedicated Sections
             </h2>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
-              gap: '20px',
-              width: '100%'
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {quickCards.map((card, idx) => (
               <Link
                 key={idx}
                 to={card.path}
-                className="interactive-card"
-                style={{
-                  background: theme.bgCard,
-                  border: `1px solid ${theme.borderSubtle}`,
-                  borderRadius: '20px',
-                  padding: '28px 24px',
-                  boxShadow: theme.shadowSmall,
-                  textDecoration: 'none',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  boxSizing: 'border-box'
-                }}
+                className="group block no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-2xl"
               >
-                <div>
-                  <div
-                    style={{
-                      width: '46px',
-                      height: '46px',
-                      borderRadius: '12px',
-                      background: isDark ? 'rgba(255, 255, 255, 0.04)' : '#f1f5f9',
-                      border: `1px solid ${theme.borderSubtle}`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '16px'
-                    }}
-                  >
-                    {card.icon}
+                <Card className="h-full flex flex-col justify-between p-6 border-border/80 hover:border-primary/50 hover:shadow-md transition-all duration-200">
+                  <div>
+                    <div className="h-10 w-10 rounded-xl bg-muted border border-border flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                      {card.icon}
+                    </div>
+                    <CardTitle className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {card.title}
+                    </CardTitle>
+                    <CardDescription className="text-xs text-muted-foreground leading-relaxed">
+                      {card.description}
+                    </CardDescription>
                   </div>
-                  <h3
-                    style={{
-                      fontSize: '1.2rem',
-                      fontWeight: 700,
-                      color: theme.textPrimary,
-                      marginBottom: '8px'
-                    }}
-                  >
-                    {card.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: '0.9rem',
-                      color: theme.textSecondary,
-                      lineHeight: '1.6',
-                      margin: 0
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                </div>
 
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '0.86rem',
-                    fontWeight: 700,
-                    color: card.color,
-                    marginTop: '20px'
-                  }}
-                >
-                  <span>Explore {card.title}</span>
-                  <ArrowRight size={15} />
-                </div>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-primary pt-5 mt-auto">
+                    <span>Explore section</span>
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Card>
               </Link>
             ))}
           </div>

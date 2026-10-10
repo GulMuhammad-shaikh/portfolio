@@ -4,301 +4,160 @@ import {
   Github,
   ArrowUpRight,
   Wallet,
-  CheckCircle2,
   TrendingUp,
   PieChart,
   ShieldCheck
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter
+} from '@/components/ui/card';
 
 export const Projects = ({ theme, isDark }) => {
   const project = portfolioData.projects[0]; // CampusCoin
 
   return (
-    <section id="projects" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
-      <div className="responsive-container">
+    <section id="projects" className="py-12 md:py-20 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              fontSize: '0.82rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: '#3b82f6',
-              background: isDark ? 'rgba(59, 130, 246, 0.12)' : 'rgba(59, 130, 246, 0.08)',
-              border: `1px solid ${theme.borderSubtle}`,
-              marginBottom: '16px'
-            }}
-          >
-            <Sparkles size={15} />
-            <span>FEATURED APPLICATION</span>
-          </div>
-
-          <h2
-            style={{
-              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
-              fontWeight: '800',
-              color: theme.textPrimary,
-              letterSpacing: '-0.02em',
-              margin: '0 0 16px 0'
-            }}
-          >
-            Featured <span style={{ color: '#3b82f6' }}>Project</span>
+        <div className="text-center mb-12">
+          <Badge variant="outline" className="mb-3 py-1 px-3 text-xs font-semibold gap-1.5 border-primary/30 text-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Featured application</span>
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            Featured <span className="text-primary">Project</span>
           </h2>
-
-          <p
-            style={{
-              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
-              color: theme.textSecondary,
-              maxWidth: '620px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}
-          >
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
             Live production application built with modern React architecture, real-time budgeting logic, and responsive design.
           </p>
         </div>
 
         {/* High-Impact Spotlight Project Card */}
-        <div
-          className="interactive-card"
-          style={{
-            maxWidth: '960px',
-            margin: '0 auto',
-            background: theme.bgCard,
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            border: `1px solid ${theme.borderSubtle}`,
-            borderRadius: '24px',
-            overflow: 'hidden',
-            boxShadow: theme.shadowLarge,
-            boxSizing: 'border-box',
-            width: '100%'
-          }}
-        >
+        <Card className="max-w-4xl mx-auto border-border/80 shadow-md overflow-hidden">
           {/* Top Banner */}
-          <div
-            className="project-banner-responsive card-padding"
-            style={{
-              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)',
-              borderBottom: `1px solid ${theme.borderSubtle}`
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
-              <div
-                style={{
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: '18px',
-                  background: 'linear-gradient(135deg, #10b981, #059669)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#ffffff',
-                  boxShadow: '0 8px 20px rgba(16, 185, 129, 0.35)'
-                }}
-              >
-                <Wallet size={32} />
+          <div className="p-6 sm:p-8 bg-gradient-to-r from-emerald-500/15 via-primary/10 to-transparent border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="h-14 w-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shrink-0">
+                <Wallet className="h-7 w-7" />
               </div>
 
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                  <span
-                    style={{
-                      fontSize: '0.75rem',
-                      fontWeight: '700',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.06em',
-                      padding: '3px 10px',
-                      borderRadius: '9999px',
-                      background: 'rgba(16, 185, 129, 0.15)',
-                      color: '#10b981',
-                      border: '1px solid rgba(16, 185, 129, 0.3)'
-                    }}
-                  >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Badge variant="success" className="text-[11px] font-semibold py-0.5 px-2">
                     Deployed on Vercel
-                  </span>
-                  <span
-                    style={{
-                      fontSize: '0.72rem',
-                      fontWeight: '700',
-                      padding: '3px 10px',
-                      borderRadius: '9999px',
-                      background: '#f59e0b',
-                      color: '#000000'
-                    }}
-                  >
+                  </Badge>
+                  <Badge variant="secondary" className="text-[11px] font-semibold py-0.5 px-2 bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                     ★ Live App
-                  </span>
+                  </Badge>
                 </div>
-                <h3
-                  style={{
-                    fontSize: '1.65rem',
-                    fontWeight: '800',
-                    color: theme.textPrimary,
-                    margin: 0
-                  }}
-                >
+                <CardTitle className="text-2xl font-extrabold text-foreground">
                   {project.title}
-                </h3>
+                </CardTitle>
               </div>
             </div>
 
             {/* Live CTAs */}
-            <div className="project-actions-responsive">
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '12px 24px',
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  color: '#ffffff',
-                  fontWeight: '700',
-                  fontSize: '0.94rem',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)'
-                }}
-                className="hover-lift"
-              >
-                Live Demo <ArrowUpRight size={18} />
-              </a>
+            <div className="flex items-center gap-3 shrink-0">
+              <Button asChild className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm">
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Live Demo</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </Button>
 
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '12px 20px',
-                  borderRadius: '12px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-                  color: theme.textPrimary,
-                  border: `1px solid ${theme.borderSubtle}`,
-                  fontWeight: '600',
-                  fontSize: '0.94rem',
-                  textDecoration: 'none'
-                }}
-                className="hover-lift"
-              >
-                <Github size={18} /> GitHub
-              </a>
+              <Button asChild variant="outline" className="gap-2">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-4 w-4" />
+                  <span>GitHub</span>
+                </a>
+              </Button>
             </div>
           </div>
 
           {/* Card Body */}
-          <div className="card-padding">
-            <p
-              style={{
-                fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
-                lineHeight: '1.8',
-                color: theme.textSecondary,
-                marginBottom: '28px'
-              }}
-            >
+          <CardContent className="p-6 sm:p-8">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-8">
               {project.description}
             </p>
 
             {/* Feature Highlights Grid */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
-                gap: '16px',
-                marginBottom: '32px'
-              }}
-            >
-              <div
-                style={{
-                  padding: '16px',
-                  borderRadius: '14px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}
-              >
-                <TrendingUp size={22} color="#10b981" />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div className="p-4 rounded-xl border border-border/70 bg-muted/30 flex items-center gap-3">
+                <div className="h-10 w-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                  <TrendingUp className="h-5 w-5" />
+                </div>
                 <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: '700', color: theme.textPrimary }}>Daily Expense Logging</div>
-                  <div style={{ fontSize: '0.76rem', color: theme.textMuted }}>Categorize & track spending habits</div>
+                  <div className="text-xs sm:text-sm font-bold text-foreground">
+                    Daily Expense Logging
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Categorize & track spending
+                  </div>
                 </div>
               </div>
 
-              <div
-                style={{
-                  padding: '16px',
-                  borderRadius: '14px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}
-              >
-                <PieChart size={22} color="#3b82f6" />
+              <div className="p-4 rounded-xl border border-border/70 bg-muted/30 flex items-center gap-3">
+                <div className="h-10 w-10 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+                  <PieChart className="h-5 w-5" />
+                </div>
                 <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: '700', color: theme.textPrimary }}>Budget & Analytics</div>
-                  <div style={{ fontSize: '0.76rem', color: theme.textMuted }}>Visual balance & expense summaries</div>
+                  <div className="text-xs sm:text-sm font-bold text-foreground">
+                    Budget & Analytics
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Visual balance summaries
+                  </div>
                 </div>
               </div>
 
-              <div
-                style={{
-                  padding: '16px',
-                  borderRadius: '14px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}
-              >
-                <ShieldCheck size={22} color="#8b5cf6" />
+              <div className="p-4 rounded-xl border border-border/70 bg-muted/30 flex items-center gap-3">
+                <div className="h-10 w-10 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
                 <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: '700', color: theme.textPrimary }}>Campus-Ready UI</div>
-                  <div style={{ fontSize: '0.76rem', color: theme.textMuted }}>Fast, responsive, and mobile-friendly</div>
+                  <div className="text-xs sm:text-sm font-bold text-foreground">
+                    Campus-Ready UI
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Fast & mobile-friendly
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Tech Stack Chips */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: '700', color: theme.textMuted, marginRight: '4px' }}>
-                TECHNOLOGIES:
+            <div className="flex flex-wrap items-center gap-2 pt-2">
+              <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider mr-2">
+                Technologies:
               </span>
               {project.tags.map((tag, idx) => (
-                <span
+                <Badge
                   key={idx}
-                  style={{
-                    fontSize: '0.8rem',
-                    fontWeight: '600',
-                    padding: '6px 14px',
-                    borderRadius: '8px',
-                    background: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(37, 99, 235, 0.08)',
-                    border: '1px solid rgba(59, 130, 246, 0.25)',
-                    color: '#3b82f6'
-                  }}
+                  variant="outline"
+                  className="py-1 px-3 text-xs font-medium border-primary/25 bg-primary/5 text-primary"
                 >
                   {tag}
-                </span>
+                </Badge>
               ))}
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

@@ -1,219 +1,82 @@
 import React from 'react';
-import { Sparkles, GraduationCap, School, Calendar, Languages, CheckCircle2 } from 'lucide-react';
+import { Sparkles, GraduationCap, School, Calendar, CheckCircle2 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 export const Education = ({ theme, isDark }) => {
   return (
-    <section id="education" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
-      <div className="responsive-container">
+    <section id="education" className="py-12 md:py-20 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              fontSize: '0.82rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: '#3b82f6',
-              background: isDark ? 'rgba(59, 130, 246, 0.12)' : 'rgba(59, 130, 246, 0.08)',
-              border: `1px solid ${theme.borderSubtle}`,
-              marginBottom: '16px'
-            }}
-          >
-            <Sparkles size={15} />
-            <span>MY QUALIFICATION</span>
-          </div>
-
-          <h2
-            style={{
-              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
-              fontWeight: '800',
-              color: theme.textPrimary,
-              letterSpacing: '-0.02em',
-              margin: '0 0 16px 0'
-            }}
-          >
-            Education & <span style={{ color: '#3b82f6' }}>Training</span>
+        <div className="text-center mb-12">
+          <Badge variant="outline" className="mb-3 py-1 px-3 text-xs font-semibold gap-1.5 border-primary/30 text-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>My qualifications</span>
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            Education & <span className="text-primary">Training</span>
           </h2>
-
-          <p
-            style={{
-              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
-              color: theme.textSecondary,
-              maxWidth: '620px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}
-          >
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
             Solid academic background in software engineering fundamentals, computational logic, and multilingual communication.
           </p>
         </div>
 
         {/* Languages Strip */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '12px',
-            marginBottom: '40px',
-            width: '100%'
-          }}
-        >
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {portfolioData.languages.map((lang, idx) => (
-            <div
+            <Badge
               key={idx}
-              className="interactive-card"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '8px 16px',
-                borderRadius: '9999px',
-                background: theme.bgCard,
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: `1px solid ${theme.borderSubtle}`,
-                boxShadow: theme.shadowSmall
-              }}
+              variant="outline"
+              className="py-1.5 px-3.5 text-xs font-medium border-border/80 bg-card/60 gap-2 shadow-sm"
             >
-              <span style={{ fontSize: '1.1rem' }}>{lang.flag}</span>
-              <div>
-                <span style={{ fontSize: '0.86rem', fontWeight: '700', color: theme.textPrimary, marginRight: '4px' }}>
-                  {lang.name}
-                </span>
-                <span style={{ fontSize: '0.74rem', color: theme.textMuted }}>
-                  ({lang.level})
-                </span>
-              </div>
-            </div>
+              <span className="text-base">{lang.flag}</span>
+              <span className="font-bold text-foreground">{lang.name}</span>
+              <span className="text-muted-foreground">({lang.level})</span>
+            </Badge>
           ))}
         </div>
 
-        {/* Education Cards */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-            gap: '24px',
-            maxWidth: '1000px',
-            margin: '0 auto',
-            width: '100%'
-          }}
-        >
+        {/* Education Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {portfolioData.education.map((edu, idx) => (
-            <div
+            <Card
               key={idx}
-              className="interactive-card card-padding"
-              style={{
-                background: theme.bgCard,
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: `1px solid ${theme.borderSubtle}`,
-                borderRadius: '20px',
-                boxShadow: theme.shadowMedium,
-                position: 'relative',
-                boxSizing: 'border-box'
-              }}
+              className="p-6 sm:p-7 border-border/80 shadow-sm hover:border-primary/50 transition-colors flex flex-col justify-between"
             >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: '20px'
-                }}
-              >
-                <div
-                  style={{
-                    width: '54px',
-                    height: '54px',
-                    borderRadius: '16px',
-                    background: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)',
-                    border: '1px solid rgba(59, 130, 246, 0.25)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#3b82f6'
-                  }}
-                >
-                  {idx === 0 ? <GraduationCap size={28} /> : <School size={28} />}
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary border border-primary/20 flex items-center justify-center">
+                    {idx === 0 ? <GraduationCap className="h-6 w-6" /> : <School className="h-6 w-6" />}
+                  </div>
+
+                  <Badge
+                    variant={edu.status === 'In Progress' ? 'info' : 'success'}
+                    className="gap-1 py-0.5 px-2.5 text-xs"
+                  >
+                    <CheckCircle2 className="h-3 w-3" />
+                    <span>{edu.status}</span>
+                  </Badge>
                 </div>
 
-                <span
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '0.78rem',
-                    fontWeight: '700',
-                    color: edu.status === 'In Progress' ? '#3b82f6' : '#10b981',
-                    background:
-                      edu.status === 'In Progress'
-                        ? (isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)')
-                        : (isDark ? 'rgba(16, 185, 129, 0.15)' : 'rgba(16, 185, 129, 0.1)'),
-                    padding: '4px 12px',
-                    borderRadius: '9999px'
-                  }}
-                >
-                  <CheckCircle2 size={13} /> {edu.status}
-                </span>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground mb-2">
+                  <Calendar className="h-3.5 w-3.5" />
+                  <span>{edu.period}</span>
+                </div>
+
+                <h3 className="text-lg font-bold text-foreground mb-1">
+                  {edu.degree}
+                </h3>
+
+                <h4 className="text-sm font-semibold text-primary mb-3">
+                  {edu.institution}
+                </h4>
+
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  {edu.details}
+                </p>
               </div>
-
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  fontSize: '0.82rem',
-                  fontWeight: '600',
-                  color: theme.textMuted,
-                  marginBottom: '10px'
-                }}
-              >
-                <Calendar size={14} /> {edu.period}
-              </div>
-
-              <h3
-                style={{
-                  fontSize: '1.25rem',
-                  fontWeight: '700',
-                  color: theme.textPrimary,
-                  marginBottom: '8px',
-                  lineHeight: '1.3'
-                }}
-              >
-                {edu.degree}
-              </h3>
-
-              <h4
-                style={{
-                  fontSize: '0.98rem',
-                  fontWeight: '600',
-                  color: '#3b82f6',
-                  marginBottom: '14px'
-                }}
-              >
-                {edu.institution}
-              </h4>
-
-              <p
-                style={{
-                  fontSize: '0.92rem',
-                  lineHeight: '1.65',
-                  color: theme.textSecondary,
-                  margin: 0
-                }}
-              >
-                {edu.details}
-              </p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

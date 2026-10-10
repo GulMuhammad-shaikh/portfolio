@@ -10,291 +10,139 @@ import {
   Briefcase,
   Code2,
   Sparkles,
-  CheckCircle2
+  CheckCircle2,
+  MessageSquare
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent
+} from '@/components/ui/card';
 
 export const About = ({ theme, isDark }) => {
   const infoItems = [
-    { icon: <UserCheck size={18} color="#3b82f6" />, label: 'Name', value: portfolioData.personal.name },
-    { icon: <Briefcase size={18} color="#8b5cf6" />, label: 'Role', value: portfolioData.personal.title },
-    { icon: <Mail size={18} color="#ea4335" />, label: 'Email', value: portfolioData.personal.email, href: `mailto:${portfolioData.personal.email}` },
-    { icon: <Phone size={18} color="#10b981" />, label: 'Phone', value: portfolioData.personal.phone, href: `tel:${portfolioData.personal.phone.replace(/[^0-9+]/g, '')}` },
-    { icon: <MapPin size={18} color="#f59e0b" />, label: 'Location', value: portfolioData.personal.location },
-    { icon: <GraduationCap size={18} color="#06b6d4" />, label: 'Education', value: 'ADSE @ Aptech Learning' },
-    { icon: <Languages size={18} color="#ec4899" />, label: 'Languages', value: 'English · Urdu · Sindhi' },
-    { icon: <Sparkles size={18} color="#3b82f6" />, label: 'Specialty', value: 'Full-Stack MERN & REST APIs' }
+    { icon: <UserCheck className="h-4 w-4 text-blue-500" />, label: 'Name', value: portfolioData.personal.name },
+    { icon: <Briefcase className="h-4 w-4 text-violet-500" />, label: 'Role', value: portfolioData.personal.title },
+    { icon: <Mail className="h-4 w-4 text-rose-500" />, label: 'Email', value: portfolioData.personal.email, href: `mailto:${portfolioData.personal.email}` },
+    { icon: <Phone className="h-4 w-4 text-emerald-500" />, label: 'Phone', value: portfolioData.personal.phone, href: `tel:${portfolioData.personal.phone.replace(/[^0-9+]/g, '')}` },
+    { icon: <MapPin className="h-4 w-4 text-amber-500" />, label: 'Location', value: portfolioData.personal.location },
+    { icon: <GraduationCap className="h-4 w-4 text-cyan-500" />, label: 'Education', value: 'ADSE @ Aptech Learning' },
+    { icon: <Languages className="h-4 w-4 text-pink-500" />, label: 'Languages', value: 'English · Urdu · Sindhi' },
+    { icon: <Sparkles className="h-4 w-4 text-blue-500" />, label: 'Specialty', value: 'Full-Stack MERN & REST APIs' }
   ];
 
   return (
-    <section id="about" className="section-responsive" style={{ position: 'relative', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
-      <div className="responsive-container">
+    <section id="about" className="py-12 md:py-20 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              fontSize: '0.82rem',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: '#3b82f6',
-              background: isDark ? 'rgba(59, 130, 246, 0.12)' : 'rgba(59, 130, 246, 0.08)',
-              border: `1px solid ${theme.borderSubtle}`,
-              marginBottom: '16px'
-            }}
-          >
-            <Sparkles size={15} />
-            <span>GET TO KNOW ME</span>
-          </div>
-          <h2
-            style={{
-              fontSize: 'clamp(1.9rem, 4vw, 2.75rem)',
-              fontWeight: '800',
-              color: theme.textPrimary,
-              letterSpacing: '-0.02em',
-              margin: '0 0 16px 0'
-            }}
-          >
-            About <span style={{ color: '#3b82f6' }}>Me</span>
+        <div className="text-center mb-12">
+          <Badge variant="outline" className="mb-3 py-1 px-3 text-xs font-semibold gap-1.5 border-primary/30 text-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Get to know me</span>
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            About <span className="text-primary">Me</span>
           </h2>
-          <p
-            style={{
-              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
-              color: theme.textSecondary,
-              maxWidth: '620px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}
-          >
-            Passionate MERN Stack Developer transforming complex concepts into clean, accessible, and intelligent digital experiences.
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Passionate Full-Stack Developer transforming complex requirements into clean, scalable, and intuitive digital experiences.
           </p>
         </div>
 
         {/* Stats Row */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-            gap: '16px',
-            marginBottom: '40px',
-            width: '100%'
-          }}
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
           {portfolioData.stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="interactive-card"
-              style={{
-                background: theme.bgCard,
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: `1px solid ${theme.borderSubtle}`,
-                borderRadius: '16px',
-                padding: '20px 14px',
-                textAlign: 'center',
-                boxShadow: theme.shadowSmall
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)',
-                  fontWeight: '800',
-                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  marginBottom: '4px'
-                }}
-              >
+            <Card key={idx} className="p-5 text-center border-border/80 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
                 {stat.value}
               </div>
-              <div style={{ fontSize: '0.82rem', color: theme.textSecondary, fontWeight: '500' }}>
+              <div className="text-xs sm:text-sm text-muted-foreground font-medium mt-1">
                 {stat.label}
               </div>
-            </div>
+            </Card>
           ))}
         </div>
 
         {/* Main Content Layout */}
-        <div className="responsive-2col">
-          {/* Bio Story Card */}
-          <div
-            className="interactive-card card-padding"
-            style={{
-              background: theme.bgCard,
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: `1px solid ${theme.borderSubtle}`,
-              borderRadius: '20px',
-              boxShadow: theme.shadowMedium,
-              boxSizing: 'border-box'
-            }}
-          >
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '6px 14px',
-                borderRadius: '8px',
-                background: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)',
-                color: '#3b82f6',
-                fontWeight: '600',
-                fontSize: '0.85rem',
-                marginBottom: '20px'
-              }}
-            >
-              <Code2 size={16} /> Full-Stack Problem Solver
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Bio Story Card (7 cols) */}
+          <Card className="lg:col-span-7 p-6 sm:p-8 border-border/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <Badge variant="secondary" className="mb-5 py-1 px-3 text-xs font-semibold gap-1.5">
+                <Code2 className="h-3.5 w-3.5 text-primary" />
+                <span>Full-Stack Problem Solver</span>
+              </Badge>
+
+              <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-4 leading-snug">
+                Crafting Next-Generation Web Architectures
+              </CardTitle>
+
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+                {portfolioData.personal.aboutBio1}
+              </p>
+
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
+                {portfolioData.personal.aboutBio2}
+              </p>
+
+              <div className="flex flex-col gap-2.5 mb-8">
+                {[
+                  'Full-Stack JavaScript & MERN architecture expert',
+                  'RESTful API development with robust authentication & security',
+                  'Performance-first, responsive, and mobile-friendly UI interfaces',
+                  'Strong relational & NoSQL database fundamentals (MongoDB, MySQL)'
+                ].map((bullet, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
+                    <span className="text-xs sm:text-sm text-foreground font-medium">
+                      {bullet}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <h3
-              style={{
-                fontSize: '1.45rem',
-                fontWeight: '700',
-                color: theme.textPrimary,
-                marginBottom: '18px',
-                lineHeight: '1.3'
-              }}
-            >
-              Crafting Next-Generation Web Architectures
-            </h3>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild size="default" className="gap-2 shadow-sm">
+                <a
+                  href={portfolioData.personal.resumeUrl}
+                  download="Gul Muhammad Web Developer (1).pdf"
+                >
+                  <Download className="h-4 w-4" />
+                  <span>Download CV</span>
+                </a>
+              </Button>
 
-            <p
-              style={{
-                fontSize: '0.98rem',
-                lineHeight: '1.75',
-                color: theme.textSecondary,
-                marginBottom: '16px'
-              }}
-            >
-              {portfolioData.personal.aboutBio1}
-            </p>
-
-            <p
-              style={{
-                fontSize: '0.98rem',
-                lineHeight: '1.75',
-                color: theme.textSecondary,
-                marginBottom: '28px'
-              }}
-            >
-              {portfolioData.personal.aboutBio2}
-            </p>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '32px' }}>
-              {[
-                'Full-Stack JavaScript & MERN architecture expert',
-                'AI-enabled workflows & modern API integrations',
-                'Performance-first, responsive, and mobile-friendly UI',
-                'Strong relational & NoSQL database fundamentals (MongoDB, MySQL)'
-              ].map((bullet, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <CheckCircle2 size={18} color="#10b981" />
-                  <span style={{ fontSize: '0.92rem', color: theme.textPrimary, fontWeight: '500' }}>
-                    {bullet}
-                  </span>
-                </div>
-              ))}
+              <Button asChild variant="outline" size="default" className="gap-2">
+                <Link to="/contact">
+                  <MessageSquare className="h-4 w-4" />
+                  <span>Let's Talk</span>
+                </Link>
+              </Button>
             </div>
+          </Card>
 
-            <div className="about-buttons-wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
-              <a
-                href={portfolioData.personal.resumeUrl}
-                download="Gul Muhammad Web Developer (1).pdf"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '13px 26px',
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
-                  color: '#ffffff',
-                  fontWeight: '600',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 15px rgba(37, 99, 235, 0.35)'
-                }}
-                className="hover-lift"
-              >
-                <Download size={18} /> Download CV
-              </a>
+          {/* Quick Info Grid Card (5 cols) */}
+          <Card className="lg:col-span-5 p-6 sm:p-8 border-border/80 shadow-sm">
+            <CardTitle className="text-lg sm:text-xl font-bold text-foreground mb-6">
+              Personal Coordinates
+            </CardTitle>
 
-              <Link
-                to="/contact"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '13px 24px',
-                  borderRadius: '12px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                  color: theme.textPrimary,
-                  border: `1px solid ${theme.borderSubtle}`,
-                  fontWeight: '600',
-                  fontSize: '0.94rem',
-                  textDecoration: 'none'
-                }}
-                className="hover-lift"
-              >
-                Let's Talk
-              </Link>
-            </div>
-          </div>
-
-          {/* Quick Info Grid Card */}
-          <div
-            className="interactive-card card-padding"
-            style={{
-              background: theme.bgCard,
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: `1px solid ${theme.borderSubtle}`,
-              borderRadius: '20px',
-              boxShadow: theme.shadowMedium,
-              boxSizing: 'border-box'
-            }}
-          >
-            <h3
-              style={{
-                fontSize: 'clamp(1.2rem, 2.5vw, 1.35rem)',
-                fontWeight: '700',
-                color: theme.textPrimary,
-                marginBottom: '24px'
-              }}
-            >
-              Personal Details & Coordinates
-            </h3>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div className="flex flex-col gap-3">
               {infoItems.map((item, idx) => (
                 <div
                   key={idx}
-                  className="about-info-item"
-                  style={{
-                    background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-                    border: `1px solid ${theme.borderSubtle}`
-                  }}
+                  className="flex items-center justify-between p-3 rounded-xl border border-border/60 bg-muted/30 hover:bg-muted/50 transition-colors gap-3"
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div
-                      style={{
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '8px',
-                        background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}
-                    >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="h-8 w-8 rounded-lg bg-background border border-border flex items-center justify-center shrink-0">
                       {item.icon}
                     </div>
-                    <span style={{ fontSize: '0.86rem', fontWeight: '600', color: theme.textMuted }}>
+                    <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                       {item.label}
                     </span>
                   </div>
@@ -302,34 +150,19 @@ export const About = ({ theme, isDark }) => {
                   {item.href ? (
                     <a
                       href={item.href}
-                      style={{
-                        fontSize: '0.9rem',
-                        fontWeight: '600',
-                        color: '#3b82f6',
-                        textDecoration: 'none',
-                        wordBreak: 'break-all',
-                        overflowWrap: 'anywhere'
-                      }}
+                      className="text-xs sm:text-sm font-semibold text-primary hover:underline truncate max-w-[180px] text-right"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <span
-                      style={{
-                        fontSize: '0.9rem',
-                        fontWeight: '600',
-                        color: theme.textPrimary,
-                        textAlign: 'right',
-                        wordBreak: 'break-word'
-                      }}
-                    >
+                    <span className="text-xs sm:text-sm font-semibold text-foreground truncate max-w-[180px] text-right">
                       {item.value}
                     </span>
                   )}
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

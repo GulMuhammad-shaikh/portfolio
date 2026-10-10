@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 export const Footer = ({ theme, isDark }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      setShowScrollTop(window.scrollY > 350);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -31,218 +34,110 @@ export const Footer = ({ theme, isDark }) => {
   ];
 
   return (
-    <footer
-      style={{
-        borderTop: `1px solid ${theme.borderSubtle}`,
-        background: isDark ? '#040507' : '#f1f5f9',
-        padding: '60px 0 30px',
-        position: 'relative'
-      }}
-    >
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <footer className="border-t border-border bg-card/30 backdrop-blur-sm py-12 md:py-16 relative w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Footer Top */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '30px',
-            marginBottom: '40px'
-          }}
-        >
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-10">
           {/* Brand Link to Home */}
-          <div>
+          <div className="max-w-md">
             <Link
               to="/"
-              style={{
-                fontSize: '1.4rem',
-                fontWeight: '700',
-                letterSpacing: '-0.02em',
-                color: theme.textPrimary,
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px'
-              }}
+              className="inline-flex items-center gap-2.5 text-foreground no-underline group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
             >
-              <span>{portfolioData.personal.name}</span>
-              <span
-                style={{
-                  fontSize: '0.75rem',
-                  fontWeight: '600',
-                  color: '#2563eb',
-                  background: isDark ? 'rgba(37, 99, 235, 0.12)' : 'rgba(37, 99, 235, 0.08)',
-                  padding: '2px 8px',
-                  borderRadius: '999px',
-                  border: `1px solid ${isDark ? 'rgba(37, 99, 235, 0.25)' : 'rgba(37, 99, 235, 0.2)'}`
-                }}
-              >
-                Full-Stack
+              <span className="text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                {portfolioData.personal.name}
               </span>
+              <Badge variant="outline" className="text-[11px] font-semibold py-0.5 px-2">
+                Full-Stack
+              </Badge>
             </Link>
-            <p
-              style={{
-                fontSize: '0.9rem',
-                color: theme.textSecondary,
-                marginTop: '10px',
-                maxWidth: '420px',
-                lineHeight: '1.6'
-              }}
-            >
+            <p className="text-sm text-muted-foreground mt-2.5 leading-relaxed">
               Building reliable web applications and modern architectures with React, Node.js, Express, and MongoDB. Open to engineering opportunities.
             </p>
           </div>
 
           {/* Quick Nav Links */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+          <nav className="flex flex-wrap gap-x-5 gap-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                style={{
-                  fontSize: '0.88rem',
-                  color: theme.textSecondary,
-                  textDecoration: 'none',
-                  fontWeight: '500',
-                  padding: '4px 0',
-                  transition: 'color 0.2s ease'
-                }}
-                className="hover-lift"
+                className="text-sm text-muted-foreground hover:text-foreground font-medium transition-colors"
               >
                 {link.label}
               </Link>
             ))}
-          </div>
+          </nav>
 
           {/* Social Icons */}
-          <div style={{ display: 'flex', gap: '12px' }}>
-            <a
-              href={portfolioData.personal.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                border: `1px solid ${theme.borderSubtle}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: theme.textPrimary,
-                textDecoration: 'none'
-              }}
-              className="hover-lift"
-              title="GitHub"
-            >
-              <Github size={18} />
-            </a>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="outline" size="icon" className="h-9 w-9">
+              <a
+                href={portfolioData.personal.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub"
+                aria-label="GitHub"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+            </Button>
 
-            <a
-              href={portfolioData.personal.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                border: `1px solid ${theme.borderSubtle}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#0a66c2',
-                textDecoration: 'none'
-              }}
-              className="hover-lift"
-              title="LinkedIn"
-            >
-              <Linkedin size={18} />
-            </a>
+            <Button asChild variant="outline" size="icon" className="h-9 w-9">
+              <a
+                href={portfolioData.personal.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="LinkedIn"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </Button>
 
-            <a
-              href={`mailto:${portfolioData.personal.email}`}
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                border: `1px solid ${theme.borderSubtle}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#ea4335',
-                textDecoration: 'none'
-              }}
-              className="hover-lift"
-              title="Email"
-            >
-              <Mail size={18} />
-            </a>
+            <Button asChild variant="outline" size="icon" className="h-9 w-9">
+              <a
+                href={`mailto:${portfolioData.personal.email}`}
+                title="Email"
+                aria-label="Email"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </div>
 
         {/* Divider */}
-        <div
-          style={{
-            height: '1px',
-            background: theme.borderSubtle,
-            marginBottom: '28px'
-          }}
-        />
+        <Separator className="mb-6" />
 
         {/* Footer Bottom */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '16px',
-            fontSize: '0.85rem',
-            color: theme.textMuted
-          }}
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <div>
-            © {new Date().getFullYear()} <strong>{portfolioData.personal.name}</strong>. All Rights Reserved.
+            © {new Date().getFullYear()} <strong className="text-foreground font-semibold">{portfolioData.personal.name}</strong>. All Rights Reserved.
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="flex items-center gap-2 font-medium">
             <span>React & Vite</span>
             <span>•</span>
-            <span>Deployed on Vercel</span>
+            <span>Tailwind CSS</span>
+            <span>•</span>
+            <span>shadcn/ui</span>
+            <span>•</span>
+            <span>Vercel</span>
           </div>
         </div>
       </div>
 
-      {/* Floating Scroll-to-top button (Bottom-Left) */}
+      {/* Floating Scroll-to-top button */}
       {showScrollTop && (
-        <button
+        <Button
           onClick={scrollToTop}
+          size="icon"
           aria-label="Scroll to top"
-          style={{
-            position: 'fixed',
-            bottom: '24px',
-            left: '24px',
-            width: '46px',
-            height: '46px',
-            borderRadius: '14px',
-            background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
-            color: '#ffffff',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            boxShadow: '0 8px 24px rgba(37, 99, 235, 0.45)',
-            zIndex: 9990,
-            transition: 'all 0.3s ease'
-          }}
-          className="hover-lift scroll-top-btn"
+          className="fixed bottom-6 left-6 h-11 w-11 rounded-full shadow-lg z-50 transition-all duration-300 hover:scale-105"
         >
-          <ArrowUp size={20} />
-        </button>
+          <ArrowUp className="h-5 w-5" />
+        </Button>
       )}
     </footer>
   );
