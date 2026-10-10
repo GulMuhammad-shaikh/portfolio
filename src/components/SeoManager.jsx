@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom';
 
 const routeSeo = {
   '/': {
-    title: 'Gul Muhammad | MERN Stack Developer (AI Powered) | Official Portfolio',
-    description: 'Official portfolio of Gul Muhammad, Top MERN Stack Developer & AI Solutions Engineer in Karachi, Pakistan. Explore full-stack projects including CampusCoin.'
+    title: 'Gul Muhammad | Full-Stack & MERN Developer | Official Portfolio',
+    description: 'Official portfolio of Gul Muhammad, Full-Stack MERN Developer in Karachi, Pakistan. Explore production web applications including CampusCoin.'
   },
   '/about': {
-    title: 'About Gul Muhammad | MERN Stack Developer (AI Powered)',
-    description: 'Learn more about Gul Muhammad, an experienced MERN Stack Developer with an AI-Powered edge based in Karachi, Pakistan.'
+    title: 'About Gul Muhammad | Full-Stack Software Developer',
+    description: 'Learn more about Gul Muhammad, Full-Stack MERN Developer based in Karachi, Pakistan.'
   },
   '/projects': {
     title: 'Projects by Gul Muhammad | CampusCoin & Full-Stack Web Apps',

@@ -6,7 +6,6 @@ import {
   Code2,
   Briefcase,
   FolderGit2,
-  Layers,
   GraduationCap,
   Mail,
   Sun,
@@ -14,7 +13,9 @@ import {
   Menu,
   X,
   Github,
-  Download
+  Linkedin,
+  Download,
+  ArrowUpRight
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -24,35 +25,34 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
   const location = useLocation();
 
   const navLinks = [
-    { label: 'Home', path: '/', icon: <Home size={15} /> },
-    { label: 'About', path: '/about', icon: <User size={15} /> },
-    { label: 'Skills', path: '/skills', icon: <Code2 size={15} /> },
-    { label: 'Experience', path: '/experience', icon: <Briefcase size={15} /> },
-    { label: 'Projects', path: '/projects', icon: <FolderGit2 size={15} /> },
-    { label: 'Services', path: '/services', icon: <Layers size={15} /> },
-    { label: 'Education', path: '/education', icon: <GraduationCap size={15} /> },
-    { label: 'Contact', path: '/contact', icon: <Mail size={15} /> }
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Skills', path: '/skills' },
+    { label: 'Experience', path: '/experience' },
+    { label: 'Education', path: '/education' },
+    { label: 'Contact', path: '/contact' }
   ];
 
-  // Auto-close mobile menu on route change
+  // Auto-close mobile drawer on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Track scroll position for subtle elevation
+  // Track scroll position for header elevation
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer when screen expands to desktop
+  // Close mobile drawer on desktop resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1024) {
+      if (window.innerWidth > 992) {
         setMobileMenuOpen(false);
       }
     };
@@ -61,189 +61,187 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Header background & elevation (matching Campus Coin)
-  const headerStyle = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1000,
-    height: '68px',
-    display: 'flex',
-    alignItems: 'center',
-    transition: 'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
-    background: isScrolled
-      ? (isDark ? 'rgba(5, 6, 8, 0.95)' : 'rgba(255, 255, 255, 0.95)')
-      : (isDark ? 'rgba(5, 6, 8, 0.88)' : 'rgba(255, 255, 255, 0.88)'),
-    backdropFilter: 'blur(20px)',
-    WebkitBackdropFilter: 'blur(20px)',
-    borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
-    boxShadow: isScrolled
-      ? (isDark ? '0 10px 30px rgba(0, 0, 0, 0.25)' : '0 8px 25px rgba(15, 23, 42, 0.05)')
-      : 'none'
-  };
-
-  const navContainerStyle = {
-    maxWidth: '1220px',
-    margin: '0 auto',
-    padding: '0 clamp(16px, 3.5vw, 32px)',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '16px',
-    boxSizing: 'border-box'
-  };
-
-  // Brand Logo (Campus Coin style emblem + title + tagline)
-  const brandStyle = {
-    textDecoration: 'none',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '10px',
-    userSelect: 'none',
-    cursor: 'pointer'
-  };
-
-  // Desktop link styling (Campus Coin style)
-  const getDesktopLinkStyle = (path) => {
-    const isActive = location.pathname === path;
-    return {
-      textDecoration: 'none',
-      fontSize: '13px',
-      fontWeight: isActive ? 700 : 500,
-      color: isActive ? '#2563eb' : (isDark ? '#94a3b8' : '#475569'),
-      background: isActive
-        ? (isDark ? 'rgba(59, 130, 246, 0.14)' : 'rgba(37, 99, 235, 0.1)')
-        : 'transparent',
-      border: isActive
-        ? (isDark ? '1px solid rgba(59, 130, 246, 0.3)' : '1px solid rgba(37, 99, 235, 0.25)')
-        : '1px solid transparent',
-      padding: '7px 11px',
-      borderRadius: '10px',
-      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '6px',
-      letterSpacing: '0.2px',
-      whiteSpace: 'nowrap'
-    };
-  };
-
   return (
-    <header style={headerStyle}>
-      <div style={navContainerStyle}>
-        {/* Brand Logo - Campus Coin layout */}
-        <Link to="/" style={brandStyle} onClick={() => setMobileMenuOpen(false)}>
+    <header
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        height: '68px',
+        display: 'flex',
+        alignItems: 'center',
+        background: isScrolled
+          ? (isDark ? 'rgba(10, 12, 16, 0.92)' : 'rgba(255, 255, 255, 0.94)')
+          : (isDark ? 'rgba(10, 12, 16, 0.82)' : 'rgba(255, 255, 255, 0.85)'),
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: `1px solid ${theme.borderSubtle}`,
+        boxShadow: isScrolled
+          ? (isDark ? '0 10px 30px rgba(0, 0, 0, 0.4)' : '0 4px 20px rgba(15, 23, 42, 0.05)')
+          : 'none',
+        transition: 'all 0.25s ease'
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '1220px',
+          margin: '0 auto',
+          padding: '0 clamp(16px, 3.5vw, 32px)',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '16px',
+          boxSizing: 'border-box'
+        }}
+      >
+        {/* Brand / Logo */}
+        <Link
+          to="/"
+          style={{
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            userSelect: 'none',
+            cursor: 'pointer'
+          }}
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          {/* Developer Thumbnail Avatar */}
           <div
             style={{
-              width: '38px',
-              height: '38px',
-              borderRadius: '11px',
-              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              background: 'linear-gradient(135deg, #2563eb, #3b82f6)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#ffffff',
-              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
+              border: `2px solid ${isDark ? 'rgba(255, 255, 255, 0.15)' : '#e2e8f0'}`,
               flexShrink: 0
             }}
           >
-            <Code2 size={22} />
+            <img
+              src="/profile.png"
+              alt="Gul Muhammad"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', lineHeight: 1.15 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontSize: '1.2rem', fontWeight: 800, letterSpacing: '-0.02em', color: theme.textPrimary }}>
-                {portfolioData.personal.firstName}<span style={{ color: '#2563eb' }}>.</span>
-              </span>
-              <span
-                style={{
-                  fontSize: '9px',
-                  fontWeight: 800,
-                  padding: '2px 7px',
-                  borderRadius: '6px',
-                  background: 'rgba(37, 99, 235, 0.12)',
-                  color: '#2563eb',
-                  border: '1px solid rgba(37, 99, 235, 0.25)',
-                  letterSpacing: '0.8px'
-                }}
-              >
-                AI MERN
-              </span>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
             <span
               style={{
-                fontSize: '8px',
-                fontWeight: 700,
-                letterSpacing: '1.4px',
-                color: theme.textMuted,
-                textTransform: 'uppercase',
-                marginTop: '2px',
-                whiteSpace: 'nowrap'
+                fontSize: '1.05rem',
+                fontWeight: '800',
+                letterSpacing: '-0.02em',
+                color: theme.textPrimary
               }}
             >
-              MERN STACK • AI POWERED
+              Gul Muhammad
+            </span>
+            <span
+              style={{
+                fontSize: '0.72rem',
+                fontWeight: '600',
+                color: theme.textMuted,
+                letterSpacing: '0.02em'
+              }}
+            >
+              Full-Stack Developer
             </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              style={getDesktopLinkStyle(link.path)}
-              className="hover-lift"
-            >
-              <span style={{ opacity: 0.85, display: 'flex', alignItems: 'center' }}>
-                {link.icon}
-              </span>
-              <span>{link.label}</span>
-            </Link>
-          ))}
+        {/* Desktop Nav Links */}
+        <nav
+          className="hide-mobile"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
+            padding: '4px',
+            borderRadius: '9999px',
+            border: `1px solid ${theme.borderSubtle}`
+          }}
+        >
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.path;
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                style={{
+                  textDecoration: 'none',
+                  fontSize: '0.84rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive
+                    ? (isDark ? '#ffffff' : '#0f172a')
+                    : theme.textSecondary,
+                  background: isActive
+                    ? (isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.06)')
+                    : 'transparent',
+                  padding: '6px 14px',
+                  borderRadius: '9999px',
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap'
+                }}
+                className="hover-lift"
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Action Controls */}
+        {/* Right Action Controls */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {/* Desktop Theme Switcher (Campus Coin Style) */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="hide-mobile hover-lift"
+          {/* Availability Pill (Desktop) */}
+          <div
+            className="hide-mobile"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              background: isDark ? 'rgba(255, 255, 255, 0.07)' : 'rgba(0, 0, 0, 0.04)',
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.14)' : '1px solid rgba(0, 0, 0, 0.08)',
-              borderRadius: '10px',
-              padding: '6px 12px',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
+              padding: '5px 12px',
+              borderRadius: '9999px',
+              background: isDark ? 'rgba(16, 185, 129, 0.1)' : 'rgba(16, 185, 129, 0.08)',
+              border: '1px solid rgba(16, 185, 129, 0.25)',
+              fontSize: '0.74rem',
+              fontWeight: 600,
+              color: '#10b981'
             }}
-            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            aria-label="Toggle dark or light mode"
           >
-            <span style={{ display: 'grid', placeItems: 'center', width: 20, height: 20 }}>
-              {isDark ? <Moon size={15} color="#38bdf8" /> : <Sun size={15} color="#f59e0b" />}
-            </span>
-            <span style={{ fontSize: '12px', fontWeight: 700, color: theme.textPrimary }}>
-              {isDark ? 'Dark' : 'Light'}
-            </span>
-          </button>
+            <span
+              style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: '#10b981',
+                boxShadow: '0 0 6px #10b981'
+              }}
+            />
+            <span>Open to work</span>
+          </div>
 
-          {/* Desktop GitHub Link */}
+          {/* GitHub Icon Link */}
           <a
             href={portfolioData.personal.github}
             target="_blank"
             rel="noopener noreferrer"
+            title="GitHub Profile"
+            className="hide-mobile hover-lift"
             style={{
               width: '36px',
               height: '36px',
-              borderRadius: '10px',
+              borderRadius: '9999px',
               background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
               border: `1px solid ${theme.borderSubtle}`,
               color: theme.textPrimary,
@@ -253,70 +251,94 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
               textDecoration: 'none',
               transition: 'all 0.2s ease'
             }}
-            title="GitHub Profile"
-            className="hide-mobile hover-lift"
           >
             <Github size={17} />
           </a>
 
-          {/* Desktop Resume Download Pill */}
+          {/* LinkedIn Icon Link */}
           <a
-            href={portfolioData.personal.resumeUrl}
-            download="Gul Muhammad Web Developer (1).pdf"
-            style={{
-              background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
-              color: '#ffffff',
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.22)' : 'none',
-              textDecoration: 'none',
-              padding: '7px 16px',
-              borderRadius: '9999px',
-              fontWeight: 700,
-              fontSize: '12px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              boxShadow: isDark ? '0 2px 10px rgba(0, 0, 0, 0.4)' : '0 4px 14px rgba(37, 99, 235, 0.35)',
-              transition: 'all 0.2s ease'
-            }}
+            href={portfolioData.personal.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn Profile"
             className="hide-mobile hover-lift"
-          >
-            <Download size={14} /> Resume
-          </a>
-
-          {/* Mobile Theme Toggle Button (Campus Coin Style) */}
-          <button
-            type="button"
-            className="hide-desktop hover-lift"
-            onClick={toggleTheme}
             style={{
-              width: '38px',
-              height: '38px',
-              borderRadius: '10px',
-              background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.1)',
+              width: '36px',
+              height: '36px',
+              borderRadius: '9999px',
+              background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
+              border: `1px solid ${theme.borderSubtle}`,
               color: theme.textPrimary,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer'
+              textDecoration: 'none',
+              transition: 'all 0.2s ease'
             }}
-            aria-label="Toggle theme"
-            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
-            {isDark ? <Moon size={18} color="#38bdf8" /> : <Sun size={18} color="#f59e0b" />}
+            <Linkedin size={17} />
+          </a>
+
+          {/* Theme Toggle Button */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="hover-lift"
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '9999px',
+              background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
+              border: `1px solid ${theme.borderSubtle}`,
+              color: theme.textPrimary,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun size={17} color="#f59e0b" /> : <Moon size={17} color="#3b82f6" />}
           </button>
 
-          {/* Mobile Menu Hamburger / X Button (Campus Coin Style) */}
+          {/* Resume Download Pill Button (Desktop) */}
+          <a
+            href={portfolioData.personal.resumeUrl}
+            download="Gul Muhammad Web Developer (1).pdf"
+            className="hide-mobile hover-lift"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '7px 16px',
+              borderRadius: '9999px',
+              background: isDark ? '#ffffff' : '#0f172a',
+              color: isDark ? '#0a0c10' : '#ffffff',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              textDecoration: 'none',
+              boxShadow: isDark
+                ? '0 2px 10px rgba(255, 255, 255, 0.15)'
+                : '0 2px 10px rgba(15, 23, 42, 0.15)',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <Download size={14} /> Resume
+          </a>
+
+          {/* Mobile Menu Hamburger */}
           <button
             type="button"
             className="hide-desktop"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
-              width: '40px',
-              height: '40px',
+              width: '38px',
+              height: '38px',
               borderRadius: '10px',
               background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.1)',
+              border: `1px solid ${theme.borderSubtle}`,
               color: theme.textPrimary,
               display: 'flex',
               alignItems: 'center',
@@ -331,7 +353,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer Backdrop (Campus Coin Style) */}
+      {/* Mobile Drawer Backdrop */}
       {mobileMenuOpen && (
         <div
           onClick={() => setMobileMenuOpen(false)}
@@ -341,7 +363,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
+            background: 'rgba(0, 0, 0, 0.6)',
             backdropFilter: 'blur(4px)',
             WebkitBackdropFilter: 'blur(4px)',
             zIndex: 998
@@ -349,7 +371,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
         />
       )}
 
-      {/* Mobile Attached Dropdown Drawer (Campus Coin Style) */}
+      {/* Mobile Menu Dropdown Drawer */}
       {mobileMenuOpen && (
         <div
           className="animate-slide-down"
@@ -360,127 +382,71 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
             right: 0,
             maxHeight: 'calc(100vh - 68px)',
             overflowY: 'auto',
-            background: isDark ? 'rgba(5, 6, 8, 0.98)' : 'rgba(255, 255, 255, 0.98)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid rgba(0, 0, 0, 0.1)',
-            boxShadow: isDark ? '0 20px 40px rgba(0, 0, 0, 0.6)' : '0 20px 40px rgba(15, 23, 42, 0.12)',
-            padding: '16px 20px 24px',
+            background: isDark ? '#0c0f17' : '#ffffff',
+            borderBottom: `1px solid ${theme.borderSubtle}`,
+            boxShadow: theme.shadowLarge,
+            padding: '20px 24px 28px',
             zIndex: 999,
             boxSizing: 'border-box'
           }}
         >
-          {/* Developer Header Card (Like CampusCoin mobileUserHeader) */}
+          {/* Developer Card Header */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: 12,
               padding: '12px 14px',
-              background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
+              background: isDark ? 'rgba(255, 255, 255, 0.04)' : '#f8fafc',
               borderRadius: 14,
-              marginBottom: 10,
+              marginBottom: 16,
               border: `1px solid ${theme.borderSubtle}`
             }}
           >
             <div
               style={{
-                width: 40,
-                height: 40,
+                width: 42,
+                height: 42,
                 borderRadius: '50%',
-                background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
-                color: '#ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 800,
-                fontSize: 14,
-                boxShadow: '0 4px 12px rgba(37, 99, 235, 0.35)',
+                overflow: 'hidden',
+                background: 'linear-gradient(135deg, #2563eb, #3b82f6)',
                 flexShrink: 0
               }}
             >
-              GM
+              <img
+                src="/profile.png"
+                alt="Gul Muhammad"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: theme.textPrimary, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {portfolioData.personal.name}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '0.96rem', fontWeight: 800, color: theme.textPrimary }}>
+                Gul Muhammad
               </div>
               <div style={{ fontSize: '0.78rem', color: '#2563eb', fontWeight: 600 }}>
-                {portfolioData.personal.role}
+                MERN Stack & AI Developer
               </div>
+            </div>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 5,
+                padding: '4px 8px',
+                borderRadius: '9999px',
+                background: 'rgba(16, 185, 129, 0.1)',
+                color: '#10b981',
+                fontSize: '0.7rem',
+                fontWeight: 700
+              }}
+            >
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10b981' }} />
+              Open to work
             </div>
           </div>
 
-          {/* Interactive Theme Switcher Row (Like CampusCoin mobileThemeToggleRow) */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-              padding: '10px 14px',
-              borderRadius: 12,
-              background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-              border: `1px solid ${theme.borderSubtle}`,
-              cursor: 'pointer',
-              marginBottom: 12,
-              transition: 'all 0.2s ease',
-              fontFamily: 'inherit'
-            }}
-            aria-label="Toggle dark or light mode"
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div
-                style={{
-                  width: 30,
-                  height: 30,
-                  borderRadius: 8,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: isDark ? 'rgba(56, 189, 248, 0.15)' : 'rgba(245, 158, 11, 0.15)',
-                  color: isDark ? '#38bdf8' : '#f59e0b'
-                }}
-              >
-                {isDark ? <Moon size={16} /> : <Sun size={16} />}
-              </div>
-              <span style={{ fontSize: 13, fontWeight: 700, color: theme.textPrimary }}>
-                {isDark ? 'Dark Mode' : 'Light Mode'}
-              </span>
-            </div>
-
-            {/* Switch pill & thumb */}
-            <div
-              style={{
-                width: 38,
-                height: 22,
-                borderRadius: 12,
-                padding: 2,
-                background: isDark ? '#2563eb' : '#cbd5e1',
-                display: 'flex',
-                alignItems: 'center',
-                boxSizing: 'border-box',
-                transition: 'background 0.3s ease'
-              }}
-            >
-              <div
-                style={{
-                  width: 18,
-                  height: 18,
-                  borderRadius: '50%',
-                  background: '#ffffff',
-                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-                  transform: isDark ? 'translateX(16px)' : 'translateX(0px)',
-                  transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-              />
-            </div>
-          </button>
-
-          {/* Navigation Links (CampusCoin style) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {/* Navigation Links List */}
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 18 }}>
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -489,81 +455,91 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
-                    textDecoration: 'none',
-                    fontSize: '0.94rem',
-                    fontWeight: isActive ? 700 : 500,
-                    color: isActive ? '#2563eb' : theme.textPrimary,
-                    padding: '11px 14px',
-                    borderRadius: 10,
-                    background: isActive
-                      ? (isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)')
-                      : 'transparent',
-                    border: isActive
-                      ? '1px solid rgba(37, 99, 235, 0.3)'
-                      : '1px solid transparent',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    transition: 'all 0.2s ease'
+                    padding: '10px 14px',
+                    borderRadius: 10,
+                    textDecoration: 'none',
+                    fontSize: '0.92rem',
+                    fontWeight: isActive ? 700 : 500,
+                    color: isActive ? '#2563eb' : theme.textPrimary,
+                    background: isActive
+                      ? (isDark ? 'rgba(37, 99, 235, 0.12)' : 'rgba(37, 99, 235, 0.08)')
+                      : 'transparent',
+                    border: isActive
+                      ? '1px solid rgba(37, 99, 235, 0.25)'
+                      : '1px solid transparent'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ color: isActive ? '#2563eb' : theme.textMuted, display: 'flex', alignItems: 'center' }}>
-                      {link.icon}
-                    </span>
-                    <span>{link.label}</span>
-                  </div>
-                  <span style={{ color: isActive ? '#2563eb' : theme.textMuted, fontSize: '0.85rem' }}>
-                    →
-                  </span>
+                  <span>{link.label}</span>
+                  <ArrowUpRight size={16} opacity={isActive ? 1 : 0.4} />
                 </Link>
               );
             })}
-          </div>
+          </nav>
 
-          {/* Bottom Action Buttons */}
-          <div style={{ display: 'flex', gap: 10, marginTop: 14, paddingTop: 12, borderTop: `1px solid ${theme.borderSubtle}` }}>
+          {/* Action Row */}
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <a
               href={portfolioData.personal.resumeUrl}
               download="Gul Muhammad Web Developer (1).pdf"
               style={{
                 flex: 1,
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 8,
-                padding: '11px 14px',
-                borderRadius: 10,
-                background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+                padding: '12px 18px',
+                borderRadius: 12,
+                background: '#2563eb',
                 color: '#ffffff',
-                fontWeight: 700,
-                fontSize: 13,
                 textDecoration: 'none',
-                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.3)'
+                fontWeight: 700,
+                fontSize: '0.88rem'
               }}
             >
-              <Download size={16} /> Resume PDF
+              <Download size={16} /> Download Resume
             </a>
+
             <a
               href={portfolioData.personal.github}
               target="_blank"
               rel="noopener noreferrer"
               style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#f1f5f9',
+                border: `1px solid ${theme.borderSubtle}`,
+                color: theme.textPrimary,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 8,
-                padding: '11px 14px',
-                borderRadius: 10,
-                background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
-                border: `1px solid ${theme.borderSubtle}`,
-                color: theme.textPrimary,
-                fontWeight: 600,
-                fontSize: 13,
                 textDecoration: 'none'
               }}
             >
-              <Github size={16} /> GitHub
+              <Github size={20} />
+            </a>
+
+            <a
+              href={portfolioData.personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#f1f5f9',
+                border: `1px solid ${theme.borderSubtle}`,
+                color: theme.textPrimary,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textDecoration: 'none'
+              }}
+            >
+              <Linkedin size={20} />
             </a>
           </div>
         </div>

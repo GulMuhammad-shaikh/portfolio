@@ -24,7 +24,7 @@ export const About = ({ theme, isDark }) => {
     { icon: <MapPin size={18} color="#f59e0b" />, label: 'Location', value: portfolioData.personal.location },
     { icon: <GraduationCap size={18} color="#06b6d4" />, label: 'Education', value: 'ADSE @ Aptech Learning' },
     { icon: <Languages size={18} color="#ec4899" />, label: 'Languages', value: 'English · Urdu · Sindhi' },
-    { icon: <Sparkles size={18} color="#3b82f6" />, label: 'Specialty', value: 'MERN Stack & AI Workflows' }
+    { icon: <Sparkles size={18} color="#3b82f6" />, label: 'Specialty', value: 'Full-Stack MERN & REST APIs' }
   ];
 
   return (
@@ -149,7 +149,7 @@ export const About = ({ theme, isDark }) => {
                 marginBottom: '20px'
               }}
             >
-              <Code2 size={16} /> MERN & AI Problem Solver
+              <Code2 size={16} /> Full-Stack Problem Solver
             </div>
 
             <h3

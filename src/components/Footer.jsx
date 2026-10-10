@@ -56,45 +56,41 @@ export const Footer = ({ theme, isDark }) => {
             <Link
               to="/"
               style={{
-                fontSize: '1.6rem',
-                fontWeight: '800',
+                fontSize: '1.4rem',
+                fontWeight: '700',
+                letterSpacing: '-0.02em',
                 color: theme.textPrimary,
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px'
+                gap: '10px'
               }}
             >
-              <span>{portfolioData.personal.firstName}</span>
-              <span style={{ color: '#3b82f6', fontSize: '2rem', lineHeight: '1' }}>.</span>
+              <span>{portfolioData.personal.name}</span>
               <span
                 style={{
-                  fontSize: '0.72rem',
-                  fontWeight: '700',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
+                  fontSize: '0.75rem',
+                  fontWeight: '600',
+                  color: '#2563eb',
+                  background: isDark ? 'rgba(37, 99, 235, 0.12)' : 'rgba(37, 99, 235, 0.08)',
                   padding: '2px 8px',
-                  borderRadius: '6px',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  marginLeft: '4px'
+                  borderRadius: '999px',
+                  border: `1px solid ${isDark ? 'rgba(37, 99, 235, 0.25)' : 'rgba(37, 99, 235, 0.2)'}`
                 }}
               >
-                AI MERN
+                Full-Stack
               </span>
             </Link>
             <p
               style={{
                 fontSize: '0.9rem',
                 color: theme.textSecondary,
-                marginTop: '8px',
-                maxWidth: '380px',
-                lineHeight: '1.5'
+                marginTop: '10px',
+                maxWidth: '420px',
+                lineHeight: '1.6'
               }}
             >
-              Crafting intelligent, dynamic full-stack experiences with React, Node.js, Express, and modern AI pipelines.
+              Building reliable web applications and modern architectures with React, Node.js, Express, and MongoDB. Open to engineering opportunities.
             </p>
           </div>
 
@@ -212,10 +208,10 @@ export const Footer = ({ theme, isDark }) => {
             © {new Date().getFullYear()} <strong>{portfolioData.personal.name}</strong>. All Rights Reserved.
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span>Built with React & Vite</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>React & Vite</span>
             <span>•</span>
-            <span style={{ color: '#3b82f6', fontWeight: '600' }}>AI Powered Edition</span>
+            <span>Deployed on Vercel</span>
           </div>
         </div>
       </div>

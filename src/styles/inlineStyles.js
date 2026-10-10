@@ -1,26 +1,26 @@
 export const getTheme = (isDark) => {
   return {
     isDark,
-    bgPrimary: isDark ? '#050608' : '#f8fafc',
-    bgSecondary: isDark ? '#0a0d13' : '#ffffff',
-    bgTertiary: isDark ? '#11151e' : '#f1f5f9',
-    bgCard: isDark ? 'rgba(12, 15, 22, 0.75)' : 'rgba(255, 255, 255, 0.85)',
-    bgCardHover: isDark ? 'rgba(20, 25, 36, 0.9)' : 'rgba(241, 245, 249, 0.95)',
-    borderSubtle: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
-    borderHover: isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(37, 99, 235, 0.4)',
-    textPrimary: isDark ? '#ffffff' : '#0f172a',
+    bgPrimary: isDark ? '#0a0c10' : '#f8fafc',
+    bgSecondary: isDark ? '#10141d' : '#ffffff',
+    bgTertiary: isDark ? '#181d28' : '#f1f5f9',
+    bgCard: isDark ? 'rgba(16, 20, 29, 0.8)' : '#ffffff',
+    bgCardHover: isDark ? 'rgba(24, 30, 44, 0.95)' : '#f8fafc',
+    borderSubtle: isDark ? 'rgba(255, 255, 255, 0.08)' : '#e2e8f0',
+    borderHover: isDark ? 'rgba(59, 130, 246, 0.45)' : 'rgba(37, 99, 235, 0.4)',
+    textPrimary: isDark ? '#f8fafc' : '#0f172a',
     textSecondary: isDark ? '#94a3b8' : '#475569',
     textMuted: isDark ? '#64748b' : '#64748b',
-    accent: '#3b82f6',
-    accentGradient: 'linear-gradient(135deg, #ffffff 0%, #94a3b8 100%)',
+    accent: '#2563eb',
+    accentGradient: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%)',
     accentGradientSubtle: isDark
-      ? 'linear-gradient(135deg, rgba(255,255,255,0.08), rgba(148,163,184,0.08))'
-      : 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1))',
-    glowColor: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(59, 130, 246, 0.15)',
-    navGlass: isDark ? 'rgba(5, 6, 8, 0.85)' : 'rgba(255, 255, 255, 0.85)',
-    shadowSmall: isDark ? '0 4px 10px rgba(0, 0, 0, 0.6)' : '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
-    shadowMedium: isDark ? '0 10px 25px rgba(0, 0, 0, 0.7)' : '0 10px 15px -3px rgba(0, 0, 0, 0.08)',
-    shadowLarge: isDark ? '0 20px 40px rgba(0, 0, 0, 0.85)' : '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
+      ? 'linear-gradient(135deg, rgba(37,99,235,0.12), rgba(59,130,246,0.08))'
+      : 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(59,130,246,0.05))',
+    glowColor: isDark ? 'rgba(37, 99, 235, 0.2)' : 'rgba(37, 99, 235, 0.12)',
+    navGlass: isDark ? 'rgba(10, 12, 16, 0.85)' : 'rgba(255, 255, 255, 0.88)',
+    shadowSmall: isDark ? '0 2px 8px rgba(0, 0, 0, 0.4)' : '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04)',
+    shadowMedium: isDark ? '0 8px 24px rgba(0, 0, 0, 0.5)' : '0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.04)',
+    shadowLarge: isDark ? '0 16px 36px rgba(0, 0, 0, 0.65)' : '0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04)'
   };
 };
 

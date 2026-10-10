@@ -3,15 +3,15 @@ export const portfolioData = {
     name: "Gul Muhammad",
     firstName: "Gul",
     lastName: "Muhammad",
-    title: "MERN Stack Developer (AI Powered)",
+    title: "Full-Stack Developer (MERN Stack)",
     typingRoles: [
-      "MERN Stack Developer",
-      "AI Powered Engineer",
-      "Full-Stack Web Architect",
-      "React & Node.js Specialist",
-      "Next.js & API Developer"
+      "Full-Stack Developer",
+      "MERN Stack Engineer",
+      "React & Node.js Developer",
+      "Next.js & REST API Specialist",
+      "Software Engineer"
     ],
-    tagline: "Building scalable, high-performance, and intelligent web applications using modern MERN stack architecture and AI integrations.",
+    tagline: "Building scalable, high-performance web applications and clean APIs using React, Node.js, Express, MongoDB, and Next.js.",
     email: "gulnisarshaikh@gmail.com",
     phone: "0304-2681062",
     location: "Karachi, Pakistan",
@@ -21,8 +21,8 @@ export const portfolioData = {
     linkedin: "https://www.linkedin.com/in/gul-muhammad-53a602356/",
     repoUrl: "https://github.com/GulMuhammad-shaikh/portfolio",
     vercelUrl: "https://portfolio-delta-two-x1zj6gtl3b.vercel.app/",
-    aboutBio1: "I am a dedicated MERN Stack Developer with an AI-Powered edge, pursuing my Advance Diploma in Software Engineering (ADSE) from Aptech Learning Center. I engineer dynamic, responsive, and robust full-stack web applications blending clean frontend architecture with powerful backend microservices.",
-    aboutBio2: "With hands-on experience in React, Node.js, Express, MongoDB, and Next.js alongside strong foundations in PHP and MySQL, I build systems that are not just functional, but performant, secure, and user-delighting. I continuously explore modern AI engineering, integrating intelligent workflows and modern APIs into web solutions."
+    aboutBio1: "I am a dedicated Full-Stack Developer specializing in the MERN stack, currently pursuing my Advance Diploma in Software Engineering (ADSE) from Aptech Learning Center. I engineer dynamic, responsive, and robust full-stack web applications blending clean frontend architecture with reliable backend microservices.",
+    aboutBio2: "With hands-on experience in React, Node.js, Express, MongoDB, and Next.js alongside strong foundations in PHP and MySQL, I build systems that are performant, secure, and user-delighting. I focus on clean code, modular architecture, and seamless user experiences."
   },
 
   stats: [

@@ -1,504 +1,558 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   ArrowRight,
   Download,
   Mail,
-  Phone,
+  MapPin,
+  Sparkles,
   Github,
   Linkedin,
-  Sparkles,
+  CheckCircle2,
   Code2,
-  Atom,
   Server,
-  Bot,
-  Database
+  Database,
+  Layers,
+  Terminal,
+  Cpu
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
 
 export const Hero = ({ theme, isDark }) => {
-  const [typewriterText, setTypewriterText] = useState('');
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const roles = portfolioData.personal.typingRoles;
-
-  // Typewriter text animation
-  useEffect(() => {
-    const currentRole = roles[roleIndex];
-    let timeout;
-
-    if (!isDeleting) {
-      if (charIndex < currentRole.length) {
-        timeout = setTimeout(() => {
-          setTypewriterText(currentRole.substring(0, charIndex + 1));
-          setCharIndex((prev) => prev + 1);
-        }, 80);
-      } else {
-        timeout = setTimeout(() => setIsDeleting(true), 2200);
-      }
-    } else {
-      if (charIndex > 0) {
-        timeout = setTimeout(() => {
-          setTypewriterText(currentRole.substring(0, charIndex - 1));
-          setCharIndex((prev) => prev - 1);
-        }, 45);
-      } else {
-        setIsDeleting(false);
-        setRoleIndex((prev) => (prev + 1) % roles.length);
-      }
-    }
-
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, roleIndex, roles]);
+  const techStack = [
+    { name: 'React.js', color: '#38bdf8' },
+    { name: 'Node.js', color: '#22c55e' },
+    { name: 'Express.js', color: '#94a3b8' },
+    { name: 'MongoDB', color: '#10b981' },
+    { name: 'JavaScript (ES6+)', color: '#f59e0b' },
+    { name: 'Next.js', color: isDark ? '#ffffff' : '#0f172a' },
+    { name: 'Tailwind CSS', color: '#06b6d4' },
+    { name: 'PHP & MySQL', color: '#8b5cf6' },
+    { name: 'REST APIs', color: '#ec4899' },
+    { name: 'Git & GitHub', color: '#f97316' }
+  ];
 
   return (
     <section
       id="home"
       style={{
-        minHeight: 'calc(100vh - 68px)',
-        display: 'flex',
-        alignItems: 'center',
         position: 'relative',
-        padding: '60px 0 70px',
+        padding: '120px 0 60px',
         overflow: 'hidden',
         boxSizing: 'border-box',
-        width: '100%',
-        maxWidth: '100vw',
-        background: isDark
-          ? '#050608'
-          : 'radial-gradient(circle at 50% 45%, #ffffff 0%, #f1f5f9 90%)'
+        width: '100%'
       }}
     >
-      {/* Studio Neutral Radial Spotlight Aura (matching video reel) */}
+      {/* Subtle Ambient Background Glow */}
       <div
         style={{
           position: 'absolute',
-          top: '50%',
+          top: '15%',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 'min(750px, 95vw)',
-          height: 'min(750px, 95vw)',
+          transform: 'translateX(-50%)',
+          width: 'min(900px, 90vw)',
+          height: '450px',
           borderRadius: '50%',
           background: isDark
-            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(148, 163, 184, 0.06) 35%, rgba(15, 23, 42, 0.03) 60%, transparent 75%)'
-            : 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 45%, transparent 75%)',
-          filter: 'blur(75px)',
+            ? 'radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(59, 130, 246, 0.05) 45%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(59, 130, 246, 0.03) 50%, transparent 70%)',
+          filter: 'blur(80px)',
           pointerEvents: 'none',
           zIndex: 0
         }}
-        className="animate-spotlight"
       />
 
-      <div className="responsive-container" style={{ position: 'relative', zIndex: 2 }}>
-        {/* Studio 3-Column Balanced Grid (matching video reel) */}
-        <div className="hero-studio-grid">
-          {/* ================= LEFT COLUMN ================= */}
-          <div className="hero-studio-col-left" style={{ textAlign: 'left' }}>
-            {/* Small uppercase kicker */}
+      <div className="responsive-container" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Main 2-Column Balanced Hero Grid */}
+        <div className="hero-grid-modern">
+          {/* Left Column: Authoritative Developer Introduction */}
+          <div style={{ textAlign: 'left' }}>
+            {/* Live Availability Status Badge */}
             <div
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '0.82rem',
-                fontWeight: '800',
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: isDark ? '#94a3b8' : '#3b82f6',
-                marginBottom: '16px'
+                padding: '6px 14px',
+                borderRadius: '9999px',
+                background: isDark ? 'rgba(16, 185, 129, 0.1)' : 'rgba(16, 185, 129, 0.08)',
+                border: '1px solid rgba(16, 185, 129, 0.25)',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                color: '#10b981',
+                marginBottom: '20px'
               }}
             >
-              <span>HI, I'M</span>
               <span
                 style={{
-                  background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(37, 99, 235, 0.1)',
-                  padding: '3px 10px',
-                  borderRadius: '6px',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.25)' : '1px solid rgba(59, 130, 246, 0.3)',
-                  color: isDark ? '#ffffff' : '#3b82f6'
+                  width: '7px',
+                  height: '7px',
+                  borderRadius: '50%',
+                  background: '#10b981',
+                  boxShadow: '0 0 8px #10b981'
                 }}
-              >
-                GUL MUHAMMAD
-              </span>
+              />
+              <span>Available for full-time roles & projects</span>
             </div>
 
-            {/* Massive Bold Headline (CREATIVE DEVELOPER matching video) */}
+            {/* Clear, High-Impact Headline */}
             <h1
               style={{
-                fontSize: 'clamp(2.7rem, 5.2vw, 4.4rem)',
-                fontWeight: '900',
-                lineHeight: '1.04',
-                letterSpacing: '-0.035em',
+                fontSize: 'clamp(2.4rem, 4.8vw, 3.8rem)',
+                fontWeight: 800,
+                lineHeight: 1.15,
+                letterSpacing: '-0.03em',
                 color: theme.textPrimary,
-                margin: '0 0 18px 0',
-                textTransform: 'uppercase'
+                margin: '0 0 20px 0'
               }}
             >
-              CREATIVE
-              <br />
+              Engineering scalable{' '}
               <span
                 style={{
-                  background: isDark
-                    ? 'linear-gradient(180deg, #ffffff 40%, #64748b 100%)'
-                    : 'linear-gradient(135deg, #0f172a 40%, #3b82f6 100%)',
+                  background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   display: 'inline-block'
                 }}
               >
-                DEVELOPER
-              </span>
+                full-stack
+              </span>{' '}
+              web applications.
             </h1>
 
-            {/* Dynamic Typewriter Role */}
-            <div
-              style={{
-                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-                fontWeight: '600',
-                color: theme.textSecondary,
-                minHeight: '2.4rem',
-                display: 'flex',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '6px',
-                marginBottom: '8px'
-              }}
-            >
-              <span>Focusing on</span>
-              <span style={{ color: isDark ? '#38bdf8' : '#3b82f6', fontWeight: '700' }}>{typewriterText}</span>
-              <span className="cursor-blink" />
-            </div>
-
+            {/* Authentic, Trustworthy Bio */}
             <p
               style={{
-                fontSize: '0.92rem',
-                color: theme.textMuted,
-                maxWidth: '420px',
-                lineHeight: '1.6',
-                margin: '0 0 24px 0'
-              }}
-            >
-              Building intelligent, full-stack web applications with React, Node.js, Express, and AI-enabled workflows.
-            </p>
-
-            {/* Minimalist Scroll Indicator (matching laptop photo: ↓ SCROLL TO SCRUB TIMELINE) */}
-            <div
-              className="hero-scroll-indicator animate-bounce-subtle"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.78rem',
-                fontWeight: '800',
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: theme.textMuted,
-                marginTop: '16px'
-              }}
-            >
-              <span style={{ fontSize: '1rem', color: '#3b82f6' }}>↓</span>
-              <span>SCROLL TO SCRUB TIMELINE</span>
-            </div>
-          </div>
-
-          {/* ================= CENTER COLUMN (ROTATING PORTRAIT) ================= */}
-          <div
-            className="hero-studio-col-center"
-            style={{
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
-              maxWidth: '420px',
-              margin: '0 auto'
-            }}
-          >
-            {/* Center Studio Backlight Aura */}
-            <div
-              style={{
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                top: '0',
-                left: '0',
-                borderRadius: '50%',
-                background: isDark
-                  ? 'radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.16) 0%, rgba(148, 163, 184, 0.08) 35%, transparent 75%)'
-                  : 'radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.16) 0%, rgba(139, 92, 246, 0.1) 45%, transparent 75%)',
-                filter: 'blur(50px)',
-                pointerEvents: 'none',
-                zIndex: 0
-              }}
-            />
-
-            {/* Stable Portrait Image (Straight, Zero Rotation) */}
-            <div
-              style={{
-                position: 'relative',
-                zIndex: 2,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 'min(360px, 78vw)',
-                height: 'min(480px, 85vw)'
-              }}
-            >
-              <img
-                src="/WhatsApp_Image_2025-05-31_at_7.49.27_PM-removebg-preview.png"
-                onError={(e) => { e.currentTarget.src = '/profile.png'; }}
-                alt="Gul Muhammad - MERN Stack Developer"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain',
-                  objectPosition: 'bottom center',
-                  filter: isDark
-                    ? 'drop-shadow(0 15px 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 35px rgba(255, 255, 255, 0.08))'
-                    : 'drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15))',
-                  maskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
-                  pointerEvents: 'auto'
-                }}
-              />
-            </div>
-          </div>
-
-          {/* ================= RIGHT COLUMN ================= */}
-          <div className="hero-studio-col-right" style={{ textAlign: 'left' }}>
-            {/* Subtitle / Kicker matching video (TURNING IDEAS INTO REALITY) */}
-            <div
-              style={{
-                fontSize: '0.8rem',
-                fontWeight: '800',
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: isDark ? '#94a3b8' : '#3b82f6',
-                marginBottom: '14px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}
-            >
-              <span
-                style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  background: '#10b981',
-                  display: 'inline-block',
-                  boxShadow: '0 0 10px #10b981'
-                }}
-              />
-              <span>TURNING IDEAS INTO REALITY</span>
-            </div>
-
-            {/* Architecture description paragraph matching video */}
-            <p
-              style={{
-                fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
-                lineHeight: '1.75',
+                fontSize: 'clamp(1rem, 1.8vw, 1.12rem)',
+                lineHeight: 1.7,
                 color: theme.textSecondary,
-                marginBottom: '28px',
-                maxWidth: '460px'
+                maxWidth: '560px',
+                margin: '0 0 32px 0'
               }}
             >
-              Available for hire. Building fast, responsive, and intelligent web applications using modern tech stacks.
+              Hi, I'm <strong style={{ color: theme.textPrimary }}>Gul Muhammad</strong> — a Full-Stack MERN Developer based in Karachi, Pakistan. I build dependable web applications with React, Node.js, Express, and MongoDB, focused on clean architecture, real-world utility, and seamless user experiences.
             </p>
 
-            {/* Action Pill Buttons (matching laptop photo style: solid pill + outline pill) */}
+            {/* Call-to-Action Buttons */}
             <div
-              className="hero-actions-wrap"
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
                 alignItems: 'center',
                 gap: '12px',
-                marginBottom: '32px'
+                marginBottom: '40px'
               }}
             >
-              {/* Primary Pill Button (See My Work) */}
+              {/* Primary: View Projects */}
               <Link
                 to="/projects"
+                className="hover-lift"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
                   gap: '8px',
-                  padding: '13px 26px',
-                  borderRadius: '9999px',
-                  background: isDark ? '#ffffff' : 'linear-gradient(135deg, #2563eb, #7c3aed)',
-                  color: isDark ? '#000000' : '#ffffff',
-                  fontWeight: '700',
+                  padding: '12px 24px',
+                  borderRadius: '12px',
+                  background: '#2563eb',
+                  color: '#ffffff',
+                  fontWeight: 700,
                   fontSize: '0.92rem',
                   textDecoration: 'none',
-                  boxShadow: isDark
-                    ? '0 6px 20px rgba(255, 255, 255, 0.25)'
-                    : '0 6px 20px rgba(37, 99, 235, 0.4)',
-                  transition: 'all 0.25s ease'
+                  boxShadow: '0 4px 16px rgba(37, 99, 235, 0.35)',
+                  transition: 'all 0.2s ease'
                 }}
-                className="hover-lift"
               >
-                <span>See My Work</span>
+                <span>View Projects</span>
                 <ArrowRight size={17} />
               </Link>
 
-              {/* Secondary Pill Button (Contact Me) */}
-              <Link
-                to="/contact"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  padding: '13px 24px',
-                  borderRadius: '9999px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)',
-                  color: isDark ? '#ffffff' : theme.textPrimary,
-                  border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.15)'}`,
-                  fontWeight: '600',
-                  fontSize: '0.92rem',
-                  textDecoration: 'none',
-                  transition: 'all 0.25s ease'
-                }}
-                className="hover-lift"
-              >
-                Contact Me
-              </Link>
-
-              {/* Download Resume Pill Button */}
+              {/* Secondary: Download Resume */}
               <a
                 href={portfolioData.personal.resumeUrl}
                 download="Gul Muhammad Web Developer (1).pdf"
+                className="hover-lift"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '7px',
-                  padding: '13px 22px',
-                  borderRadius: '9999px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(37, 99, 235, 0.08)',
-                  color: isDark ? '#e2e8f0' : '#3b82f6',
-                  border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(59, 130, 246, 0.35)'}`,
-                  fontWeight: '600',
+                  gap: '8px',
+                  padding: '12px 22px',
+                  borderRadius: '12px',
+                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#ffffff',
+                  color: theme.textPrimary,
+                  border: `1px solid ${theme.borderSubtle}`,
+                  fontWeight: 600,
                   fontSize: '0.92rem',
                   textDecoration: 'none',
-                  transition: 'all 0.25s ease'
+                  boxShadow: isDark ? 'none' : '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  transition: 'all 0.2s ease'
                 }}
-                className="hover-lift"
               >
-                <Download size={16} /> Resume
+                <Download size={16} />
+                <span>Download CV</span>
               </a>
+
+              {/* Contact Me */}
+              <Link
+                to="/contact"
+                className="hover-lift"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '12px 20px',
+                  borderRadius: '12px',
+                  background: 'transparent',
+                  color: theme.textSecondary,
+                  border: `1px solid ${theme.borderSubtle}`,
+                  fontWeight: 600,
+                  fontSize: '0.92rem',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <Mail size={16} />
+                <span>Contact</span>
+              </Link>
             </div>
 
-            {/* Social Icons & Coordinates */}
+            {/* Quick Metrics / Credibility Highlights */}
             <div
-              className="hero-socials-wrap"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '10px'
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                gap: '16px',
+                paddingTop: '24px',
+                borderTop: `1px solid ${theme.borderSubtle}`,
+                maxWidth: '560px'
               }}
             >
-              <a
-                href={portfolioData.personal.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub"
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '12px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: theme.textPrimary,
-                  textDecoration: 'none'
-                }}
-                className="hover-lift"
-              >
-                <Github size={18} />
-              </a>
+              <div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                  1+ Yrs
+                </div>
+                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
+                  Hands-on Experience
+                </div>
+              </div>
 
-              <a
-                href={portfolioData.personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="LinkedIn"
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '12px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#0a66c2',
-                  textDecoration: 'none'
-                }}
-                className="hover-lift"
-              >
-                <Linkedin size={18} />
-              </a>
+              <div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                  CampusCoin
+                </div>
+                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
+                  Featured Live Project
+                </div>
+              </div>
 
-              <a
-                href={`mailto:${portfolioData.personal.email}`}
-                title="Email Gul"
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '12px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#ea4335',
-                  textDecoration: 'none'
-                }}
-                className="hover-lift"
-              >
-                <Mail size={18} />
-              </a>
+              <div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                  ADSE
+                </div>
+                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
+                  Aptech Learning Center
+                </div>
+              </div>
 
-              <a
-                href={`tel:${portfolioData.personal.phone.replace(/[^0-9+]/g, '')}`}
-                title="Call Gul"
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '12px',
-                  background: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-                  border: `1px solid ${theme.borderSubtle}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#10b981',
-                  textDecoration: 'none'
-                }}
-                className="hover-lift"
-              >
-                <Phone size={18} />
-              </a>
-
-              <span
-                style={{
-                  fontSize: '0.82rem',
-                  fontWeight: '600',
-                  color: theme.textMuted,
-                  padding: '4px 8px'
-                }}
-              >
-                📍 Karachi, PK
-              </span>
+              <div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: theme.textPrimary }}>
+                  Karachi
+                </div>
+                <div style={{ fontSize: '0.78rem', color: theme.textMuted, fontWeight: 500 }}>
+                  Sindh, Pakistan
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Right Column: Framed Developer Presentation Card */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative'
+            }}
+          >
+            {/* Clean Framed Card */}
+            <div
+              className="interactive-card"
+              style={{
+                width: '100%',
+                maxWidth: '420px',
+                borderRadius: '24px',
+                background: theme.bgCard,
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: `1px solid ${theme.borderSubtle}`,
+                boxShadow: theme.shadowLarge,
+                overflow: 'hidden',
+                position: 'relative'
+              }}
+            >
+              {/* Card Top Header */}
+              <div
+                style={{
+                  padding: '16px 20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderBottom: `1px solid ${theme.borderSubtle}`,
+                  background: isDark ? 'rgba(255, 255, 255, 0.02)' : '#f8fafc'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span
+                    style={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: '#ef4444'
+                    }}
+                  />
+                  <span
+                    style={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: '#f59e0b'
+                    }}
+                  />
+                  <span
+                    style={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: '#10b981'
+                    }}
+                  />
+                </div>
+
+                <div
+                  style={{
+                    fontSize: '0.74rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.04em',
+                    color: theme.textMuted,
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  developer.json
+                </div>
+              </div>
+
+              {/* Developer Photo Container */}
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '380px',
+                  background: isDark
+                    ? 'linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, rgba(10, 12, 16, 0.95) 100%)'
+                    : 'linear-gradient(180deg, rgba(37, 99, 235, 0.05) 0%, rgba(248, 250, 252, 0.95) 100%)',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                  overflow: 'hidden'
+                }}
+              >
+                <img
+                  src="/profile.png"
+                  alt="Gul Muhammad - MERN Stack Developer"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'bottom center',
+                    filter: isDark
+                      ? 'drop-shadow(0 10px 25px rgba(0, 0, 0, 0.8))'
+                      : 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1))'
+                  }}
+                />
+
+                {/* Status Pill Floating at Bottom of Photo */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '16px',
+                    left: '16px',
+                    right: '16px',
+                    padding: '10px 14px',
+                    borderRadius: '14px',
+                    background: isDark ? 'rgba(10, 12, 16, 0.85)' : 'rgba(255, 255, 255, 0.92)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: `1px solid ${theme.borderSubtle}`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)'
+                  }}
+                >
+                  <div>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 800, color: theme.textPrimary }}>
+                      Gul Muhammad
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: '#2563eb', fontWeight: 600 }}>
+                      MERN Stack & AI Developer
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      fontSize: '0.7rem',
+                      fontWeight: 600,
+                      color: theme.textMuted
+                    }}
+                  >
+                    <MapPin size={12} color="#2563eb" />
+                    <span>Karachi</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Footer Details */}
+              <div
+                style={{
+                  padding: '16px 20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderTop: `1px solid ${theme.borderSubtle}`,
+                  background: isDark ? 'rgba(255, 255, 255, 0.02)' : '#ffffff'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <a
+                    href={portfolioData.personal.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover-lift"
+                    style={{
+                      padding: '7px 12px',
+                      borderRadius: '8px',
+                      background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#f1f5f9',
+                      color: theme.textPrimary,
+                      textDecoration: 'none',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    <Github size={14} /> GitHub
+                  </a>
+
+                  <a
+                    href={portfolioData.personal.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover-lift"
+                    style={{
+                      padding: '7px 12px',
+                      borderRadius: '8px',
+                      background: isDark ? 'rgba(255, 255, 255, 0.06)' : '#f1f5f9',
+                      color: theme.textPrimary,
+                      textDecoration: 'none',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    <Linkedin size={14} /> LinkedIn
+                  </a>
+                </div>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '0.74rem',
+                    fontWeight: 700,
+                    color: '#10b981'
+                  }}
+                >
+                  <span
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#10b981'
+                    }}
+                  />
+                  <span>Verified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tech Stack Strip */}
+        <div
+          style={{
+            marginTop: '56px',
+            paddingTop: '32px',
+            borderTop: `1px solid ${theme.borderSubtle}`,
+            width: '100%'
+          }}
+        >
+          <div
+            style={{
+              fontSize: '0.74rem',
+              fontWeight: 800,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: theme.textMuted,
+              marginBottom: '16px'
+            }}
+          >
+            Core Technologies & Toolkit
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '10px',
+              alignItems: 'center'
+            }}
+          >
+            {techStack.map((tech, idx) => (
+              <div
+                key={idx}
+                className="hover-lift"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '6px 14px',
+                  borderRadius: '10px',
+                  background: isDark ? 'rgba(255, 255, 255, 0.04)' : '#ffffff',
+                  border: `1px solid ${theme.borderSubtle}`,
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
+                  color: theme.textPrimary,
+                  boxShadow: isDark ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.03)'
+                }}
+              >
+                <span
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: tech.color
+                  }}
+                />
+                <span>{tech.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
