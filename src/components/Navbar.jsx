@@ -5,11 +5,7 @@ import {
   Moon,
   Menu,
   X,
-  Github,
-  Linkedin,
-  Download,
-  ArrowUpRight,
-  Sparkles
+  ArrowUpRight
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { Button } from '@/components/ui/button';
@@ -100,7 +96,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`relative px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                className={`relative px-3.5 py-1.5 rounded-md text-sm font-medium transition-colors ${
                   isActive
                     ? 'text-primary font-semibold'
                     : 'text-muted-foreground hover:text-foreground hover:bg-accent/60'
@@ -108,7 +104,7 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
               >
                 {item.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-primary rounded-full" />
+                  <span className="absolute bottom-0 left-3.5 right-3.5 h-0.5 bg-primary rounded-full" />
                 )}
               </Link>
             );
@@ -116,54 +112,15 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
         </nav>
 
         {/* Right Action Controls */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* Status Badge (Desktop) */}
-          <div className="hidden xl:flex items-center mr-2">
-            <Badge variant="success" className="gap-1.5 py-1 px-2.5 font-normal text-xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              Open to work
-            </Badge>
-          </div>
-
-          {/* Social Links (Desktop) */}
-          <div className="hidden md:flex items-center gap-1">
-            <Button
-              asChild
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9 text-muted-foreground hover:text-foreground"
-            >
-              <a
-                href={portfolioData.personal.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub Profile"
-                aria-label="GitHub"
-              >
-                <Github className="h-4 w-4" />
-              </a>
-            </Button>
-
-            <Button
-              asChild
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9 text-muted-foreground hover:text-foreground"
-            >
-              <a
-                href={portfolioData.personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="LinkedIn Profile"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
-            </Button>
-          </div>
+        <div className="flex items-center gap-2">
+          {/* Status Badge */}
+          <Badge variant="success" className="gap-1.5 py-1 px-2.5 font-normal text-xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="hidden sm:inline">Open to work</span>
+          </Badge>
 
           {/* Theme Toggle Button */}
           <Button
@@ -179,22 +136,6 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
             ) : (
               <Moon className="h-4 w-4 text-slate-700 transition-transform hover:-rotate-12" />
             )}
-          </Button>
-
-          {/* Resume Download Pill Button */}
-          <Button
-            asChild
-            size="sm"
-            className="hidden sm:inline-flex gap-1.5 shadow-sm"
-          >
-            <a
-              href={portfolioData.personal.resumeUrl}
-              download="Gul Muhammad Web Developer (1).pdf"
-              title="Download Resume (PDF)"
-            >
-              <Download className="h-3.5 w-3.5" />
-              <span>Resume</span>
-            </a>
           </Button>
 
           {/* Mobile Menu Toggle Button */}
@@ -250,42 +191,6 @@ export const Navbar = ({ theme, isDark, toggleTheme }) => {
                 );
               })}
             </nav>
-
-            {/* Action Buttons in Mobile Drawer */}
-            <div className="flex flex-col gap-3 pt-2">
-              <Button asChild size="lg" className="w-full gap-2">
-                <a
-                  href={portfolioData.personal.resumeUrl}
-                  download="Gul Muhammad Web Developer (1).pdf"
-                >
-                  <Download className="h-4 w-4" />
-                  <span>Download Resume (PDF)</span>
-                </a>
-              </Button>
-
-              <div className="flex items-center justify-center gap-3 pt-2">
-                <Button asChild variant="outline" size="sm" className="flex-1 gap-2">
-                  <a
-                    href={portfolioData.personal.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="h-4 w-4" />
-                    <span>GitHub</span>
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="sm" className="flex-1 gap-2">
-                  <a
-                    href={portfolioData.personal.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Linkedin className="h-4 w-4" />
-                    <span>LinkedIn</span>
-                  </a>
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       )}
