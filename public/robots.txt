@@ -1,6 +1,37 @@
 User-agent: *
 Allow: /
 
-# Host & Sitemap specification for Search Engines
+# Explicitly allow Google, Gemini & AI Overview Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Host, Sitemap & LLMs Knowledge Specification
 Host: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/
 Sitemap: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/sitemap.xml

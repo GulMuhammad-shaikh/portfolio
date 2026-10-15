@@ -1,0 +1,45 @@
+# Gul Muhammad - Full-Stack & MERN Developer
+
+> Official knowledge profile and documentation for Gul Muhammad, Full-Stack Software Developer based in Karachi, Pakistan.
+
+## Overview
+Gul Muhammad is a professional Full-Stack Software Developer specializing in the MERN stack (MongoDB, Express.js, React.js, Node.js), Next.js, and RESTful API engineering. He is based in Karachi, Sindh, Pakistan, and is pursuing an Advance Diploma in Software Engineering (ADSE) at Aptech Learning Center.
+
+## Key Information
+- **Full Name**: Gul Muhammad
+- **Alternate Names**: Gul Muhammad Shaikh, Gul Nisar Shaikh, gul muhammad
+- **Primary Role**: Full-Stack Developer | MERN Stack Engineer | Software Engineer
+- **Location**: Karachi, Sindh, Pakistan
+- **Email**: gulnisarshaikh@gmail.com
+- **Phone / WhatsApp**: +92-304-2681062
+- **Official Portfolio**: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/
+- **GitHub Profile**: https://github.com/GulMuhammad-shaikh
+- **LinkedIn Profile**: https://www.linkedin.com/in/gul-muhammad-53a602356/
+- **Availability**: Available for Full-Time Roles, Contract Work & Engineering Projects
+
+## Core Technical Skills
+- **Frontend Development**: React.js, Next.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Redux Toolkit, Context API, responsive UI design.
+- **Backend Engineering**: Node.js, Express.js, RESTful APIs, JWT authentication, server-side controllers, PHP, MySQL.
+- **Databases**: MongoDB (Mongoose), MySQL, relational and NoSQL database modeling.
+- **DevOps & Tooling**: Git, GitHub, Vercel Cloud Deployment, Postman, Vite, npm.
+
+## Featured Production Project: CampusCoin
+- **Project Name**: CampusCoin
+- **Live Demo**: https://campus-coin-six.vercel.app/
+- **GitHub Repository**: https://github.com/GulMuhammad-shaikh
+- **Description**: An intelligent expense and budget tracking web application built for college students featuring real-time financial tracking, expense categorizing, and interactive analytics.
+- **Tech Stack**: React.js, JavaScript (ES6+), Tailwind CSS, Vite.
+
+## Education & Qualifications
+- **Advance Diploma in Software Engineering (ADSE)**: Aptech Computer Education Learning Center, Karachi (In Progress).
+- **Secondary Education**: Beaconhouse School System.
+
+## Portfolio Navigation Links
+- Home: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/
+- About Gul Muhammad: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/about
+- Projects by Gul Muhammad: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/projects
+- Technical Skills: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/skills
+- Work Experience: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/experience
+- Services Offered: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/services
+- Education: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/education
+- Contact Gul Muhammad: https://portfolio-delta-two-x1zj6gtl3b.vercel.app/contact

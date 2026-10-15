@@ -98,6 +98,12 @@ function generateRoutes() {
     customHtml = customHtml.replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${route.description}" />`);
     customHtml = customHtml.replace(/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${route.canonical}" />`);
 
+    // Update ProfilePage URL in structured data
+    customHtml = customHtml.replace(
+      /"url": "https:\/\/portfolio-delta-two-x1zj6gtl3b\.vercel\.app\/",\s*"name": "Gul Muhammad - Full-Stack Developer Portfolio"/,
+      `"url": "${route.canonical}",\n      "name": "${route.title}"`
+    );
+
     // Update noscript block for route-specific SEO content
     const noscriptContent = `
     <noscript>

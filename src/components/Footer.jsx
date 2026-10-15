@@ -75,7 +75,7 @@ export const Footer = ({ theme, isDark }) => {
               <a
                 href={portfolioData.personal.github}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me noopener noreferrer"
                 title="GitHub"
                 aria-label="GitHub"
               >
@@ -87,7 +87,7 @@ export const Footer = ({ theme, isDark }) => {
               <a
                 href={portfolioData.personal.linkedin}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me noopener noreferrer"
                 title="LinkedIn"
                 aria-label="LinkedIn"
               >

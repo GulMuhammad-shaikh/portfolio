@@ -61,8 +61,11 @@ export const Hero = ({ theme, isDark }) => {
               <span>Available for full-time roles & projects</span>
             </Badge>
 
-            {/* Clear, High-Impact Headline */}
+            {/* Clear, High-Impact Headline with Name for Top Search Ranking */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12] mb-5">
+              <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-2 tracking-tight">
+                Gul Muhammad
+              </span>
               Engineering reliable{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400">
                 full-stack
@@ -193,7 +196,7 @@ export const Hero = ({ theme, isDark }) => {
                     <a
                       href={portfolioData.personal.github}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="me noopener noreferrer"
                     >
                       <Github className="h-3.5 w-3.5" />
                       <span>GitHub</span>
@@ -204,7 +207,7 @@ export const Hero = ({ theme, isDark }) => {
                     <a
                       href={portfolioData.personal.linkedin}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="me noopener noreferrer"
                     >
                       <Linkedin className="h-3.5 w-3.5" />
                       <span>LinkedIn</span>
