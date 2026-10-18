@@ -20,8 +20,8 @@ export const Chatbot = ({ theme, isDark }) => {
     {
       id: 1,
       sender: 'bot',
-      text: "👋 Hi! I am **Gul's AI Assistant**. Ask me anything about Gul's projects (like **CampusCoin**), his technical skills, work experience, or how to get in touch!",
-      suggestions: ["Tell me about Gul", "What is CampusCoin?", "What are his skills?", "Contact Details"]
+      text: "👋 Hi! I am **Gul's AI Assistant**. Ask me anything about Gul's projects (like **DevScribe** & **CampusCoin**), his technical skills, work experience, or how to get in touch!",
+      suggestions: ["Tell me about Gul", "Featured Projects", "What is DevScribe?", "What are his skills?"]
     }
   ]);
 
@@ -80,7 +80,7 @@ export const Chatbot = ({ theme, isDark }) => {
         id: Date.now(),
         sender: 'bot',
         text: "Conversation refreshed! What would you like to know about Gul Muhammad?",
-        suggestions: ["Tell me about Gul", "What is CampusCoin?", "What are his skills?", "Contact Details"]
+        suggestions: ["Tell me about Gul", "Featured Projects", "What is DevScribe?", "What are his skills?"]
       }
     ]);
   };

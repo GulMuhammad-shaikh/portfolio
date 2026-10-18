@@ -4,15 +4,15 @@ import { useLocation } from 'react-router-dom';
 const routeSeo = {
   '/': {
     title: 'Gul Muhammad | Full-Stack & MERN Developer | Official Portfolio',
-    description: 'Official portfolio of Gul Muhammad, Full-Stack MERN Developer in Karachi, Pakistan. Explore production web applications including CampusCoin.'
+    description: 'Official portfolio of Gul Muhammad, Full-Stack MERN Developer in Karachi, Pakistan. Explore production web applications including CampusCoin and DevScribe.'
   },
   '/about': {
     title: 'About Gul Muhammad | Full-Stack Software Developer',
     description: 'Learn more about Gul Muhammad, Full-Stack MERN Developer based in Karachi, Pakistan.'
   },
   '/projects': {
-    title: 'Projects by Gul Muhammad | CampusCoin & Full-Stack Web Apps',
-    description: 'Discover featured projects by Gul Muhammad, including CampusCoin (student expense tracker) and scalable full-stack web applications.'
+    title: 'Projects by Gul Muhammad | CampusCoin, DevScribe & Web Apps',
+    description: 'Discover featured projects by Gul Muhammad, including CampusCoin (student expense tracker), DevScribe (modern tech blogging platform), and full-stack web applications.'
   },
   '/skills': {
     title: 'Technical Skills | Gul Muhammad (React, Node.js, Express, MongoDB)',

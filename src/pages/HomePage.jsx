@@ -10,7 +10,8 @@ import {
   ExternalLink,
   Github,
   CheckCircle2,
-  Wallet
+  Wallet,
+  BookOpen
 } from 'lucide-react';
 import { Hero } from '../components/Hero';
 import { portfolioData } from '../data/portfolioData';
@@ -62,7 +63,7 @@ export const HomePage = ({ theme, isDark }) => {
       {/* High-Trust Hero Section */}
       <Hero theme={theme} isDark={isDark} />
 
-      {/* Featured Project Showcase: CampusCoin */}
+      {/* Featured Projects Showcase */}
       <section className="py-10 md:py-16 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
@@ -84,94 +85,131 @@ export const HomePage = ({ theme, isDark }) => {
             </Button>
           </div>
 
-          {/* CampusCoin Spotlight Card */}
-          <Card className="border-border/80 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
-            <div className="p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left Column: Project Details (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col items-start">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-11 w-11 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex items-center justify-center shadow-sm">
-                    <Wallet className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <Badge variant="success" className="text-[11px] font-semibold py-0.5 px-2">
-                      Fintech · Student Expense Tracker
-                    </Badge>
-                    <h3 className="text-2xl font-bold tracking-tight text-foreground mt-0.5">
-                      CampusCoin
-                    </h3>
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
-                  A real-time financial tracking and budgeting web app created for college students. Enables daily expenditure logging, category breakdown, smart savings goals, and visual spending analytics.
-                </p>
-
-                {/* Tech Badges */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {['React.js', 'JavaScript ES6+', 'Vite', 'Tailwind CSS', 'State Management', 'Analytics'].map((tag, idx) => (
-                    <Badge
-                      key={idx}
-                      variant="secondary"
-                      className="text-xs font-medium py-1 px-2.5 bg-secondary/60 hover:bg-secondary border border-border/50"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button asChild size="default" className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm">
-                    <a
-                      href="https://campus-coin-six.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span>Live Demo</span>
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
-
-                  <Button asChild variant="outline" size="default" className="gap-2">
-                    <a
-                      href="https://github.com/GulMuhammad-shaikh"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="h-4 w-4" />
-                      <span>View GitHub Repo</span>
-                    </a>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Right Column: Key Features Box (5 cols) */}
-              <div className="lg:col-span-5">
-                <div className="rounded-xl border border-border bg-muted/40 p-5 sm:p-6">
-                  <div className="text-xs font-bold uppercase tracking-wider text-foreground mb-4">
-                    Core System Architecture
-                  </div>
-
-                  <div className="flex flex-col gap-3">
-                    {[
-                      'Instant transaction logging with dynamic category distribution',
-                      'Interactive budget vs actual expenditure bar indicators',
-                      'Fully responsive across mobile phones, tablets, and desktops',
-                      'Clean modular architecture with component reusability and fast Vite builds'
-                    ].map((highlight, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm text-muted-foreground leading-snug">
-                          {highlight}
-                        </span>
+          {/* Project Spotlight Cards */}
+          <div className="space-y-8">
+            {portfolioData.projects.map((project) => (
+              <Card
+                key={project.id}
+                className="border-border/80 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
+              >
+                <div className="p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left Column: Project Details (7 cols) */}
+                  <div className="lg:col-span-7 flex flex-col items-start">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className={`h-11 w-11 rounded-xl ${
+                          project.id === 'campus-coin'
+                            ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                            : 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20'
+                        } flex items-center justify-center shadow-sm`}
+                      >
+                        {project.id === 'campus-coin' ? (
+                          <Wallet className="h-5 w-5" />
+                        ) : (
+                          <BookOpen className="h-5 w-5" />
+                        )}
                       </div>
-                    ))}
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant="success"
+                            className="text-[11px] font-semibold py-0.5 px-2"
+                          >
+                            {project.category}
+                          </Badge>
+                          <Badge
+                            variant="secondary"
+                            className="text-[11px] font-semibold py-0.5 px-2 bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
+                          >
+                            ★ Live App
+                          </Badge>
+                        </div>
+                        <h3 className="text-2xl font-bold tracking-tight text-foreground mt-0.5">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.tags.map((tag, idx) => (
+                        <Badge
+                          key={idx}
+                          variant="secondary"
+                          className="text-xs font-medium py-1 px-2.5 bg-secondary/60 hover:bg-secondary border border-border/50"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button
+                        asChild
+                        size="default"
+                        className={`gap-2 ${
+                          project.id === 'campus-coin'
+                            ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                            : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                        } shadow-sm`}
+                      >
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span>Live Demo</span>
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+
+                      <Button asChild variant="outline" size="default" className="gap-2">
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="h-4 w-4" />
+                          <span>View GitHub Repo</span>
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Key Features Box (5 cols) */}
+                  <div className="lg:col-span-5">
+                    <div className="rounded-xl border border-border bg-muted/40 p-5 sm:p-6">
+                      <div className="text-xs font-bold uppercase tracking-wider text-foreground mb-4">
+                        Core Architecture & Highlights
+                      </div>
+
+                      <div className="flex flex-col gap-3">
+                        {project.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <CheckCircle2
+                              className={`h-4 w-4 shrink-0 mt-0.5 ${
+                                project.id === 'campus-coin'
+                                  ? 'text-emerald-500'
+                                  : 'text-indigo-500'
+                              }`}
+                            />
+                            <span className="text-xs sm:text-sm text-muted-foreground leading-snug">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </Card>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 

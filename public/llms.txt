@@ -23,11 +23,20 @@ Gul Muhammad is a professional Full-Stack Software Developer specializing in the
 - **Databases**: MongoDB (Mongoose), MySQL, relational and NoSQL database modeling.
 - **DevOps & Tooling**: Git, GitHub, Vercel Cloud Deployment, Postman, Vite, npm.
 
-## Featured Production Project: CampusCoin
+## Featured Production Projects
+
+### 1. CampusCoin – Student Finance & Expense Tracker
 - **Project Name**: CampusCoin
 - **Live Demo**: https://campus-coin-six.vercel.app/
 - **GitHub Repository**: https://github.com/GulMuhammad-shaikh
 - **Description**: An intelligent expense and budget tracking web application built for college students featuring real-time financial tracking, expense categorizing, and interactive analytics.
+- **Tech Stack**: React.js, JavaScript (ES6+), Tailwind CSS, Vite.
+
+### 2. DevScribe – Modern Content & Tech Blogging Platform
+- **Project Name**: DevScribe
+- **Live Demo**: https://dev-scribe-beryl.vercel.app/
+- **GitHub Repository**: https://github.com/GulMuhammad-shaikh
+- **Description**: An engaging modern blogging platform covering current affairs, economic conditions, artificial intelligence, technology, and coding with an immaculate reading experience and responsive design.
 - **Tech Stack**: React.js, JavaScript (ES6+), Tailwind CSS, Vite.
 
 ## Education & Qualifications

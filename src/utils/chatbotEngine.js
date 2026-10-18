@@ -27,19 +27,53 @@ He is currently pursuing an **Advance Diploma in Software Engineering (ADSE)** a
     };
   }
 
-  // Projects / CampusCoin / Expense Tracker
-  if (query.includes('project') || query.includes('campus coin') || query.includes('campuscoin') || query.includes('expense') || query.includes('work') || query.includes('portfolio') || query.includes('tracker')) {
+  // Specific: DevScribe
+  if (query.includes('devscribe') || query.includes('dev-scribe') || query.includes('dev scribe') || query.includes('blog')) {
+    return {
+      text: `📰 **Featured Project: DevScribe – Stories, Insights & Modern Perspectives**
+      
+DevScribe is an engaging modern blogging and publication platform covering current affairs, economic conditions, artificial intelligence, cutting-edge technology, and coding with an immaculate reading experience.
+      
+- **Technologies:** React.js, JavaScript (ES6+), Vite, Tailwind CSS, Responsive UI
+- **Live Demo:** [Open DevScribe on Vercel](https://dev-scribe-beryl.vercel.app/)
+- **GitHub:** [Gul Muhammad's GitHub](https://github.com/GulMuhammad-shaikh)
+
+Would you like to explore CampusCoin, his technical skills, or get in touch?`,
+      suggestions: ["What is CampusCoin?", "What are his skills?", "How to contact Gul?"]
+    };
+  }
+
+  // Specific: CampusCoin
+  if (query.includes('campus coin') || query.includes('campuscoin') || query.includes('expense') || query.includes('tracker')) {
     return {
       text: `🪙 **Featured Project: CampusCoin – Student Finance & Expense Tracker**
       
 CampusCoin is a modern web application built for students to track day-to-day expenditures, set campus allowances, categorize expenses, and monitor financial health with interactive analytics.
       
-- **Technologies:** React, JavaScript, Vite, Tailwind CSS, Local Storage, Analytics
+- **Technologies:** React.js, JavaScript (ES6+), Vite, Tailwind CSS, State Management, Analytics
 - **Live Demo:** [Open CampusCoin on Vercel](https://campus-coin-six.vercel.app/)
 - **GitHub:** [Gul Muhammad's GitHub](https://github.com/GulMuhammad-shaikh)
 
-Would you like to explore his technical skills or view his background?`,
-      suggestions: ["What are his skills?", "Where has he worked?", "How to contact Gul?"]
+Would you like to explore DevScribe or his technical skills?`,
+      suggestions: ["Tell me about DevScribe", "What are his skills?", "How to contact Gul?"]
+    };
+  }
+
+  // General Projects / Portfolio
+  if (query.includes('project') || query.includes('work') || query.includes('portfolio') || query.includes('apps')) {
+    return {
+      text: `🚀 **Featured Production Projects by Gul Muhammad:**
+      
+1. **[DevScribe](https://dev-scribe-beryl.vercel.app/)** – Modern Content & Tech Blogging Platform
+   - Engaging publication covering AI, technology, economics, and coding with a distraction-free reader UI.
+   - Stack: React.js, JavaScript (ES6+), Vite, Tailwind CSS.
+
+2. **[CampusCoin](https://campus-coin-six.vercel.app/)** – Student Finance & Expense Tracker
+   - Real-time financial management, daily expenditure categorization, allowance tracking, and visual analytics.
+   - Stack: React.js, Vite, Tailwind CSS, State Management.
+
+Both projects are live in production on Vercel with responsive designs and clean architecture!`,
+      suggestions: ["Tell me about DevScribe", "What is CampusCoin?", "What are his skills?", "Contact Gul"]
     };
   }
 

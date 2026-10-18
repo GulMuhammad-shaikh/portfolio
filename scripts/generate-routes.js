@@ -17,11 +17,11 @@ const routes = [
   },
   {
     path: '/projects',
-    title: 'Projects by Gul Muhammad | CampusCoin & Full-Stack Web Apps',
-    description: 'Discover featured projects by Gul Muhammad, including CampusCoin (student expense tracker) and scalable full-stack web applications.',
+    title: 'Projects by Gul Muhammad | CampusCoin, DevScribe & Web Apps',
+    description: 'Discover featured projects by Gul Muhammad, including CampusCoin (student expense tracker) and DevScribe (modern tech blogging platform).',
     canonical: 'https://portfolio-delta-two-x1zj6gtl3b.vercel.app/projects',
     heading: 'Featured Projects by Gul Muhammad',
-    summary: 'Production web applications engineered by Gul Muhammad, featuring CampusCoin — a smart campus expense and budget tracker built for students with real-time financial tracking and interactive analytics.'
+    summary: 'Production web applications engineered by Gul Muhammad, featuring CampusCoin (a smart campus expense and budget tracker built with React) and DevScribe (an engaging modern tech blogging platform).'
   },
   {
     path: '/skills',

@@ -121,10 +121,10 @@ export const Hero = ({ theme, isDark }) => {
 
               <div>
                 <div className="text-2xl font-bold tracking-tight text-foreground">
-                  CampusCoin
+                  2 Apps
                 </div>
                 <div className="text-xs text-muted-foreground font-medium mt-0.5">
-                  Featured Project
+                  Live in Production
                 </div>
               </div>
 

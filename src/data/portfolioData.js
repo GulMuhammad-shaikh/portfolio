@@ -99,14 +99,55 @@ export const portfolioData = {
       id: "campus-coin",
       title: "CampusCoin – Student Finance & Expense Tracker",
       subtitle: "Personal Budgeting & Real-time Expense Management",
-      category: "Full Stack",
+      category: "Fintech & Expense Tracker",
       featured: true,
       description: "CampusCoin is an intuitive student expense tracker designed to help learners manage campus allowances, log day-to-day expenditures, track savings targets, categorize expenses, and visualize financial habits with clean analytics.",
-      tags: ["React", "JavaScript", "Vite", "Tailwind CSS", "State Management", "Analytics"],
+      tags: ["React.js", "JavaScript (ES6+)", "Vite", "Tailwind CSS", "State Management", "Analytics"],
       github: "https://github.com/GulMuhammad-shaikh",
       live: "https://campus-coin-six.vercel.app/",
       accentColor: "#10b981",
+      icon: "Wallet",
+      themeKey: "emerald",
+      badgeText: "Deployed on Vercel",
+      highlights: [
+        { label: "Daily Expense Logging", desc: "Categorize & track spending" },
+        { label: "Budget & Analytics", desc: "Visual balance summaries" },
+        { label: "Campus-Ready UI", desc: "Fast & mobile-friendly" }
+      ],
+      features: [
+        "Instant transaction logging with dynamic category distribution",
+        "Interactive budget vs actual expenditure bar indicators",
+        "Fully responsive across mobile phones, tablets, and desktops",
+        "Clean modular architecture with component reusability and fast Vite builds"
+      ],
       metrics: "Daily Expense Tracking · Smart Categories · Visual Analytics"
+    },
+    {
+      id: "dev-scribe",
+      title: "DevScribe – Stories, Insights & Modern Perspectives",
+      subtitle: "Modern Content & Tech Blogging Platform",
+      category: "Content & Tech Platform",
+      featured: true,
+      description: "DevScribe is an engaging modern blogging platform covering current affairs, economic conditions, artificial intelligence, technology, and coding with an immaculate reading experience and responsive design.",
+      tags: ["React.js", "JavaScript (ES6+)", "Vite", "Tailwind CSS", "Responsive UI", "Content Management"],
+      github: "https://github.com/GulMuhammad-shaikh",
+      live: "https://dev-scribe-beryl.vercel.app/",
+      accentColor: "#6366f1",
+      icon: "BookOpen",
+      themeKey: "indigo",
+      badgeText: "Deployed on Vercel",
+      highlights: [
+        { label: "Tech & AI Articles", desc: "Deep-dives & current insights" },
+        { label: "Clean Reading Experience", desc: "Typography & responsive layout" },
+        { label: "Fast & Interactive", desc: "Dynamic filtering & modern UI" }
+      ],
+      features: [
+        "Curated multi-category articles across AI, Technology, Current Affairs & Economics",
+        "Distraction-free typography with optimized readability and modern reader experience",
+        "High-performance client routing and responsive layouts across all viewports",
+        "Engineered with modern React, Vite, and Tailwind CSS for rapid loading speeds"
+      ],
+      metrics: "Curated Articles · Responsive Design · Fast Loading"
     }
   ],
 
