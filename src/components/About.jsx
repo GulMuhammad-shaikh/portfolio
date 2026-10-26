@@ -136,6 +136,7 @@ export const About = ({ theme, isDark }) => {
               {infoItems.map((item, idx) => (
                 <div
                   key={idx}
+                  {...(item.label === 'Phone' ? { 'data-nosnippet': '' } : {})}
                   className="flex items-center justify-between p-3 rounded-xl border border-border/60 bg-muted/30 hover:bg-muted/50 transition-colors gap-3"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">

@@ -58,10 +58,10 @@ const routes = [
   {
     path: '/contact',
     title: 'Contact Gul Muhammad | Hire MERN Stack Developer',
-    description: 'Get in touch with Gul Muhammad for full-stack opportunities, freelance contracts, or project collaborations. Phone: 0304-2681062, Email: gulnisarshaikh@gmail.com.',
+    description: 'Get in touch with Gul Muhammad for full-stack opportunities, freelance contracts, or project collaborations. Email: gulnisarshaikh@gmail.com.',
     canonical: 'https://portfolio-delta-two-x1zj6gtl3b.vercel.app/contact',
     heading: 'Contact Gul Muhammad - Full-Stack Developer',
-    summary: 'Get in touch with Gul Muhammad for full-stack roles, freelance inquiries, or collaborations. Direct Email: gulnisarshaikh@gmail.com | Phone / WhatsApp: +92-304-2681062.'
+    summary: 'Get in touch with Gul Muhammad for full-stack roles, freelance inquiries, or collaborations. Direct Email: gulnisarshaikh@gmail.com.'
   }
 ];
 

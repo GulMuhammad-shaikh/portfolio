@@ -32,7 +32,7 @@ const routeSeo = {
   },
   '/contact': {
     title: 'Contact Gul Muhammad | Hire MERN Stack Developer',
-    description: 'Get in touch with Gul Muhammad for full-stack opportunities, freelance contracts, or project collaborations. Phone: 0304-2681062, Email: gulnisarshaikh@gmail.com.'
+    description: 'Get in touch with Gul Muhammad for full-stack opportunities, freelance contracts, or project collaborations. Email: gulnisarshaikh@gmail.com.'
   }
 };
 

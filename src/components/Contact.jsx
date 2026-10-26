@@ -129,8 +129,8 @@ export const Contact = ({ theme, isDark }) => {
                   </Button>
                 </div>
 
-                {/* Phone Card */}
-                <div className="flex items-center justify-between p-3.5 rounded-xl border border-border/70 bg-muted/30">
+                {/* Phone Card (Protected from Search & AI Overviews via data-nosnippet) */}
+                <div data-nosnippet="" className="flex items-center justify-between p-3.5 rounded-xl border border-border/70 bg-muted/30">
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="h-9 w-9 rounded-lg bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 flex items-center justify-center shrink-0">
                       <Phone className="h-4 w-4" />
@@ -164,21 +164,23 @@ export const Contact = ({ theme, isDark }) => {
                   </Button>
                 </div>
 
-                {/* WhatsApp Quick Message Button */}
-                <Button
-                  asChild
-                  variant="outline"
-                  className="w-full gap-2 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
-                >
-                  <a
-                    href="https://wa.me/923042681062?text=Hi%20Gul%20Muhammad,%20I%20saw%20your%20portfolio"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                {/* WhatsApp Quick Message Button (Protected from Search & AI Overviews via data-nosnippet) */}
+                <div data-nosnippet="">
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full gap-2 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10"
                   >
-                    <MessageCircle className="h-4 w-4" />
-                    <span>Chat on WhatsApp</span>
-                  </a>
-                </Button>
+                    <a
+                      href="https://wa.me/923042681062?text=Hi%20Gul%20Muhammad,%20I%20saw%20your%20portfolio"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span>Chat on WhatsApp</span>
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
 

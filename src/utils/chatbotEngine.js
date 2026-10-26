@@ -130,7 +130,6 @@ He builds scalable, responsive, and performance-optimized full-stack systems.`,
       text: `📬 **Get in Touch with Gul Muhammad:**
 
 - **Email:** [gulnisarshaikh@gmail.com](mailto:gulnisarshaikh@gmail.com)
-- **Phone / WhatsApp:** [0304-2681062](tel:03042681062) ([Chat on WhatsApp](https://wa.me/923042681062))
 - **LinkedIn:** [linkedin.com/in/gul-muhammad-53a602356](https://www.linkedin.com/in/gul-muhammad-53a602356/)
 - **GitHub:** [github.com/GulMuhammad-shaikh](https://github.com/GulMuhammad-shaikh)
 - **Location:** Karachi, Pakistan
@@ -148,7 +147,7 @@ You can download Gul's latest resume directly using the link below:
       
 [📥 Download Gul Muhammad Web Developer (1).pdf](/Gul%20Muhammad%20Web%20Developer%20(1).pdf)
       
-Feel free to reach out via email at **gulnisarshaikh@gmail.com** or phone **0304-2681062**!`,
+Feel free to reach out via email at **gulnisarshaikh@gmail.com** or connect on LinkedIn!`,
       suggestions: ["Contact Gul", "What are his skills?", "Tell me about CampusCoin"]
     };
   }
