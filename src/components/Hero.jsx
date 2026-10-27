@@ -92,7 +92,7 @@ export const Hero = ({ theme, isDark }) => {
               <Button asChild variant="outline" size="lg" className="gap-2 shadow-sm">
                 <a
                   href={portfolioData.personal.resumeUrl}
-                  download="Gul Muhammad Web Developer (1).pdf"
+                  download="Gul Muhammad Ai.pdf"
                 >
                   <Download className="h-4 w-4" />
                   <span>Download CV</span>

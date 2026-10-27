@@ -145,7 +145,7 @@ He builds scalable, responsive, and performance-optimized full-stack systems.`,
       
 You can download Gul's latest resume directly using the link below:
       
-[📥 Download Gul Muhammad Web Developer (1).pdf](/Gul%20Muhammad%20Web%20Developer%20(1).pdf)
+[📥 Download Gul Muhammad Ai.pdf](/Gul%20Muhammad%20Ai.pdf)
       
 Feel free to reach out via email at **gulnisarshaikh@gmail.com** or connect on LinkedIn!`,
       suggestions: ["Contact Gul", "What are his skills?", "Tell me about CampusCoin"]
