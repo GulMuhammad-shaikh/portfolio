@@ -6,6 +6,8 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SeoManager } from './components/SeoManager';
 import { Chatbot } from './components/Chatbot';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -96,6 +98,10 @@ export function App() {
 
         {/* Global Live Chatbot Widget */}
         <Chatbot theme={theme} isDark={isDark} />
+
+        {/* Vercel Analytics & Speed Insights for Website Performance */}
+        <Analytics />
+        <SpeedInsights />
       </div>
     </BrowserRouter>
   );
