@@ -64,7 +64,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!googled759477ba98a35f6\\.html|robots\\.txt|sitemap\\.xml|site\\.webmanifest|.*\\..*).*)",
+      "source": "/((?!api/|googled759477ba98a35f6\\.html|robots\\.txt|sitemap\\.xml|site\\.webmanifest|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]

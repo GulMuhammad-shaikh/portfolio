@@ -9,7 +9,8 @@ import {
   Copy,
   Check,
   MessageCircle,
-  CheckCircle2
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { portfolioData } from '../data/portfolioData';
@@ -35,6 +36,7 @@ export const Contact = ({ theme, isDark }) => {
   const [copiedField, setCopiedField] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleCopy = (text, field) => {
     navigator.clipboard.writeText(text);
@@ -46,12 +48,26 @@ export const Contact = ({ theme, isDark }) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Unable to save your message. Please try again or reach out via email.');
+      }
+
       setSubmitted(true);
 
       // Trigger celebratory confetti
@@ -60,7 +76,12 @@ export const Contact = ({ theme, isDark }) => {
         spread: 70,
         origin: { y: 0.6 }
       });
-    }, 600);
+    } catch (err) {
+      console.error('Contact submission error:', err);
+      setErrorMessage(err.message || 'Failed to submit message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -229,6 +250,7 @@ export const Contact = ({ theme, isDark }) => {
                 <Button
                   onClick={() => {
                     setSubmitted(false);
+                    setErrorMessage(null);
                     setFormData({ name: '', email: '', subject: '', message: '' });
                   }}
                   className="gap-2"
@@ -246,6 +268,13 @@ export const Contact = ({ theme, isDark }) => {
                     Fill out the form below and I will respond within 24 hours.
                   </CardDescription>
                 </div>
+
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs sm:text-sm flex items-center gap-2.5">
+                    <AlertCircle className="h-4 w-4 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
