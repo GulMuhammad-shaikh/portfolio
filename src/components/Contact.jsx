@@ -270,9 +270,25 @@ export const Contact = ({ theme, isDark }) => {
                 </div>
 
                 {errorMessage && (
-                  <div className="p-3.5 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs sm:text-sm flex items-center gap-2.5">
-                    <AlertCircle className="h-4 w-4 shrink-0" />
-                    <span>{errorMessage}</span>
+                  <div className="p-4 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs sm:text-sm flex flex-col gap-2.5">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      <span>{errorMessage}</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-rose-500/20 text-xs text-muted-foreground">
+                      <span>Alternatively, send directly:</span>
+                      <a
+                        href={`mailto:${portfolioData.personal.email}?subject=${encodeURIComponent(
+                          formData.subject || 'Portfolio Inquiry'
+                        )}&body=${encodeURIComponent(
+                          `Hi Gul,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+                        )}`}
+                        className="font-semibold underline hover:text-foreground inline-flex items-center gap-1 text-primary"
+                      >
+                        <Mail className="h-3.5 w-3.5" />
+                        <span>Open in Email ({portfolioData.personal.email})</span>
+                      </a>
+                    </div>
                   </div>
                 )}
 

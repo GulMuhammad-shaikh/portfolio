@@ -8,14 +8,18 @@ let cachedDb = null;
 async function connectToDatabase() {
   const uri = process.env.MONGO_URI || process.env.MONGODB_URI;
   if (!uri) {
-    throw new Error('Neither MONGO_URI nor MONGODB_URI environment variable is defined in Vercel settings.');
+    throw new Error('MONGO_URI is missing in Vercel settings for this project. Please add MONGO_URI under Project Settings -> Environment Variables.');
   }
 
   if (cachedClient && cachedDb) {
     return { client: cachedClient, db: cachedDb };
   }
 
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri, {
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 10000
+  });
+
   await client.connect();
   const db = client.db('portfolio');
 
@@ -47,7 +51,7 @@ export default async function handler(req, res) {
 
     // Strict validation
     if (!name || typeof name !== 'string' || !name.trim()) {
-      return res.status(400).json({ success: false, message: 'Please provide a valid name.' });
+      return res.status(400).json({ success: false, message: 'Please provide your name.' });
     }
     if (!email || typeof email !== 'string' || !email.includes('@')) {
       return res.status(400).json({ success: false, message: 'Please provide a valid email address.' });
@@ -61,24 +65,35 @@ export default async function handler(req, res) {
     const cleanSubject = (subject && typeof subject === 'string' ? subject.trim().slice(0, 150) : 'General Inquiry') || 'General Inquiry';
     const cleanMessage = message.trim().slice(0, 3000);
 
-    // 1. Store in MongoDB Atlas Cluster0 (Database: portfolio, Collection: forms)
-    const { db } = await connectToDatabase();
-    const collection = db.collection('forms');
+    let dbSaved = false;
+    let savedId = null;
+    let dbErrorMessage = null;
 
-    const newSubmission = {
-      name: cleanName,
-      email: cleanEmail,
-      subject: cleanSubject,
-      message: cleanMessage,
-      createdAt: new Date(),
-      ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown',
-      userAgent: req.headers['user-agent'] || 'unknown',
-      status: 'unread'
-    };
+    // 1. Try to store in MongoDB Atlas (Database: portfolio, Collection: forms)
+    try {
+      const { db } = await connectToDatabase();
+      const collection = db.collection('forms');
 
-    const result = await collection.insertOne(newSubmission);
+      const newSubmission = {
+        name: cleanName,
+        email: cleanEmail,
+        subject: cleanSubject,
+        message: cleanMessage,
+        createdAt: new Date(),
+        ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown',
+        userAgent: req.headers['user-agent'] || 'unknown',
+        status: 'unread'
+      };
 
-    // 2. Send Automated Confirmation Email to User
+      const result = await collection.insertOne(newSubmission);
+      dbSaved = true;
+      savedId = result.insertedId;
+    } catch (dbErr) {
+      console.error('MongoDB Atlas Storage Error:', dbErr);
+      dbErrorMessage = dbErr.message || 'Database connection error';
+    }
+
+    // 2. Try to send automated confirmation email (Resend or Gmail)
     let emailSent = false;
     const userEmailHtml = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b;">
@@ -109,7 +124,7 @@ export default async function handler(req, res) {
       </div>
     `;
 
-    // Strategy A: Resend API (Preferred for Vercel, zero password hassles)
+    // Strategy A: Resend API
     if (process.env.RESEND_API_KEY) {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
@@ -125,7 +140,7 @@ export default async function handler(req, res) {
       }
     }
 
-    // Strategy B: Nodemailer / Gmail SMTP (If EMAIL_PASS is configured)
+    // Strategy B: Nodemailer / Gmail SMTP
     const emailUser = process.env.EMAIL_USER || process.env.GMAIL_USER || 'gulnisarshaikh@gmail.com';
     const emailPass = process.env.EMAIL_PASS || process.env.EMAIL_PASSWORD || process.env.GMAIL_APP_PASSWORD;
 
@@ -153,17 +168,26 @@ export default async function handler(req, res) {
       }
     }
 
+    // If database save failed and email could not be sent:
+    if (!dbSaved && !emailSent) {
+      return res.status(500).json({
+        success: false,
+        message: dbErrorMessage || 'Database connection error. Please ensure MONGO_URI is configured in Vercel settings.'
+      });
+    }
+
     return res.status(201).json({
       success: true,
       message: 'Your message has been received and saved successfully.',
-      id: result.insertedId,
+      id: savedId,
+      dbSaved,
       emailSent
     });
   } catch (error) {
     console.error('API Contact Error:', error);
     return res.status(500).json({
       success: false,
-      message: 'Failed to process contact submission. Please try again later.'
+      message: error?.message || 'Failed to process contact submission. Please try again later.'
     });
   }
 }
