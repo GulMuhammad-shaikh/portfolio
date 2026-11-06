@@ -1,12 +1,13 @@
 import { MongoClient } from 'mongodb';
-import nodemailer from 'nodemailer';
-import { Resend } from 'resend';
 
 let cachedClient = null;
 let cachedDb = null;
 
-function parseMongoUri(raw) {
-  if (!raw || typeof raw !== 'string') return null;
+function resolveMongoUri() {
+  const raw = process.env.MONGO_URI || process.env.MONGODB_URI;
+  if (!raw || typeof raw !== 'string' || !raw.trim()) {
+    throw new Error('MONGO_URI is missing in Vercel settings for this project.');
+  }
 
   // 1. Remove unicode zero-width spaces, BOM, control characters
   let clean = raw.replace(/[\u200B-\u200D\uFEFF\x00-\x1F\x7F]/g, '').trim();
@@ -14,39 +15,31 @@ function parseMongoUri(raw) {
   // 2. Remove surrounding quotes (both ASCII and smart quotes)
   clean = clean.replace(/^["'`“”‘’]+|["'`“”‘’]+$/g, '').trim();
 
-  // 3. If someone pasted the full line "MONGO_URI=mongodb+srv://..."
+  // 3. If someone pasted the full line "MONGO_URI=..."
   if (/^MONGO(?:DB)?_URI\s*=\s*/i.test(clean)) {
     clean = clean.replace(/^MONGO(?:DB)?_URI\s*=\s*/i, '').trim();
     clean = clean.replace(/^["'`“”‘’]+|["'`“”‘’]+$/g, '').trim();
   }
 
-  // 4. Find the actual start of the mongodb URI
+  // 4. If it's already a full URI starting with mongodb:// or mongodb+srv://
   const matchIndex = clean.search(/mongodb(?:\+srv)?:\/\//i);
   if (matchIndex !== -1) {
-    clean = clean.slice(matchIndex);
-    // Remove any trailing quotes, semicolons, brackets, or trailing spaces
-    clean = clean.replace(/["'`;\s)\]}]+$/, '').trim();
-    return clean;
+    return clean.slice(matchIndex).replace(/["'`;\s)\]}]+$/, '').trim();
   }
 
-  return null;
+  // 5. If the database password was provided in MONGO_URI (e.g. "Gul03042681062")
+  const dbUser = process.env.DB_USER || 'gulnisarshaikh_db_user';
+  const dbHost = process.env.DB_HOST || 'cluster0.bu5a3sx.mongodb.net';
+  const dbName = process.env.DB_NAME || 'portfolio';
+  return `mongodb+srv://${dbUser}:${encodeURIComponent(clean)}@${dbHost}/${dbName}?retryWrites=true&w=majority`;
 }
 
 async function connectToDatabase() {
-  const rawUri = process.env.MONGO_URI || process.env.MONGODB_URI;
-  if (!rawUri) {
-    throw new Error('MONGO_URI is missing in Vercel settings for this project. Please add MONGO_URI under Project Settings -> Environment Variables.');
-  }
-
-  const uri = parseMongoUri(rawUri);
-  if (!uri) {
-    const safePrefix = rawUri.trim().slice(0, 15).replace(/[^a-zA-Z0-9_\-:=/]/g, '*');
-    throw new Error(`Invalid MONGO_URI in Vercel settings. It must begin with "mongodb+srv://" or "mongodb://". Found value starting with "${safePrefix}" (${rawUri.length} chars).`);
-  }
-
   if (cachedClient && cachedDb) {
     return { client: cachedClient, db: cachedDb };
   }
+
+  const uri = resolveMongoUri();
 
   const client = new MongoClient(uri, {
     serverSelectionTimeoutMS: 5000,
@@ -98,123 +91,27 @@ export default async function handler(req, res) {
     const cleanSubject = (subject && typeof subject === 'string' ? subject.trim().slice(0, 150) : 'General Inquiry') || 'General Inquiry';
     const cleanMessage = message.trim().slice(0, 3000);
 
-    let dbSaved = false;
-    let savedId = null;
-    let dbErrorMessage = null;
+    // Store in MongoDB Atlas (Database: portfolio, Collection: forms)
+    const { db } = await connectToDatabase();
+    const collection = db.collection('forms');
 
-    // 1. Try to store in MongoDB Atlas (Database: portfolio, Collection: forms)
-    try {
-      const { db } = await connectToDatabase();
-      const collection = db.collection('forms');
+    const newSubmission = {
+      name: cleanName,
+      email: cleanEmail,
+      subject: cleanSubject,
+      message: cleanMessage,
+      createdAt: new Date(),
+      ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown',
+      userAgent: req.headers['user-agent'] || 'unknown',
+      status: 'unread'
+    };
 
-      const newSubmission = {
-        name: cleanName,
-        email: cleanEmail,
-        subject: cleanSubject,
-        message: cleanMessage,
-        createdAt: new Date(),
-        ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown',
-        userAgent: req.headers['user-agent'] || 'unknown',
-        status: 'unread'
-      };
-
-      const result = await collection.insertOne(newSubmission);
-      dbSaved = true;
-      savedId = result.insertedId;
-    } catch (dbErr) {
-      console.error('MongoDB Atlas Storage Error:', dbErr);
-      dbErrorMessage = dbErr.message || 'Database connection error';
-    }
-
-    // 2. Try to send automated confirmation email (Resend or Gmail)
-    let emailSent = false;
-    const userEmailHtml = `
-      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b;">
-        <div style="margin-bottom: 20px;">
-          <span style="background: #2563eb; color: #ffffff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">Message Received</span>
-        </div>
-        <h2 style="color: #0f172a; margin-top: 0; font-size: 22px; font-weight: 800;">Dear ${cleanName},</h2>
-        <p style="font-size: 15px; line-height: 1.6; color: #334155;">
-          Thank you for reaching out to <strong>Gul Muhammad Shaikh</strong>!
-        </p>
-        <p style="font-size: 15px; line-height: 1.6; color: #334155;">
-          I have received your message regarding <strong>"${cleanSubject}"</strong>. I will review your inquiry and get back to you promptly.
-        </p>
-        <div style="margin: 24px 0; padding: 16px; background-color: #f8fafc; border-left: 4px solid #2563eb; border-radius: 6px;">
-          <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #64748b; margin-bottom: 6px;">Your Message Summary:</div>
-          <div style="font-size: 14px; color: #1e293b; white-space: pre-wrap; font-style: italic;">"${cleanMessage}"</div>
-        </div>
-        <p style="font-size: 15px; line-height: 1.6; color: #334155; margin-bottom: 24px;">
-          In the meantime, feel free to explore my latest projects or connect with me on LinkedIn and GitHub.
-        </p>
-        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 24px 0;" />
-        <div style="font-size: 13px; color: #64748b; line-height: 1.5;">
-          <strong style="color: #0f172a; font-size: 14px;">Gul Muhammad Shaikh</strong><br />
-          Full-Stack MERN Developer<br />
-          Karachi, Sindh, Pakistan<br />
-          <a href="https://portfolio-delta-two-x1zj6gtl3b.vercel.app/" style="color: #2563eb; text-decoration: none;">portfolio-delta-two-x1zj6gtl3b.vercel.app</a>
-        </div>
-      </div>
-    `;
-
-    // Strategy A: Resend API
-    if (process.env.RESEND_API_KEY) {
-      try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        await resend.emails.send({
-          from: 'Gul Muhammad Shaikh <onboarding@resend.dev>',
-          to: cleanEmail,
-          subject: 'Thank you for reaching out to Gul Muhammad Shaikh',
-          html: userEmailHtml
-        });
-        emailSent = true;
-      } catch (resendErr) {
-        console.error('Resend delivery error:', resendErr);
-      }
-    }
-
-    // Strategy B: Nodemailer / Gmail SMTP
-    const emailUser = process.env.EMAIL_USER || process.env.GMAIL_USER || 'gulnisarshaikh@gmail.com';
-    const emailPass = process.env.EMAIL_PASS || process.env.EMAIL_PASSWORD || process.env.GMAIL_APP_PASSWORD;
-
-    if (!emailSent && emailPass) {
-      try {
-        const transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-            user: emailUser,
-            pass: emailPass
-          }
-        });
-
-        await transporter.sendMail({
-          from: `"Gul Muhammad Shaikh" <${emailUser}>`,
-          to: cleanEmail,
-          subject: 'Thank you for reaching out to Gul Muhammad Shaikh',
-          text: `Dear ${cleanName},\n\nThank you for reaching out to Gul Muhammad Shaikh.\n\nI have received your message regarding "${cleanSubject}". I will review your inquiry and get back to you promptly.\n\nBest regards,\nGul Muhammad Shaikh\nhttps://portfolio-delta-two-x1zj6gtl3b.vercel.app/`,
-          html: userEmailHtml
-        });
-
-        emailSent = true;
-      } catch (mailErr) {
-        console.error('Gmail SMTP delivery error:', mailErr);
-      }
-    }
-
-    // If database save failed and email could not be sent:
-    if (!dbSaved && !emailSent) {
-      return res.status(500).json({
-        success: false,
-        message: dbErrorMessage || 'Database connection error. Please ensure MONGO_URI is configured in Vercel settings.'
-      });
-    }
+    const result = await collection.insertOne(newSubmission);
 
     return res.status(201).json({
       success: true,
       message: 'Your message has been received and saved successfully.',
-      id: savedId,
-      dbSaved,
-      emailSent
+      id: result.insertedId
     });
   } catch (error) {
     console.error('API Contact Error:', error);
