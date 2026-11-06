@@ -5,10 +5,43 @@ import { Resend } from 'resend';
 let cachedClient = null;
 let cachedDb = null;
 
+function parseMongoUri(raw) {
+  if (!raw || typeof raw !== 'string') return null;
+
+  // 1. Remove unicode zero-width spaces, BOM, control characters
+  let clean = raw.replace(/[\u200B-\u200D\uFEFF\x00-\x1F\x7F]/g, '').trim();
+
+  // 2. Remove surrounding quotes (both ASCII and smart quotes)
+  clean = clean.replace(/^["'`“”‘’]+|["'`“”‘’]+$/g, '').trim();
+
+  // 3. If someone pasted the full line "MONGO_URI=mongodb+srv://..."
+  if (/^MONGO(?:DB)?_URI\s*=\s*/i.test(clean)) {
+    clean = clean.replace(/^MONGO(?:DB)?_URI\s*=\s*/i, '').trim();
+    clean = clean.replace(/^["'`“”‘’]+|["'`“”‘’]+$/g, '').trim();
+  }
+
+  // 4. Find the actual start of the mongodb URI
+  const matchIndex = clean.search(/mongodb(?:\+srv)?:\/\//i);
+  if (matchIndex !== -1) {
+    clean = clean.slice(matchIndex);
+    // Remove any trailing quotes, semicolons, brackets, or trailing spaces
+    clean = clean.replace(/["'`;\s)\]}]+$/, '').trim();
+    return clean;
+  }
+
+  return null;
+}
+
 async function connectToDatabase() {
-  const uri = process.env.MONGO_URI || process.env.MONGODB_URI;
-  if (!uri) {
+  const rawUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+  if (!rawUri) {
     throw new Error('MONGO_URI is missing in Vercel settings for this project. Please add MONGO_URI under Project Settings -> Environment Variables.');
+  }
+
+  const uri = parseMongoUri(rawUri);
+  if (!uri) {
+    const safePrefix = rawUri.trim().slice(0, 15).replace(/[^a-zA-Z0-9_\-:=/]/g, '*');
+    throw new Error(`Invalid MONGO_URI in Vercel settings. It must begin with "mongodb+srv://" or "mongodb://". Found value starting with "${safePrefix}" (${rawUri.length} chars).`);
   }
 
   if (cachedClient && cachedDb) {
